@@ -9,7 +9,7 @@
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- My CSS -->
-	<link rel="stylesheet" href="css/admin.css">
+	<link rel="stylesheet" href="/assets/css/admin.css">
 
 	<title>Admin</title>
 </head>
@@ -49,7 +49,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="orders.html">
+				<a href="#orders">
 					<i class='bx bxs-shopping-bag-alt'></i>
 					<span class="text">Orders</span>
 				</a>
@@ -122,6 +122,8 @@
 		<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->
+
+    	
 	
 
 	<script src="js/admin.js"></script>

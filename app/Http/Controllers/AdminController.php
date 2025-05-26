@@ -8,6 +8,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin'); // Pastikan view 'admin.blade.php' ada di folder resources/views
+        return view('admin.admin'); // Pastikan view 'admin.blade.php' ada di folder resources/views
     }
 }
