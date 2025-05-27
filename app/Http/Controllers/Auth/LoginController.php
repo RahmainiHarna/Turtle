@@ -25,11 +25,8 @@ class LoginController extends Controller
         if (Auth::attempt([$login_type => $credentials['login'], 'password' => $credentials['password']])) {
             $request->session()->regenerate();
 
-            if (Auth::user()->level == 1) {
-                return redirect('/admin');
-            } else {
-                return redirect('/');
-            }
+            return redirect('/redirect');
+
         }
 
         return back()->withErrors([
