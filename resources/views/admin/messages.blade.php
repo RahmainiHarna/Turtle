@@ -60,18 +60,18 @@
                     <span class="text">Message</span>
                 </a>
             </li>
-           @auth
-			<li>
-				<a href="{{route('logout')}}"
-					onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout">
-					<i class='bx bxs-log-out-circle'></i>
-					<span class="text">Logout</span>
-				</a>
-				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-					@csrf
-				</form>
-			</li>
-			@endauth
+            @auth
+                <li>
+                    <a href="{{route('logout')}}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout">
+                        <i class='bx bxs-log-out-circle'></i>
+                        <span class="text">Logout</span>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+            @endauth
         </ul>
     </section>
     <!-- SIDEBAR -->
@@ -107,10 +107,33 @@
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Message</th>
+                                <th>Waktu</th>
+
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach ($message as $pesan)
+                                <tr>
+                                    <td>{{ $pesan->id }}</td>
+                                    <td>{{ $pesan->name }}</td>
+                                    <td>{{ $pesan->email }}</td>
+                                    <td>{{ $pesan->message }}</td>
+                                    <td>{{ $pesan->created_at }}</td>
+                                      <td>
+                    @if ($pesan->status == 0) <!-- Status 0 = Belum dibaca -->
+                        <form action="{{ route('message.update', $pesan->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-check"></i> Tandai Sudah Dibaca
+                            </button>
+                        </form>
+                    @else
+                        <span class="badge bg-success">Sudah Dibaca</span>
+                    @endif
+                </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

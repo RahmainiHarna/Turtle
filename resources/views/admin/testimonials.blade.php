@@ -60,7 +60,7 @@
                     <span class="text">Message</span>
                 </a>
             </li>
-             @auth
+            @auth
                 <li>
                     <a href="{{route('logout')}}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout">
@@ -111,7 +111,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($testimoni as $Testimoni)
+                                <tr>
+                                    <th>{{ $Testimoni->id }}</th>
+                                    <th>
+                                        {{ $Testimoni->name }}
+                                    </th>
+                                    <th>{{ $Testimoni->email }}</th>
+                                    <th>{{ $Testimoni->subject }}</th>
+                                    <th>{{ $Testimoni->message }}</th>
+                                </tr>
 
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
