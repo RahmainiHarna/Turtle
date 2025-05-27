@@ -29,7 +29,7 @@
             <p><strong>Nama:</strong> {{ $booking['name'] }}</p>
             <p><strong>Email:</strong> {{ $booking['email'] }}</p>
             <p><strong>No. HP:</strong> {{ $booking['phone'] }}</p>
-            <p><strong>Tanggal:</strong> {{ \Carbon\Carbon::parse($booking['date'])->format('d M Y') }}</p>
+            <p><strong>Tanggal Reservasi:</strong> {{ \Carbon\Carbon::parse($booking['date'])->format('d M Y') }}</p>
             <p><strong>Jam:</strong> {{ $booking['time'] }}</p>
             <p><strong>Jumlah Orang:</strong> {{ $booking['people'] }}</p>
             @if (!empty($booking['message']))

@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageController;
 use App\Models\Booking;
 use GuzzleHttp\Psr7\Message;
+use App\Http\Controllers\InvoiceController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -66,5 +67,8 @@ Route::post('/message', [MessageController::class, 'message'])->name('message.st
 
 // testimoni
 Route::post('/send-testimoni', [MessageController::class, 'testimoni'])->name('testimoni.store');
+
+//Invoice
+Route::get('/invoice', [InvoiceController::class, 'index']);
 
 
