@@ -33,13 +33,10 @@ class BookingController extends Controller
 
         session([
             'booking' => $request->only(['name', 'email', 'phone', 'date', 'time', 'people', 'message']),
-            'cart' => session('cart', []) // ambil cart dari session
         ]);
 
         return redirect('/cart');
     }
-
-   
 
    
 }

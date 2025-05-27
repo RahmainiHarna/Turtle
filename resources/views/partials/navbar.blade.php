@@ -29,7 +29,11 @@
           <ul>
           <li><a href="#hero" class="active">Home<br></a></li>
             <li><a href="#about">About</a></li>
+<<<<<<< HEAD
             <li><a href="#best-sellers">Specials</a></li>
+=======
+            <li><a href="#specials">Specials</a></li>
+>>>>>>> a3f59fe7584f24a20d9ec4420f07edd739fa600d
             <li><a href="#events">Events</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#gallery">Gallery</a></li>
