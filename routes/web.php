@@ -13,6 +13,7 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\PageController;
 use App\Models\Booking;
 use GuzzleHttp\Psr7\Message;
+use App\Http\Controllers\InvoiceController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -74,4 +75,6 @@ Route::get('/testimonials', [PageController::class, 'testimoni'])->name('testimo
 // testimoni
 Route::post('/send-testimoni', [MessageController::class, 'testimoni'])->name('testimoni.store');
 
-});
+//Invoice
+Route::get('/invoice', [InvoiceController::class, 'index']);
+
