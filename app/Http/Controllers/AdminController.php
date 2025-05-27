@@ -2,24 +2,26 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Testimoni;   
 use App\Models\Cart;
+use App\Models\message;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.admin'); // Pastikan view 'admin.blade.php' ada di folder resources/views
+        return view('admin.admin'); //dashboard
     }
     public function Akun()
     {
         $users = User::all();
-        return view('admin.akun', compact ('users')); // Pastikan view 'admin.blade.php' ada di folder resources/views
+        return view('admin.akun', compact ('users')); 
     }
     public function MenuAdmin()
     {
         $menus = Cart::all();
-        return view('admin.menu', compact ('menus')); // Pastikan view 'admin.blade.php' ada di folder resources/views
+        return view('admin.menu', compact ('menus')); 
     }
     public function orders()
     {
@@ -27,12 +29,14 @@ class AdminController extends Controller
     }
     public function TestimonialsAdmin()
     {
-        return view('admin.testimonials'); // Pastikan view 'admin.blade.php' ada di folder resources/views
+          $testimoni = Testimoni::all();
+        return view('admin.testimonials', compact('testimoni')); 
     }
 
     public function Messages()
     {
-        return view('admin.messages'); // Pastikan view 'admin.blade.php' ada di folder resources/views
+        $message = message::all();
+        return view('admin.messages', compact('message'));
     }
 
 }
