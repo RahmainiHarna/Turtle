@@ -12,11 +12,7 @@
           <ul>
           <li><a href="{{ url('/#hero') }}" class="active">Home<br></a></li>
             <li><a href="{{ url('/#about') }}">About</a></li>
-<<<<<<< HEAD
             <li><a href="{{ url('/#best-sellers') }}">Specials</a></li>
-=======
-            <li><a href="{{ url('/#specials') }}">Specials</a></li>
->>>>>>> a3f59fe7584f24a20d9ec4420f07edd739fa600d
             <li><a href="{{ url('/#events') }}">Events</a></li>
             <li><a href="{{ url('/#testimonials') }}">Testimonials</a></li>
             <li><a href="{{ url('/#gallery') }}">Gallery</a></li>
