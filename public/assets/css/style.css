@@ -3,18 +3,17 @@
 --------------------------------------------------------------*/
 .cartmenu {
     margin-top: 80px;
-    background-color: color-mix(in srgb, var(--background-color) 90%, white 5%);
+    background-color: color-mix(in srgb, var(--background-color) 90%, white 3%);
 }
 
 .card-menu {
-  border: 3px var(--accent-color) solid;
-  background: #F4EFE6;
+  border: 3px #cda45e solid;
+  background: #dad1c2;
   transition: 0.5s;
-  border-radius: 25px;
+  border-radius: 20px;
   overflow: hidden;
   transition: 0.3s;
   text-align: center;
-  font-family: "Poppins", sans-serif;
 }
 
 .card-menu:hover {
@@ -31,14 +30,17 @@
 
 .bi-cart {
   font-size: 20px;
+  color: var(--background-color);
 }
 
 .bi-plus {
   font-size: 20px;
+  color: var(--background-color);
 }
 
 .bi-dash {
   font-size: 20px;
+  color: var(--background-color);
 }
 
 .btn-sm {
@@ -47,44 +49,52 @@
     margin-right: 8px;
     font-size: 5px;
     border-radius: 50px;
+    color: var(--background-color);
 }
 
 .btn-md {
-    font-size: 20px;
-    padding: 6px 14px;
-    white-space: nowrap;
-    font-weight: 550;
-    font-family: 'Marcellus', serif;
-    margin-bottom: 40px;
+  color: var(--background-color);
+  font-weight: 550;
+  font-size: 15px;
+  font-family: 'Poppins', serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 6px 20px;
+  border-radius: 50px;
+  transition: 0.3s;
+  flex-shrink: 0;
+  margin-bottom: 40px;
+  white-space: nowrap;
 }
 
 .quantity-display {
   font-weight: bold;
-  font-family: "Marcellus", sans-serif;
+  font-family: "Cormorant Garamond", serif;
   margin-top: 15px;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 h5 {
   font-size: 18px;
   font-weight: bold;
-  font-family: 'Marcellus', serif;
+  font-family: 'Cormorant Garamond', serif;
   letter-spacing: 1px;
-  color: black;
+  color: #0c0b09;
 }
 
 h4 {
   font-size: 18px;
   font-weight: bold;
-  font-family: 'Marcellus', serif;
+  font-family: 'Cormorant Garamond', serif;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: black;
+  color: #0c0b09;
   margin-top: 10px;
 }
 
 h2 {
-  color: var(--accent-color);
+  color: #cda45e;
   margin: 0;
   font-size: 35px;
   font-weight: 600;
