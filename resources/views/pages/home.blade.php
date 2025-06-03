@@ -181,7 +181,6 @@
       </div><!-- /Promotion Section -->
 
     </section>
->>>>>>> 2b0e39f761a41017d651a783fde9bcc01c986bcd
     <!-- /Specials Section -->
 
     <!-- Events Section -->
