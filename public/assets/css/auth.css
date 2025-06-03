@@ -1,0 +1,205 @@
+/*--------------------------------------------------------------
+# CSS LOGIN REGISTER
+--------------------------------------------------------------*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+.container {
+  max-width: 650px;
+  width: 100%;
+  background: #fff;
+  padding: 40px 30px;
+  box-shadow: 0 0 20px 2px #cda45e;
+  perspective: 2700px;
+  border-radius: 20px;
+}
+
+.container .cover {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 50%;
+  z-index: 98;
+  transition: all 1s ease;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.container .cover img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: 10;
+  border-radius: 0 20px 20px 0;
+}
+.container .cover .text {
+  position: absolute;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container .cover .text::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+  background: #0c0b09;
+  border-radius: 0 20px 20px 0;
+}
+.cover .text .text-1,
+.cover .text .text-2 {
+  z-index: 20;
+  font-size: 28px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.cover .text .text-2 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.container .forms {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+}
+.container .form-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.form-content .login-form,
+.form-content .signup-form {
+  width: calc(100% / 2 - 25px);
+}
+.forms .form-content .title {
+  position: relative;
+  font-size: 25px;
+  font-weight: 500;
+  color: #333;
+}
+.forms .form-content .title:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 25px;
+  background: #0c0b09;
+}
+.forms .signup-form .title:before {
+  width: 20px;
+}
+.forms .form-content .input-boxes {
+  margin-top: 30px;
+}
+.forms .form-content .input-box {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  margin: 10px 0;
+  position: relative;
+}
+.form-content .input-box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0 30px;
+  font-size: 15px;
+  font-weight: 500;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+.form-content .input-box input:focus,
+.form-content .input-box input:valid {
+  border-color: #0c0b09;
+}
+.form-content .input-box i {
+  position: absolute;
+  color: #0c0b09;
+  font-size: 16px;
+}
+.forms .form-content .text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+.forms .form-content .text a {
+  text-decoration: none;
+}
+.forms .form-content .text a:hover {
+  text-decoration: underline;
+}
+
+.forms .form-content .button {
+  color: #fff;
+  margin-top: 40px;
+}
+
+.forms .form-content .button button {
+  width: 100%;
+  color: #fff;
+  background: #0c0b09;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-size: 16px;
+}
+
+.forms .form-content .button button:hover {
+  background: #cda45e;
+  color: #0c0b09;
+}
+
+.forms .form-content a {
+  color: #0c0b09;
+  cursor: pointer;
+}
+.forms .form-content a:hover {
+  text-decoration: underline;
+}
+.forms .form-content .login-text,
+.forms .form-content .sign-up-text {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
