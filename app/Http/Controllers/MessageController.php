@@ -28,16 +28,24 @@ class MessageController extends Controller
     }
 
     public function testimoni(Request $request)
-{
-    $request->validate([
-        'name' => 'required',
-        'email' => 'required|email',
-        'subject' => 'nullable|string',
-        'message' => 'required|string',
-    ]);
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'nullable|string',
+            'message' => 'required|string',
+        ]);
 
-    Testimoni::create($request->all());
+        Testimoni::create($request->all());
 
-    return redirect()->back()->with('success', 'Testimoni berhasil dikirim!');
-}
+        return redirect()->back()->with('success', 'Testimoni berhasil dikirim!');
+    }
+    public function update(Request $request, $id)
+    {
+        $pesan = message::findOrFail($id);
+        $pesan->status = 1; // Tandai sebagai sudah dibaca
+        $pesan->save();
+
+        return redirect()->back()->with('success', 'Pesan sudah ditandai sebagai dibaca.');
+    }
 }

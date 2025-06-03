@@ -34,12 +34,12 @@
 
         <div class="row gy-4 align-items-center">
           <div class="col-lg-6 order-1 order-lg-2">
-            <img src="assets/img/about.jpg" class="img-fluid about-img" alt="">
+            <img src="assets/img/gallery/foto3.jpeg" class="img-fluid about-img" alt="">
           </div>
           <div class="col-lg-6 order-2 order-lg-1 content">
-            <h3>Every Bite Tells a Story of Indonesia.</h3>
+            <h3>Every Bite Tells a <span>Story of Indonesia</span></h3>
             <p class="fst-italic">
-              At TURTLE’S, we believe that every traditional dish tells a story — of people, places, and generations.
+              At Turtle’s, we believe that every traditional dish tells a story — of people, places, and generations.
             </p>
             <p>
               We’re all about bringing the vibrant flavors of Indonesia straight to your table. With recipes passed down through generations and only the 
@@ -55,85 +55,6 @@
     <!-- /About Section -->
 
     <!-- Specials Section -->
-    <section id="specials" class="specials section">
-      
-      <!-- Promotion Section -->
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Promotion</h2>
-        <p>Hot Deals</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row">
-          <div class="col-lg-3">
-            <ul class="nav nav-tabs flex-column">
-              <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" href="#specials-tab-0">Pocket Set</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#specials-tab-1">Family Set</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#specials-tab-2">Tropical Set</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-lg-9 mt-4 mt-lg-0">
-            <div class="tab-content">
-              <!-- Pocket Set -->
-              <div class="tab-pane active show" id="specials-tab-0">
-                <div class="row">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Ayam Penyet, Lemon Tea, and Perkedel Jagung</h3>
-                    <p class="fst-italic">A simple, budget-friendly combo that hits the spot!</p>
-                    <p><strong>Rp60.000</strong></p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="/assets/img/promo/pocket_set.jpg" alt=""
-                        style="width: 175px; height: 175px; border-radius: 50%; object-fit: cover;">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Family Set -->
-              <div class="tab-pane" id="specials-tab-1">
-                <div class="row">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>4 Ice Tea, 4 Rice, Cah Kangkung, Grilled Fish, and Tempe Mendoan</h3>
-                    <p class="fst-italic">Perfect for sharing, packed with bold flavors and good vibes only.</p>
-                    <p><strong>Rp130.000</strong></p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="/assets/img/promo/family_set.jpg" alt=""
-                        style="width: 175px; height: 175px; border-radius: 50%; object-fit: cover;">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Tropical Set -->
-              <div class="tab-pane" id="specials-tab-2">
-                <div class="row">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Klepon, Rujak, and Sop Buah</h3>
-                    <p class="fst-italic">Three iconic bites, one tropical vibe.</p>
-                    <p><strong>Rp45.000</strong></p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="/assets/img/promo/tropical_set.jpg" alt=""
-                        style="width: 175px; height: 175px; border-radius: 50%; object-fit: cover;">
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div><!-- /Promotion Section -->
-
-    </section>
-
     <section id="best-sellers" class="best-sellers section">
       <!-- Best Sellers Section -->
       <!-- Section Title -->
@@ -148,30 +69,30 @@
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="card-item">
-              <h4><a href="" class="stretched-link">Sop Buntut</a></h4>
-              <p><strong>Rp52.000</strong></p><br>
+              <h4>Sop Buntut</h4>
+              <h5>Rp52.000</h5>
               <p><img src="/assets/img/menu/makanan/sop_buntut.png" alt=""
-                  style="width: 175px; height: 175px; border-radius: 50%; object-fit: cover;"></p><br>
+                  style="width: 175px; height: 175px; border-radius: 50%; object-fit: cover;"></p>
               <p>Clear broth soup with tender oxtail, vegetables, and Indonesian spices.</p>
             </div>
           </div><!-- Card Item -->
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
             <div class="card-item">
-              <h4><a href="" class="stretched-link">Cendol</a></h4>
-              <p><strong>Rp25.000</strong></p><br>
+              <h4>Cendol</h4>
+              <h5>Rp25.000</h5>
               <p><img src="/assets/img/menu/minuman/cendol.png" alt=""
-                  style="width: 175px; height: 175px; border-radius: 50%; object-fit: cover;"></p><br>
+                  style="width: 175px; height: 175px; border-radius: 50%; object-fit: cover;"></p>
               <p>Iced sweet dessert with pandan jelly, coconut milk, red beans, and palm sugar syrup.</p>
             </div>
           </div><!-- Card Item -->
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
             <div class="card-item">
-              <h4><a href="" class="stretched-link">Roti Jala</a></h4>
-              <p><strong>Rp20.000</strong></p><br>
+              <h4>Roti Jala</h4>
+              <h5>Rp20.000</h5>
               <p><img src="/assets/img/menu/snack/roti_jala.png" alt=""
-                  style="width: 175px; height: 175px; border-radius: 50%; object-fit: cover;"></p><br>
+                  style="width: 175px; height: 175px; border-radius: 50%; object-fit: cover;"></p>
               <p>Lacy net-like crepes made from turmeric-flavored batter, often served with curry.</p>
             </div>
           </div><!-- Card Item -->
@@ -181,6 +102,86 @@
       </div><!-- /Best Sellers Section -->
 
     </section>
+
+    <section id="promotions" class="promotions section">
+      
+      <!-- Promotion Section -->
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Promotions</h2>
+        <p>Hot Deals</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <div class="col-lg-3">
+            <ul class="nav nav-tabs flex-column">
+              <li class="nav-item">
+                <a class="nav-link active show" data-bs-toggle="tab" href="#promotions-tab-0">Pocket Set</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#promotions-tab-1">Tropical Set</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#promotions-tab-2">Family Set</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-9 mt-5 mt-lg-0">
+            <div class="tab-content">
+              <!-- Pocket Set -->
+              <div class="tab-pane active show" id="promotions-tab-0">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Ayam Penyet, Lemon Tea, Perkedel Jagung</h3>
+                    <p class="fst-italic">Everyday favorite, easy on the budget, rich in flavor.</p>
+                    <h5><strong>Rp60.000</strong></h5>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2 mb-5">
+                    <img src="/assets/img/promo/pocket_set.jpg" alt=""
+                        style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tropical Set -->
+              <div class="tab-pane" id="promotions-tab-1">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Klepon, Rujak, Sop Buah</h3>
+                    <p class="fst-italic">Three iconic bites, one tropical vibe.</p>
+                    <h5><strong>Rp45.000</strong></h5>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2 mb-5">
+                    <img src="/assets/img/promo/tropical_set.jpg" alt=""
+                        style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Family Set -->
+              <div class="tab-pane" id="promotions-tab-2">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>4 Ice Tea, 4 Rice, Cah Kangkung, Grilled Fish, Tempe Mendoan</h3>
+                    <p class="fst-italic">Perfect for sharing, packed with bold flavors and heartwarming tastes.</p>
+                    <h5><strong>Rp130.000</strong></h5>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2 mb-5">
+                    <img src="/assets/img/promo/family_set.jpg" alt=""
+                        style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div><!-- /Promotion Section -->
+
+    </section>
+>>>>>>> 2b0e39f761a41017d651a783fde9bcc01c986bcd
     <!-- /Specials Section -->
 
     <!-- Events Section -->
@@ -217,14 +218,13 @@
                 <div class="price">
                   <p><span>Rp4.000.000</span></p>
                 </div>
-                <p class="fst-italic">Celebrate family togetherness with authentic local flavors in a warm, traditional setting!</p>
+                <h6 class="fst-italic">Reconnect, reminisce, and celebrate togetherness over a table full of heartwarming local delicacies—wrapped in the charm of tradition.</h6>
                 <ul>
-                  <li><i class="bi bi-check2-circle"></i>Exclusive private dining room for your family</li>
-                  <li><i class="bi bi-check2-circle"></i>Special selection of local dishes (Nasi Liwet, Grilled Chicken, Sambal, etc.)</li>
-                  <li><i class="bi bi-check2-circle"></i>Welcome drinks with herbal jamu or traditional iced beverages</li>
-                  <li><i class="bi bi-check2-circle"></i>Exclusive live music available for family gatherings</li>
+                  <li><i class="bi bi-check2-circle"></i>Private dining room for an intimate family experience</li>
+                  <li><i class="bi bi-check2-circle"></i>Curated selection of authentic Indonesian dishes</li>
+                  <li><i class="bi bi-check2-circle"></i>Refreshing welcome drinks: herbal jamu or traditional iced beverages</li>
+                  <li><i class="bi bi-check2-circle"></i>Optional live music performance to enhance the cozy ambiance</li>
                 </ul>
-                <p>Experience the warmth of home in a truly Indonesian dining atmosphere at Turtle’s Traditional Resto!</p>
               </div>
             </div>
           </div><!-- End Slider item -->
@@ -239,14 +239,13 @@
                 <div class="price">
                   <p><span>Rp3.200.000</span></p>
                 </div>
-                <p class="fst-italic">Host productive midday meetings over delicious traditional cuisine in a warm and professional setting.</p>
+                <h6 class="fst-italic">Where meaningful conversations meet comforting local flavors—served in a warm, professional setting that feels just right.</h6>
                 <ul>
                   <li><i class="bi bi-check2-circle"></i>Exclusive private dining area for business clients</li>
-                  <li><i class="bi bi-check2-circle"></i>Special selection of local dishes (Nasi Liwet, Grilled Chicken, Sambal, etc.)</li>
-                  <li><i class="bi bi-check2-circle"></i>Welcome drinks with herbal jamu or traditional iced beverages</li>
-                  <li><i class="bi bi-check2-circle"></i>Projector & screen available on request</li>
+                  <li><i class="bi bi-check2-circle"></i>Specially crafted menu of traditional Indonesian cuisine</li>
+                  <li><i class="bi bi-check2-circle"></i>Welcome drinks with herbal jamu or iced refreshments</li>
+                  <li><i class="bi bi-check2-circle"></i>Projector and screen available upon request</li>
                 </ul>
-                <p>Make your business lunch both productive and memorable at Turtle’s Traditional Resto.</p>
               </div>
             </div>
           </div><!-- End Slider item -->
@@ -259,16 +258,15 @@
               <div class="col-lg-6 pt-4 pt-lg-0 content">
                 <h3>Live Music Event</h3>
                 <div class="price">
-                  <p><span>Rp1.600.000</span></p>
+                  <p><span>Open Stage</span></p>
                 </div>
-                <p class="fst-italic">Bring your nights to life with live music filling the air!</p>
+                <h6 class="fst-italic">Liven up your evening with soulful sounds and warm flavors in a cozy, traditional setting.</h6>
                 <ul>
-                  <li><i class="bi bi-check2-circle"></i>Special In-House Band Performances</li>
-                  <li><i class="bi bi-check2-circle"></i>Slots Available for External Bands</li>
-                  <li><i class="bi bi-check2-circle"></i>Sound System & Mini Stage Provided</li>
-                  <li><i class="bi bi-check2-circle"></i>Relaxed Atmosphere with Special Dishes</li>
+                  <li><i class="bi bi-check2-circle"></i>Live performances by our exclusive in-house band</li>
+                  <li><i class="bi bi-check2-circle"></i>Open slots for guest bands—an opportunity to showcase your talent</li>
+                  <li><i class="bi bi-check2-circle"></i>Professional sound system & mini stage provided</li>
+                  <li><i class="bi bi-check2-circle"></i>Relaxed atmosphere complemented by our signature dishes</li>
                 </ul>
-                <p>Enjoy a night of rhythm or take the stage with your own band at our restaurant. Book your performance slot now!</p>
               </div>
             </div>
           </div><!-- End Slider item -->
@@ -326,12 +324,12 @@
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-            <p>
-              <i class=" bi bi-quote quote-icon-left"></i>
-                <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
-                <i class="bi bi-quote quote-icon-right"></i>
+                <p>
+                  <i class=" bi bi-quote quote-icon-left"></i>
+                  <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
                 </p>
-                <img src="/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                <!-- <img src="/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt=""> -->
                 <h3>Saul Goodman</h3>
                 <h4>Ceo &amp; Founder</h4>
               </div>
@@ -343,8 +341,8 @@
                   <i class="bi bi-quote quote-icon-left"></i>
                   <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+          </p>
+                <!-- <img src="/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt=""> -->
                 <h3>Sara Wilsson</h3>
                 <h4>Designer</h4>
               </div>
@@ -357,7 +355,7 @@
                   <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
-                <img src="/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                <!-- <img src="/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt=""> -->
                 <h3>Jena Karlis</h3>
                 <h4>Store Owner</h4>
               </div>
@@ -369,8 +367,8 @@
                   <i class="bi bi-quote quote-icon-left"></i>
                   <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+          </p>
+                <!-- <img src="/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt=""> -->
                 <h3>Matt Brandon</h3>
                 <h4>Freelancer</h4>
               </div>
@@ -383,7 +381,7 @@
                   <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
-                <img src="/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                <!-- <img src="/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt=""> -->
                 <h3>John Larson</h3>
                 <h4>Entrepreneur</h4>
               </div>

@@ -1,15 +1,4 @@
-/**
-* Template Name: Restaurantly
-* Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-/*--------------------------------------------------------------
-# Font & Color Variables
-# Help: https://bootstrapmade.com/color-system/
---------------------------------------------------------------*/
 /* Fonts */
 :root {
   --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -20,10 +9,10 @@
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
   --background-color: #0c0b09; /* Background color for the entire website, including individual sections */
-  --default-color: rgba(255, 255, 255, 0.7); /* Default color used for the majority of the text content across the entire website */
+  --default-color: rgba(255, 255, 255, 0.502); /* Default color used for the majority of the text content across the entire website */
   --heading-color: #ffffff; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #cda45e; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #29261f; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --surface-color: #f0e9e1; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #0c0b09; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
 
@@ -31,7 +20,7 @@
 :root {
   --nav-color: #ffffff;  /* The default color of the main navmenu links */
   --nav-hover-color: #cda45e; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #29261f; /* Used as the background color for mobile navigation menu */
+  --nav-mobile-background-color: #0c0b09; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #29261f; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #ffffff; /* Used for navigation links of the dropdown items in the navigation menu. */
   --nav-dropdown-hover-color: #cda45e; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
@@ -84,8 +73,8 @@ h4,
 h5,
 h6 {
   color: var(--heading-color);
-  font-family: var(--heading-font);
 }
+
 .harga{
 color: #000;
 }
@@ -321,7 +310,7 @@ color: #000;
 
 .header .btn-login,
 .header .btn-login:focus {
-  color: var(--default-color);
+  color: var(--heading-color);
   border: 3px solid var(--accent-color);
   text-transform: uppercase;
   font-size: 14px;
@@ -336,7 +325,7 @@ color: #000;
 
 .header .btn-login:hover,
 .header .btn-login:focus:hover {
-  color: var(--default-color);
+  color: var(--heading-color);
   background: var(--accent-color);
 }
 
@@ -347,7 +336,7 @@ color: #000;
 }
 
 .scrolled .header .branding {
-  border-color: color-mix(in srgb, var(--accent-color), transparent 80%);
+  border-color: color-mix(in srgb, var(--accent-color), transparent 50%);
 }
 
 .user-dropdown {
@@ -397,6 +386,12 @@ color: #000;
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Navmenu - Desktop */
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+  }
+
 @media (min-width: 1200px) {
   .navmenu {
     padding: 0;
@@ -418,7 +413,7 @@ color: #000;
   .navmenu a:focus {
     color: var(--nav-color);
     padding: 18px 15px;
-    font-size: 14px;
+    font-size: 15px;
     font-family: var(--nav-font);
     font-weight: 400;
     display: flex;
@@ -430,7 +425,7 @@ color: #000;
 
   .navmenu a i,
   .navmenu a:focus i {
-    font-size: 12px;
+    font-size: 15px;
     line-height: 0;
     margin-left: 5px;
     transition: 0.3s;
@@ -514,7 +509,9 @@ color: #000;
   }
 
   .navmenu {
-    padding: 0;
+    padding: 14px 0 14px 0;
+    border-top: 1px solid var(--nav-border-color);
+    border-bottom: 1px solid var(--nav-border-color);
     z-index: 9997;
   }
 
@@ -522,12 +519,13 @@ color: #000;
     display: none;
     list-style: none;
     position: absolute;
-    inset: 60px 20px 20px 20px;
-    padding: 10px 0;
+    inset: 80px 20px 80px 20px;
+    padding: 20px 0;
     margin: 0;
-    border-radius: 6px;
+    border-radius: 20px;
     background-color: var(--nav-mobile-background-color);
-    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+    border: 2px solid var(--accent-color);
+
     overflow-y: auto;
     transition: 0.3s;
     z-index: 9998;
@@ -559,7 +557,7 @@ color: #000;
     justify-content: center;
     border-radius: 50%;
     transition: 0.3s;
-    background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+    background-color: color-mix(in srgb, var(--background-color), transparent 90%);
   }
 
   .navmenu a i:hover,
@@ -633,11 +631,13 @@ color: #000;
 # Global Footer
 --------------------------------------------------------------*/
 .footer {
-  color: var(--default-color);
+  color: var(--heading-color);
   background-color: var(--background-color);
   font-size: 14px;
   padding-bottom: 20px;
   position: relative;
+  border-top: 1.5px solid color-mix(in srgb, var(--accent-color), transparent 50%);
+  font-family: 'Poppins', sans-serif;
 }
 
 .footer .footer-top {
@@ -656,7 +656,7 @@ color: #000;
 
 .footer .footer-about .logo span {
   font-size: 26px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 1px;
   font-family: var(--heading-font);
   color: var(--heading-color);
@@ -674,9 +674,9 @@ color: #000;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
+  border: 1px solid var(--heading-color);
   font-size: 16px;
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  color: var(--heading-color);
   margin-right: 10px;
   transition: 0.3s;
 }
@@ -953,7 +953,7 @@ section,
   margin: 0;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  color: var(--default-color);
   position: relative;
 }
 
@@ -1000,7 +1000,7 @@ section,
 
 .hero:before {
   content: "";
-  background: color-mix(in srgb, var(--background-color), transparent 30%);
+  background: color-mix(in srgb, var(--background-color), transparent 35%);
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -1013,25 +1013,33 @@ section,
 
 .hero h2 {
   margin: 0;
-  font-size: 48px;
+  font-size: 50px;
   font-weight: 700;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .hero h2 span {
   color: var(--accent-color);
+  margin: 0;
+  font-size: 50px;
+  font-weight: 700;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .hero p {
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  color: var(--default-color);
   margin: 10px 0 0 0;
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: 'Poppins', serif;
+  font-style: italic;
 }
 
 .hero .cta-btn {
-  color: var(--default-color);
+  color: var(--heading-color);
   border: 3px solid var(--accent-color);
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
   font-family: 'Poppins', serif;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -1047,7 +1055,8 @@ section,
 }
 
 .hero .cta-btn:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+
+  background: color-mix(in srgb, var(--accent-color), transparent 10%);
 }
 
 @media (max-width: 480px) {
@@ -1058,7 +1067,12 @@ section,
 
 @media (max-width: 768px) {
   .hero h2 {
-    font-size: 32px;
+    font-size: 45px;
+    padding: 60px 0 0 0;
+  }
+
+  .hero h2 span {
+    font-size: 45px;
   }
 
   .hero p {
@@ -1074,17 +1088,8 @@ section,
   background-size: cover;
   position: relative;
   padding: 80px 0;
-  background-color: color-mix(in srgb, var(--background-color) 90%, white 20%);
-}
+  background-color: color-mix(in srgb, var(--background-color) 90%, white 3%);
 
-.about:before {
-  content: "";
-  background: color-mix(in srgb, var(--background-color), transparent 12%);
-  position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
 }
 
 .about .container {
@@ -1092,97 +1097,116 @@ section,
 }
 
 .about .content h3 {
-  font-size: 1.75rem;
+  font-size: 32px;
   font-weight: 700;
+  color: var(--heading-color);
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.about h3 span {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent-color);
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .about .content .fst-italic {
-  color: color-mix(in srgb, var(--default-color), var(--contrast-color) 50%);
+  color: var(--default-color);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  margin-bottom: 25px;
 }
 
-.about .content ul {
-  list-style: none;
-  padding: 0;
-}
-
-.about .content ul li {
-  padding: 10px 0 0 0;
-  display: flex;
-}
-
-.about .content ul i {
-  color: var(--accent-color);
-  margin-right: 0.5rem;
-  line-height: 1.2;
-  font-size: 1.25rem;
-}
-
-.about .content p:last-child {
-  margin-bottom: 0;
+.about .content p {
+  color: var(--heading-color);
+  font-family: 'Poppins', serif;
+  font-size: 17px;
 }
 
 .about .about-img {
   border: var(--accent-color) solid 5px;
+  border-radius: 20px;
   transition: 0.3s;
 }
 
 .about .about-img:hover {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 /*--------------------------------------------------------------
 # Best Sellers Section
 --------------------------------------------------------------*/
+
+.best-sellers {
+  background-color: var(--background-color);
+}
+
 .best-sellers .card-item {
-  background: color-mix(in srgb, var(--default-color), transparent 95%);
-  padding: 50px 30px;
+  background: #dad1c2;
+  padding: 40px 30px 40px 30px;
   transition: all ease-in-out 0.3s;
   height: 100%;
   position: relative;
-}
-
-.best-sellers .card-item span {
-  color: var(--accent-color);
-  display: block;
-  font-size: 28px;
-  font-weight: 700;
+  border-radius: 20px;
 }
 
 .best-sellers .card-item h4 {
-  font-size: 24px;
+  color: var(--background-color);
+  font-size: 28px;
   font-weight: 600;
-  padding: 0;
-  margin: 20px 0;
+  margin: 10px 0;
+  font-family: 'Cormorant Garamond', serif;
 }
 
-.best-sellers .card-item h4 a {
-  color: var(--heading-color);
+.best-sellers .card-item h5 {
+  color: var(--background-color);
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Cormorant Garamond', serif;
+  margin-bottom: 20px;
 }
 
 .best-sellers .card-item p {
+  color: var(--background-color);
   font-size: 15px;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-  margin: 0;
-  padding: 0;
+  font-family: 'Poppins', serif;
+  margin-bottom: 20px;
+}
+
+.best-sellers .card-item:hover h4 {
+  color: var(--background-color);
+  font-size: 28px;
+  font-weight: 600;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.best-sellers .card-item:hover h5 {
+  color: var(--background-color);
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Cormorant Garamond', serif;
+  margin-bottom: 20px;
+}
+
+.best-sellers .card-item:hover p {
+  color: var(--background-color);
+  font-size: 15px;
+  font-family: 'Poppins', serif;
+  margin-bottom: 20px;
 }
 
 .best-sellers .card-item:hover {
   background: var(--accent-color);
-  padding: 30px 30px 70px 30px;
+  padding: 30px 30px 50px 30px;
 }
 
-.best-sellers .card-item:hover span,
-.best-sellers .card-item:hover h4 a,
-.best-sellers .card-item:hover p {
-  color: var(--contrast-color);
-}
 
 /*--------------------------------------------------------------
 # Menu Section
 --------------------------------------------------------------*/
 .menu {
   margin-top: 80px;
-  background-color: color-mix(in srgb, var(--background-color) 90%, white 5%);
+  background-color: color-mix(in srgb, var(--background-color) 90%, white 3%);
 }
 
 .menu .menu-filters {
@@ -1199,11 +1223,13 @@ section,
   cursor: pointer;
   display: inline-block;
   padding: 8px 12px 10px 12px;
-  font-size: 16px;
+  font-size: 18px;
+
   font-weight: 600;
   line-height: 1;
   transition: all ease-in-out 0.3s;
   font-family: 'Marcellus', serif;
+  letter-spacing: 1px;
 }
 
 .menu .menu-filters li:hover,
@@ -1242,18 +1268,21 @@ section,
   right: 0;
   top: -4px;
   z-index: 1;
-  color: color-mix(in srgb, var(--default-color), transparent 60%);
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: var(--default-color);
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .menu .menu-content a {
   color: var(--heading-color);
   background: var(--background-color);
-  padding-right: 10px;
+  padding-right: 5px;
+  padding-left: 5px;
   position: relative;
   z-index: 3;
-  font-weight: 700;
+  font-weight: 600;
   transition: 0.3s;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
 }
 
 .menu .menu-content a:hover {
@@ -1265,8 +1294,11 @@ section,
   color: var(--accent-color);
   position: relative;
   z-index: 3;
-  padding: 0 10px;
+  padding-right: 10px;
+  padding-left: 10px;
   font-weight: 600;
+  font-size: 20px;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .menu .menu-ingredients {
@@ -1274,66 +1306,78 @@ section,
   font-style: italic;
   font-size: 14px;
   font-family: var(--nav-font);
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
+  color: var(--default-color);
 }
 
 /*--------------------------------------------------------------
-# Specials Section
+# Promotions Section
 --------------------------------------------------------------*/
-.specials {
+.promotions {
   overflow: hidden;
 }
 
-.specials .nav-tabs {
+.promotions .nav-tabs {
   border: 0;
 }
 
-.specials .nav-link {
+.promotions .nav-link {
   border: 0;
-  padding: 12px 15px;
+  padding: 18px 30px;
   transition: 0.3s;
   color: var(--heading-color);
-  border-radius: 0;
-  border-right: 2px solid var(--accent-color);
+  border-radius: 10px 0px 0px 10px;
+  border-right: 3px solid var(--accent-color);
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
+  font-family: 'Poppins', serif;
 }
 
-.specials .nav-link:hover {
+.promotions .nav-link:hover {
   color: var(--accent-color);
 }
 
-.specials .nav-link.active {
+.promotions .nav-link.active {
   color: var(--contrast-color);
   background-color: var(--accent-color);
 }
 
-.specials .tab-pane.active {
+.promotions .tab-pane.active {
   animation: fadeIn 0.5s ease-out;
 }
 
-.specials .details h3 {
-  font-size: 26px;
+.promotions .details h3 {
+  font-size: 28px;
   font-weight: 600;
+  font-family: 'Cormorant Garamond', serif;
+  margin-bottom: 10px;
+  color: var(--heading-color);
+}
+
+.promotions .details p {
+  font-size: 15px;
+  font-family: 'Poppins', serif;
+  color: var(--default-color);
   margin-bottom: 20px;
 }
 
-.specials .details p {
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+.promotions .details h5 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  color: var(--heading-color);
 }
 
-.specials .details p:last-child {
+.promotions .details p:last-child {
   margin-bottom: 0;
 }
 
 @media (max-width: 992px) {
-  .specials .nav-link {
+  .promotions .nav-link {
     border: 0;
-    padding: 15px;
+    padding: 18px;
   }
 
-  .specials .nav-link.active {
-    color: var(--accent-color);
+  .promotions .nav-link.active {
+    color: var(--contrast-color);
     background: var(--accent-color);
   }
 }
@@ -1342,9 +1386,7 @@ section,
 # Events Section
 --------------------------------------------------------------*/
 .events {
-  --default-color: #ffffff;
-  --background-color: #000000;
-  --heading-color: #ffffff;
+  background-color: color-mix(in srgb, var(--background-color) 90%, white 3%);
   padding: 80px 0;
   position: relative;
 }
@@ -1359,16 +1401,8 @@ section,
   z-index: 1;
 }
 
-.events:before {
-  content: "";
-  background-color: color-mix(in srgb, var(--background-color), transparent 30%);
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-}
-
 .events .section-title h2 {
-  color: #ffffff;
+  color: var(--heading-color);
 }
 
 .events .container {
@@ -1379,31 +1413,44 @@ section,
 .events .event-item h3 {
   font-weight: 700;
   font-size: 30px;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--accent-color);
 }
 
 .events .event-item .price {
-  font-size: 26px;
-  font-family: var(--default-font);
-  font-weight: 700;
-  margin-bottom: 15px;
+  font-size: 25px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: var(--heading-color);
 }
 
 .events .event-item .price span {
   border-bottom: 2px solid var(--accent-color);
 }
 
+.events .event-item h6 {
+  font-size: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  margin-bottom: 20px;
+  color: var(--default-color)
+}
+
 .events .event-item ul {
+  font-family: 'Poppins', serif;
   list-style: none;
   padding: 0;
+  color: var(--heading-color);
 }
 
 .events .event-item ul li {
   padding-bottom: 10px;
+  font-size: 15px;
 }
 
 .events .event-item ul i {
-  font-size: 20px;
-  padding-right: 4px;
+  font-size: 18px;
+  padding-right: 5px;
   color: var(--accent-color);
 }
 
@@ -1436,7 +1483,7 @@ section,
 --------------------------------------------------------------*/
 .book-a-table {
   margin-top: 80px;
-  background-color: color-mix(in srgb, var(--background-color) 90%, white 5%);
+  background-color: color-mix(in srgb, var(--background-color) 90%, white 3%);
 }
 
 .book-a-table .reservation-img {
@@ -1446,7 +1493,7 @@ section,
 }
 
 .book-a-table .reservation-form-bg {
-  background: #F4EFE6;
+  background: #dad1c2;
 }
 
 .book-a-table .book {
@@ -1465,14 +1512,14 @@ section,
 .book-a-table .book input[type=date],
 .book-a-table .book input[type=time],
 .book-a-table .book textarea {
-  font-size: 14px;
+  font-size: 15px;
   font-family: "Poppins", sans-serif;
   padding: 10px 15px;
   box-shadow: none;
   border-radius: 15;
   border: 2px var(--accent-color) solid;
-  color: #03110D;
-  background-color: #F4EFE6;
+  color: var(--background-color);
+  background-color: #dad1c2;
 }
 
 .book-a-table .book input[type=text]:focus,
@@ -1490,14 +1537,14 @@ section,
 .book-a-table .book input[type=date]::placeholder,
 .book-a-table .book input[type=time]::placeholder,
 .book-a-table .book textarea::placeholder {
-  color: #03110D;
+  color: color-mix(in srgb, var(--background-color) 90%, white 15%);
 }
 
 .book-a-table .book button[type=submit] {
   font-family: "Poppins", sans-serif;
-  color: #03110D;
+  color: var(--background-color);
   border: 3px var(--accent-color) solid;
-  background: #F4EFE6;
+  background: #dad1c2;
   padding: 10px 50px;
   transition: 0.5s;
   border-radius: 50px;
@@ -1521,7 +1568,7 @@ section,
 }
 
 .testimonials .cta-btn {
-  color: var(--default-color);
+  color: var(--heading-color);
   border: 3px solid var(--accent-color);
   font-weight: 500;
   font-size: 14px;
@@ -1546,24 +1593,27 @@ section,
   margin: -40px 0 0 40px;
   position: relative;
   z-index: 2;
-  border: 6px solid var(--background-color);
+  border: 6px solid color-mix(in srgb, var(--background-color) 90%, white 3%);
 }
 
 .testimonials .testimonial-item h3 {
-  font-size: 18px;
+  font-size: 25px;
   font-weight: bold;
+  font-family: 'Cormorant Garamond', serif;
   margin: 10px 0 5px 45px;
+  color: var(--heading-color);
 }
 
 .testimonials .testimonial-item h4 {
-  font-size: 14px;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  font-size: 15px;
+  font-family: 'Poppins', serif;
+  color: var(--deafult-color);
   margin: 0 0 0 45px;
 }
 
 .testimonials .testimonial-item .quote-icon-left,
 .testimonials .testimonial-item .quote-icon-right {
-  color: color-mix(in srgb, var(--accent-color), transparent 50%);
+  color: var(--accent-color);
   font-size: 26px;
   line-height: 0;
 }
@@ -1583,14 +1633,17 @@ section,
 }
 
 .testimonials .testimonial-item p {
+  font-family: 'Poppins', serif;
   font-style: italic;
+  font-size: 15px;
   margin: 0 15px 0 15px;
   padding: 20px 20px 60px 20px;
-  background: color-mix(in srgb, var(--default-color), transparent 97%);
+  background: #dad1c2;
   position: relative;
-  border-radius: 6px;
+  border-radius: 10px;
   position: relative;
   z-index: 1;
+  color: var(--background-color);
 }
 
 .testimonials .swiper-wrapper {
@@ -1598,7 +1651,7 @@ section,
 }
 
 .testimonials .swiper-pagination {
-  margin-top: 20px;
+  margin-top: 30px;
   position: relative;
 }
 
@@ -1614,9 +1667,13 @@ section,
   background-color: var(--accent-color);
 }
 
+
+/*--------------------------------------------------------------
+# Testimonials Section Form
+--------------------------------------------------------------*/
 .testimonials-new{
   margin-top: 80px;
-  background-color: color-mix(in srgb, var(--background-color) 90%, white 5%);
+  background-color: color-mix(in srgb, var(--background-color) 90%, white 3%);
 }
 
 .testimonials-new .book {
@@ -1632,8 +1689,8 @@ section,
   box-shadow: none;
   border-radius: 15;
   border: 2px var(--accent-color) solid;
-  color: #03110D;
-  background-color: #F4EFE6;
+  color: var(--background-color);
+  background-color: #dad1c2;
 }
 
 .testimonials-new .book input[type=text]:focus,
@@ -1645,14 +1702,14 @@ section,
 .testimonials-new .book input[type=text]::placeholder,
 .testimonials-new .book input[type=email]::placeholder,
 .testimonials-new .book textarea::placeholder {
-  color: #03110D;
+  color: color-mix(in srgb, var(--background-color) 90%, white 15%);
 }
 
 .testimonials-new .book button[type=submit] {
   font-family: "Poppins", sans-serif;
-  color: #03110D;
+  color: var(--background-color);
   border: 3px var(--accent-color) solid;
-  background: #F4EFE6;
+  background: #dad1c2;
   padding: 10px 40px;
   transition: 0.5s;
   border-radius: 50px;
@@ -1690,8 +1747,7 @@ section,
 # Contact Section
 --------------------------------------------------------------*/
 .contact {
-  background-color: color-mix(in srgb, var(--background-color) 90%, white 5%);
-  border-bottom: 2px solid color-mix(in srgb, var(--accent-color), transparent 90%);
+  background-color: color-mix(in srgb, var(--background-color) 90%, white 3%);
 }
 
 .contact .info-item+.info-item {
@@ -1699,7 +1755,7 @@ section,
 }
 
 .contact .info-item i {
-  color: var(--contrast-color);
+  color: var(--background-color);
   background: var(--accent-color);
   font-size: 20px;
   width: 44px;
@@ -1707,15 +1763,16 @@ section,
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 4px;
+  border-radius: 5px;
   transition: all 0.3s ease-in-out;
   margin-right: 15px;
 }
 
 .contact .info-item h3 {
   padding: 0;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
+  font-family: 'Cormorant Garamond', serif;
   margin-bottom: 5px;
 }
 
@@ -1723,6 +1780,7 @@ section,
   padding: 0;
   margin-bottom: 0;
   font-size: 14px;
+  font-family: 'Poppins', sans-serif;
 }
 .contact .book {
   height: 100%;
@@ -1737,8 +1795,8 @@ section,
   box-shadow: none;
   border-radius: 15;
   border: 2px var(--accent-color) solid;
-  color: #03110D;
-  background-color: #F4EFE6;
+  color: var(--background-color);
+  background-color: #dad1c2;
 }
 
 .contact .book input[type=text]:focus,
@@ -1750,14 +1808,14 @@ section,
 .contact .book input[type=text]::placeholder,
 .contact .book input[type=email]::placeholder,
 .contact .book textarea::placeholder {
-  color: #03110D;
+  color: color-mix(in srgb, var(--background-color) 90%, white 15%);
 }
 
 .contact .book button[type=submit] {
   font-family: "Poppins", sans-serif;
-  color: #03110D;
+  color: var(--background-color);
   border: 3px var(--accent-color) solid;
-  background: #F4EFE6;
+  background: #dad1c2;
   padding: 10px 40px;
   transition: 0.5s;
   border-radius: 50px;
@@ -1767,6 +1825,8 @@ section,
   background: var(--accent-color);
 }
 
+
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
+

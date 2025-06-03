@@ -14,8 +14,7 @@ class AdminMiddleware
         if (Auth::check() && Auth::user()->level == 1) {
             return $next($request);
         }
-
-        return redirect('/'); // kalau bukan admin, balik ke home
+        return redirect('/');
     }
 
 }
