@@ -22,73 +22,25 @@ class CartController extends Controller
     }
 
     // Tambah item ke cart
-    public function addToCart($menuId)
+    public function addToCart($id)
     {
-        $cart = session('cart', []);
-        $cart[$menuId] = ($cart[$menuId] ?? 0) + 1;
+        $cart = session()->get('cart', []);
+        $cart[$id] = isset($cart[$id]) ? $cart[$id] + 1 : 1;
         session(['cart' => $cart]);
         return back();
     }
 
-    // Kurangi item dari cart
-    public function removeFromCart($menuId)
+    // Kurangi item dari cartpublic function removeFromCart($id)
+    public function removeFromCart($id)
     {
-        $cart = session('cart', []);
-        if (isset($cart[$menuId])) {
-            $cart[$menuId]--;
-            if ($cart[$menuId] <= 0) {
-                unset($cart[$menuId]);
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
+            $cart[$id]--;
+            if ($cart[$id] <= 0) {
+                unset($cart[$id]);
             }
         }
         session(['cart' => $cart]);
         return back();
-    }
-
-    // Tampilkan halaman invoice
-    public function invoice()
-    {
-        $booking = session('booking');
-        $cart = session('cart', []);
-
-        // if (!$booking) {
-        //     return redirect()->route('booking.form')->with('error', 'Silakan booking dulu.');
-        // }
-
-        if (empty($cart)) {
-            return redirect()->route('cart')->with('error', 'Keranjang masih kosong.');
-        }
-
-        $menuIds = array_keys($cart);
-        $menus = Cart::whereIn('id', $menuIds)->get();
-
-        return view('invoice', compact('booking', 'cart', 'menus'));
-    }
-
-    // Proses konfirmasi pemesanan
-    public function confirm()
-    {
-        $booking = session('booking');
-        $cart = session('cart',[]);
-
-        if (!$booking || !$cart) {
-            return redirect('/')->with('error', 'Data belum lengkap.');
-        }
-
-        $newBooking = Booking::create($booking);
-       
-        foreach ($cart as $menuId => $qty) {
-            $menu = Cart::find($menuId);
-
-            Order::create([
-                'booking_id' => $newBooking->id,
-                'menu_id' => $menuId,
-                'qty' => $qty,
-                'subtotal' => $menu->price * $qty,
-            ]);
-        }
-
-        session()->forget(['booking', 'cart']);
-
-        return redirect('/')->with('success', 'Booking berhasil! Terima kasih 😊');
     }
 }
