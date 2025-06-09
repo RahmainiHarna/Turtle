@@ -21,9 +21,7 @@ use App\Http\Controllers\InvoiceController;
 
 
 // Halaman utama
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', [PageController::class, 'home'])->name('home');
 // message
 Route::post('/message', [MessageController::class, 'message'])->name('message.store');
 // lihat menu
@@ -51,7 +49,11 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/messages', [AdminController::class, 'messages'])->name('messages');
     Route::put('/message/{id}', [MessageController::class, 'update'])->name('message.update');
     Route::get('/testimonialsAdmin', [AdminController::class, 'testimonialsAdmin'])->name('testimonialsAdmin');
+Route::put('/admin/testimoni/{id}/approve', [AdminController::class, 'approve'])->name('admin.testimoni.approve');
+
     Route::get('/orders', [AdminController::class, 'orders'])->name('orders');
+    Route::get('/orders/{id}', [AdminController::class, 'show']);
+
 });
 
 
