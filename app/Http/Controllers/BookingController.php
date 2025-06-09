@@ -31,8 +31,10 @@ class BookingController extends Controller
             return back()->with('error', 'Kuota penuh pada waktu tersebut.');
         }
 
+       $data = $request->only(['name', 'email', 'phone', 'date', 'time', 'people', 'message']);
+
         session([
-            'booking' => $request->only(['name', 'email', 'phone', 'date', 'time', 'people', 'message']),
+            'booking' => $data
         ]);
 
         return redirect('/cart');
