@@ -43,4 +43,52 @@ class CartController extends Controller
         session(['cart' => $cart]);
         return back();
     }
+
+    public function create()
+    {
+        return view('admin.createmenu');
+    }
+
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|integer|min:0',
+            'type' => 'required|in:makanan,minuman,snack',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName = 'menu_' . time() . '.' . $image->getClientOriginalExtension();
+
+            $category = $request->type;
+            $destinationPath = public_path('assets/menu/' . $category);
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Pindahkan file (tanpa if)
+            $image->move($destinationPath, $fileName);
+
+            // Simpan path relatif
+            $imagePath = 'assets/menu/' . $category . '/' . $fileName;
+            \Log::info('Gambar yang disimpan: ' . $imagePath);
+        } else {
+            \Log::warning('Tidak ada file yang diupload!');
+        }
+        \Log::info('Path yang akan disimpan di DB: ' . $imagePath);
+        // Simpan data
+        Cart::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'type' => $request->type,
+            'image' => $imagePath,
+        ]);
+
+        return redirect()->back()->with('success', 'Menu berhasil ditambahkan.');
+    }
 }
