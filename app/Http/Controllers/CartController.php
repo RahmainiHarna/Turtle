@@ -22,73 +22,73 @@ class CartController extends Controller
     }
 
     // Tambah item ke cart
-    public function addToCart($menuId)
+    public function addToCart($id)
     {
-        $cart = session('cart', []);
-        $cart[$menuId] = ($cart[$menuId] ?? 0) + 1;
+        $cart = session()->get('cart', []);
+        $cart[$id] = isset($cart[$id]) ? $cart[$id] + 1 : 1;
         session(['cart' => $cart]);
         return back();
     }
 
-    // Kurangi item dari cart
-    public function removeFromCart($menuId)
+    // Kurangi item dari cartpublic function removeFromCart($id)
+    public function removeFromCart($id)
     {
-        $cart = session('cart', []);
-        if (isset($cart[$menuId])) {
-            $cart[$menuId]--;
-            if ($cart[$menuId] <= 0) {
-                unset($cart[$menuId]);
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
+            $cart[$id]--;
+            if ($cart[$id] <= 0) {
+                unset($cart[$id]);
             }
         }
         session(['cart' => $cart]);
         return back();
     }
 
-    // Tampilkan halaman invoice
-    public function invoice()
+    public function create()
     {
-        $booking = session('booking');
-        $cart = session('cart', []);
-
-        // if (!$booking) {
-        //     return redirect()->route('booking.form')->with('error', 'Silakan booking dulu.');
-        // }
-
-        if (empty($cart)) {
-            return redirect()->route('cart')->with('error', 'Keranjang masih kosong.');
-        }
-
-        $menuIds = array_keys($cart);
-        $menus = Cart::whereIn('id', $menuIds)->get();
-
-        return view('invoice', compact('booking', 'cart', 'menus'));
+        return view('admin.createmenu');
     }
 
-    // Proses konfirmasi pemesanan
-    public function confirm()
+
+    public function store(Request $request)
     {
-        $booking = session('booking');
-        $cart = session('cart',[]);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|integer|min:0',
+            'type' => 'required|in:makanan,minuman,snack',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
 
-        if (!$booking || !$cart) {
-            return redirect('/')->with('error', 'Data belum lengkap.');
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName = 'menu_' . time() . '.' . $image->getClientOriginalExtension();
+
+            $category = $request->type;
+            $destinationPath = public_path('assets/menu/' . $category);
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Pindahkan file (tanpa if)
+            $image->move($destinationPath, $fileName);
+
+            // Simpan path relatif
+            $imagePath = 'assets/menu/' . $category . '/' . $fileName;
+            \Log::info('Gambar yang disimpan: ' . $imagePath);
+        } else {
+            \Log::warning('Tidak ada file yang diupload!');
         }
+        \Log::info('Path yang akan disimpan di DB: ' . $imagePath);
+        // Simpan data
+        Cart::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'type' => $request->type,
+            'image' => $imagePath,
+        ]);
 
-        $newBooking = Booking::create($booking);
-       
-        foreach ($cart as $menuId => $qty) {
-            $menu = Cart::find($menuId);
-
-            Order::create([
-                'booking_id' => $newBooking->id,
-                'menu_id' => $menuId,
-                'qty' => $qty,
-                'subtotal' => $menu->price * $qty,
-            ]);
-        }
-
-        session()->forget(['booking', 'cart']);
-
-        return redirect('/')->with('success', 'Booking berhasil! Terima kasih 😊');
+        return redirect()->back()->with('success', 'Menu berhasil ditambahkan.');
     }
 }

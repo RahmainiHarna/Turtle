@@ -15,6 +15,12 @@
 
 <body>
 
+    <style>
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+
     <!-- SIDEBAR -->
     <section id="sidebar">
         <a href="#" class="brand">
@@ -25,7 +31,7 @@
         </a>
         <ul class="side-menu top">
             <li>
-                <a href="{{ route('admin') }}">
+                <a href="{{route('admin')}}">
                     <i class='bx bxs-dashboard'></i>
                     <span class="text">Dashboard</span>
                 </a>
@@ -36,25 +42,25 @@
                     <span class="text">Akun User</span>
                 </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="{{ route('menuAdmin') }}">
                     <i class='bx bxs-shopping-bag-alt'></i>
                     <span class="text">Daftar Menu</span>
                 </a>
             </li>
-            <li>
+            <li class="active">
                 <a href="{{ route('orders') }}">
                     <i class='bx bxs-shopping-bag-alt'></i>
                     <span class="text">Orders</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('testimonialsAdmin') }}">
+                <a href="{{route('testimonialsAdmin')}}">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">Testimoni</span>
                 </a>
             </li>
-            <li id="message-link">
+            <li>
                 <a href="{{ route('messages') }}">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">Message</span>
@@ -81,6 +87,7 @@
         <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
+            <input type="checkbox" id="switch-mode" hidden>
         </nav>
         <!-- NAVBAR -->
 
@@ -88,50 +95,61 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Daftar Menu</h1>
-                    <ul class="breadcrumb">
-                        <li><a href="#">Menu</a></li>
-                    </ul>
+                    <h1>Orders</h1>
                 </div>
             </div>
+
 
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3>Menu</h3>
+                        <h3>Detail Orders</h3>
                     </div>
+
+                    <h5>Data Diri Pemesan:</h5>
+                    <ul>
+                        <li>Nama: {{ $booking->name }}</li>
+                        <li>Tanggal Pesan: {{ $booking->date }}</li>
+                        <li>Jam: {{ $booking->time}}</li>
+                        <li>Jumlah Orang: {{ $booking->people }}</li>
+                        <li>Telepon: {{ $booking->phone }}</li>
+                        <li>Email: {{ $booking->email }}</li>
+                    </ul>
                     <table>
+
                         <thead>
                             <tr>
-                                <th> ID</th>
                                 <th>Nama Menu</th>
-                                <th>Jenis</th>
-                                <th>Harga</th>
-                                <th>Gambar</th>
+                                <th>Jumlah</th>
+                                <th>Subtotal</th>
                             </tr>
                         </thead>
+
                         <tbody>
-                            @foreach($menus as $menu)
+                            @foreach ($booking->orders as $order)
                                 <tr>
-                                    <td>{{ $menu->id }}</td>
-                                    <td>{{ $menu->name }}</td>
-                                    <td>{{ $menu->type }}</td>
-                                    <td>{{ $menu->price }}</td>
-                                    <td>{{ $menu->image }}</td>
+                                    <td>{{ $order->menu->name }}</td>
+                                    <td>{{ $order->quantity }}</td>
+                                    <td>{{ number_format($order->subtotal, 0, ',', '.') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    <a href="{{ route('orders') }}">back</a>
                 </div>
             </div>
+
             </div>
-            <a href="{{ route('admin.createmenu') }}"class="color : red"> + tambah menu</button>
         </main>
         <!-- MAIN -->
     </section>
     <!-- CONTENT -->
 
+
+
+
     <script src="js/admin.js"></script>
+
 </body>
 
 </html>

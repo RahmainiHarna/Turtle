@@ -21,10 +21,7 @@ use App\Http\Controllers\InvoiceController;
 
 
 // Halaman utama
-Route::get('/', function () {
-    return view('pages.home');
-});
-
+Route::get('/', [PageController::class, 'home'])->name('home');
 // message
 Route::post('/message', [MessageController::class, 'message'])->name('message.store');
 // lihat menu
@@ -46,29 +43,38 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // admin
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.admin');
-    })->name('admin');
+    // Route::get('/admin', function () {
+    //     return view('admin.admin');
+    // })->name('admin');
+     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('/akun', [AdminController::class, 'akun'])->name('akun');
     Route::get('/menuAdmin', [AdminController::class, 'menuAdmin'])->name('menuAdmin');
+    Route::get('/menu/create', [CartController::class, 'create'])-> name('admin.createmenu');
+    Route::post('/menu/store', [CartController::class, 'store'])->name('menu.store');
     Route::get('/messages', [AdminController::class, 'messages'])->name('messages');
     Route::put('/message/{id}', [MessageController::class, 'update'])->name('message.update');
     Route::get('/testimonialsAdmin', [AdminController::class, 'testimonialsAdmin'])->name('testimonialsAdmin');
+    Route::put('/admin/testimoni/{id}/approve', [AdminController::class, 'approve'])->name('admin.testimoni.approve');
+
     Route::get('/orders', [AdminController::class, 'orders'])->name('orders');
+
+    Route::get('/orders/{id}', [AdminController::class, 'showOrder'])->name('admin.ordershow');
+
 });
 
 
 // Booking
-Route::middleware(['auth', UserMiddleware::class])->group(function (){
-// Route::get('/booking', [BookingController::class, 'index']); // Bisa diaktifkan jika ada
-Route::post('/booking', [BookingController::class, 'store'])->name('book.store');
+Route::middleware(['auth', UserMiddleware::class])->group(function () {
+    // Route::get('/booking', [BookingController::class, 'index']); // Bisa diaktifkan jika ada
+    Route::post('/booking', [BookingController::class, 'store'])->name('book.store');
 
-// Menu & Pemesanan
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::post('/cart/add/{id}', [CartController::class, 'addToCart']);
-Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart']);
-Route::get('/invoice', [CartController::class, 'invoice'])->name('invoice');
-Route::post('/confirm', [CartController::class, 'confirm']);
+    // Menu & Pemesanan
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+    Route::get('/invoice', [InvoiceController::class, 'showFromSession'])->name('invoice.show');
+    Route::post('/invoice/confirm', [InvoiceController::class, 'confirm'])->name('invoice.confirm');
+
 
 
 // Halaman Baru
@@ -76,9 +82,16 @@ Route::post('/confirm', [CartController::class, 'confirm']);
 Route::get('/book-a-table', [PageController::class, 'booking'])->name('book-a-table');
 Route::get('/testimonials', [PageController::class, 'testimoni'])->name('testimonials');
 
-// testimoni
-Route::post('/send-testimoni', [MessageController::class, 'testimoni'])->name('testimoni.store');
 
-//Invoice
-Route::get('/invoice', [InvoiceController::class, 'index']);
+    // Halaman Baru
+    Route::get('/book-a-table', [PageController::class, 'booking'])->name('book-a-table');
+    Route::get('/testimonials', [PageController::class, 'testimoni'])->name('testimonials');
+
+    // testimoni
+    Route::post('/send-testimoni', [MessageController::class, 'testimoni'])->name('testimoni.store');
+
+    // //Invoice
+// Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice');
 });
+
+>>>>>>> main
