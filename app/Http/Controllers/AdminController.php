@@ -7,7 +7,6 @@ use App\Models\Order;
 use App\Models\Cart;
 use App\Models\Booking;
 use App\Models\message;
-use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,6 +19,7 @@ class AdminController extends Controller
         $totalBookings = Booking::count();
         $totalMessages = Message::count();
         $totalOrders = Order::count();
+        $totalRevenue = Order::sum('subtotal');
         $menuCounts = Cart::selectRaw('type, COUNT(*) as total')
             ->groupBy('type')
             ->pluck('total', 'type');
@@ -37,7 +37,7 @@ class AdminController extends Controller
         $labels[] = 'Total Menu';
         $values[] = $totalMenus;
 
-        return view('admin.admin', compact('menuCounts', 'dates', 'totals', 'totalMenus', 'totalBookings', 'totalOrders', 'totalMessages','labels','values'));
+        return view('admin.admin', compact('menuCounts', 'dates', 'totals', 'totalMenus', 'totalBookings', 'totalOrders','totalRevenue', 'totalMessages','labels','values'));
     }
     public function Akun()
     {

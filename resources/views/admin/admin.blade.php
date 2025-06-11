@@ -103,31 +103,6 @@
 				</div>
 			</div>
 
-            
-	<!-- Statistik Ringkas -->
-	<ul class="box-info">
-		<li>
-			<i class='bx bxs-user'></i>
-			<span class="text">
-				<h3>{{ $userCount }}</h3>
-				<p>Total User</p>
-			</span>
-		</li>
-		<li>
-			<i class='bx bxs-food-menu'></i>
-			<span class="text">
-				<h3>{{ $menuCount }}</h3>
-				<p>Menu Tersedia</p>
-			</span>
-		</li>
-		<li>
-			<i class='bx bxs-cart'></i>
-			<span class="text">
-				<h3>{{ $todayOrders }}</h3>
-				<p>Pesanan Hari Ini</p>
-			</span>
-		</li>
-	</ul>
 
 
 			<div class="table-data">
@@ -253,7 +228,6 @@
 						});
 					</script>
 				</div>
->>>>>>> 1a3e3a9093c9ccd3d38690b53e833fb109715b70
 			</div>
 			<ul class="todo-list">
 				@foreach($recentMessages as $msg)
