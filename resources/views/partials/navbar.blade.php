@@ -3,11 +3,7 @@
       <div class="container d-flex justify-content-center justify-content-md-between">
         <div class="contact-info d-flex align-items-center">
           <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:turtle@gmail.com">turtle@gmail.com</a></i>
-<<<<<<< HEAD
-          <i class="bi bi-phone d-flex align-items-center ms-4"><span>0821 5577 4325</span></i>
-=======
           <i class="bi bi-phone d-flex align-items-center ms-4"><a href="tel:0821 5577 4325">0821 5577 4325</a></i>
->>>>>>> 2b0e39f761a41017d651a783fde9bcc01c986bcd
         </div>
         <div class="languages d-none d-md-flex align-items-center">
           <ul>
@@ -33,11 +29,7 @@
           <ul>
           <li><a href="#hero" class="active">Home<br></a></li>
             <li><a href="#about">About</a></li>
-<<<<<<< HEAD
-            <li><a href="#specials">Specials</a></li>
-=======
             <li><a href="#best-sellers">Specials</a></li>
->>>>>>> 2b0e39f761a41017d651a783fde9bcc01c986bcd
             <li><a href="#events">Events</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#gallery">Gallery</a></li>
