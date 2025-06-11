@@ -5,13 +5,22 @@ use App\Models\User;
 use App\Models\Testimoni;   
 use App\Models\Cart;
 use App\Models\message;
+use App\Models\Order;
 use Illuminate\Http\Request;
+
 
 class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.admin'); //dashboard
+        return view('admin', [ //dashboard
+        'userCount' => User::count(),
+		'menuCount' => Cart::count(),
+		'todayOrders' => Order::whereDate('created_at', today())->count(),
+		'recentOrders' => Order::with('menu')->latest()->take(5)->get(),
+		'recentMessages' => message::latest()->take(5)->get(),
+	]);
+        
     }
     public function Akun()
     {
@@ -33,7 +42,7 @@ class AdminController extends Controller
         return view('admin.testimonials', compact('testimoni')); 
     }
 
-    public function Messages()
+    public function messages()
     {
         $message = message::all();
         return view('admin.messages', compact('message'));

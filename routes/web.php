@@ -42,17 +42,14 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // admin
-Route::middleware(['auth', AdminMiddleware::class])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.admin');
-    })->name('admin');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('/akun', [AdminController::class, 'akun'])->name('akun');
     Route::get('/menuAdmin', [AdminController::class, 'menuAdmin'])->name('menuAdmin');
     Route::get('/messages', [AdminController::class, 'messages'])->name('messages');
     Route::put('/message/{id}', [MessageController::class, 'update'])->name('message.update');
     Route::get('/testimonialsAdmin', [AdminController::class, 'testimonialsAdmin'])->name('testimonialsAdmin');
     Route::get('/orders', [AdminController::class, 'orders'])->name('orders');
-});
+    Route::resource('users', UserController::class);
 
 
 // Booking
@@ -77,4 +74,4 @@ Route::post('/send-testimoni', [MessageController::class, 'testimoni'])->name('t
 
 //Invoice
 Route::get('/invoice', [InvoiceController::class, 'index']);
-
+});
