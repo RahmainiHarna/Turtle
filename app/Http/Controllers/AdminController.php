@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-use App\Models\Testimoni;   
+use App\Models\Testimoni;
+use App\Models\Order;
 use App\Models\Cart;
+use App\Models\Booking;
 use App\Models\message;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class AdminController extends Controller
 {
     public function index()
     {
+<<<<<<< HEAD
         return view('admin', [ //dashboard
         'userCount' => User::count(),
 		'menuCount' => Cart::count(),
@@ -21,31 +25,78 @@ class AdminController extends Controller
 		'recentMessages' => message::latest()->take(5)->get(),
 	]);
         
+=======
+        $totalMenus = Cart::count();
+        $totalBookings = Booking::count();
+        $totalMessages = Message::count();
+        $totalOrders = Order::count();
+        $menuCounts = Cart::selectRaw('type, COUNT(*) as total')
+            ->groupBy('type')
+            ->pluck('total', 'type');
+        $bookings = DB::table('bookings')
+            ->select(DB::raw('date, SUM(people) as total_people'))
+            ->groupBy('date')
+            ->orderBy('date', 'asc')
+            ->get();
+
+
+        $dates = $bookings->pluck('date');
+        $totals = $bookings->pluck('total_people');
+        $labels = $menuCounts->keys()->toArray();
+        $values = $menuCounts->values()->toArray();
+        $labels[] = 'Total Menu';
+        $values[] = $totalMenus;
+
+        return view('admin.admin', compact('menuCounts', 'dates', 'totals', 'totalMenus', 'totalBookings', 'totalOrders', 'totalMessages','labels','values'));
+>>>>>>> 1a3e3a9093c9ccd3d38690b53e833fb109715b70
     }
     public function Akun()
     {
         $users = User::all();
-        return view('admin.akun', compact ('users')); 
+        return view('admin.akun', compact('users'));
     }
     public function MenuAdmin()
     {
         $menus = Cart::all();
-        return view('admin.menu', compact ('menus')); 
-    }
-    public function orders()
-    {
-        return view('admin.orders');
-    }
-    public function TestimonialsAdmin()
-    {
-          $testimoni = Testimoni::all();
-        return view('admin.testimonials', compact('testimoni')); 
+        return view('admin.menu', compact('menus'));
     }
 
+<<<<<<< HEAD
     public function messages()
+=======
+
+
+    public function TestimonialsAdmin()
+    {
+        $testimoni = Testimoni::all();
+        return view('admin.testimonials', compact('testimoni'));
+    }
+
+    public function approve($id)
+    {
+        $testimoni = Testimoni::findOrFail($id);
+        $testimoni->status = 1;
+        $testimoni->save();
+
+        return redirect()->back()->with('success', 'Testimoni disetujui.');
+    }
+    public function Messages()
+>>>>>>> 1a3e3a9093c9ccd3d38690b53e833fb109715b70
     {
         $message = message::all();
         return view('admin.messages', compact('message'));
     }
 
+    public function orders()
+    {
+        $bookings = Booking::with('orders.menu')->latest()->get();
+        return view('admin.orders', compact('bookings'));
+    }
+
+    public function showOrder($id)
+    {
+        $booking = Booking::with('orders.menu')->findOrFail($id);
+
+        return view('admin.ordershow', compact('booking'));
+    }
 }

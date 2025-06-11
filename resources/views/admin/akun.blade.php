@@ -112,11 +112,11 @@
                         <tbody>
                            @foreach($users as $user)
                             <tr>
-                                <th>{{ $user->id }}</th>
-                                <th>{{ $user->username }}</th>
-                                <th>{{ $user->email }}</th>
-                                <th>{{ $user->no_hp }}</th>
-                                <th>{{ $user->created_at }}</th>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->username }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->no_hp }}</td>
+                                <td>{{ $user->created_at }}</td>
                             </tr>
                             @endforeach
                         </tbody>
