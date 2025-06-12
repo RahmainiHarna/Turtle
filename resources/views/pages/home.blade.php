@@ -332,25 +332,24 @@
 
       @foreach($testimoni as $item)
       @if($item->status == 1)
-      <div class="swiper-slide">
-      <div class="testimonial-item">
-      <p>
-        <i class="bi bi-quote quote-icon-left"></i>
-        <span>{{ $item->message }}</span>
-        <i class="bi bi-quote quote-icon-right"></i>
-      </p>
-      {{-- Uncomment jika ada gambar --}}
-      {{-- <img src="{{ asset('path/to/image.jpg') }}" class="testimonial-img" alt=""> --}}
-      <h3>{{ $item->name }}</h3>
-      <h4>{{ $item->subject ?? '' }}</h4>
-      </div>
-      </div><!-- End testimonial item -->
+        <div class="swiper-slide">
+        <div class="testimonial-item">
+        <p>
+          <i class="bi bi-quote quote-icon-left"></i>
+          <span>{{ $item->message }}</span>
+          <i class="bi bi-quote quote-icon-right"></i>
+        </p>
+        {{-- Uncomment jika ada gambar --}}
+        {{-- <img src="{{ asset('path/to/image.jpg') }}" class="testimonial-img" alt=""> --}}
+        <h3>{{ $item->name }}</h3>
+        <h4>{{ $item->subject ?? '' }}</h4>
+        </div>
+        </div><!-- End testimonial item -->
       @endif
-    @endforeach
+      @endforeach
       </div>
       <div class="swiper-pagination"></div>
     </div>
-
     </div>
 
   </section>
