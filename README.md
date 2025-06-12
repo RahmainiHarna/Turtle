@@ -1,66 +1,47 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+KELOMPOK 6
+1. Ilma Mahmudah 241402003
+   (Halaman Admin)
+3. Rasyiqah Amalina Putri 241402024
+   (Halaman Admin)
+5. Nabila Putri Indriyatno 241402102
+   (Backend)
+7. Nazwa Sahara Harahap 241402126
+   (Front end)
+9. Rahmaini Harna 241402132
+    (Backend)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   1. Deskripsi Singkat Web
+       Website reservasi restoran adalah platform online yang
+ memungkinkan pelanggan untuk memesan meja di
+ restoran dengan mudah dan cepat. Melalui sistem ini,
+ pengguna dapat melihat daftar restoran, mengecek
+ ketersediaan tempat, memilih waktu reservasi, serta mendapatkan konfirmasi pemesanan secara instan.
+2. Model atau Fitur yang tersedia
+   1. Fitur pada halaman user
+      . login
+      . Reservasi Meja
+      . Melihat Menu
+      . Contact
+      . Invoice
+      . Hash Password
+   2. Fitur pada halaman admin
+      . Login
+      . Manajemen Menu
+      . Melihat Daftar Pelanggan
+      . Mengelola Reservasi
+3. Teknologi Yang dipake
+   . Laravel ver12
+   . Laragon: Mysql
+   . Xampp: MariaDB
+4. Bagaimana Cara Orang menjalankan aplikasi
+    ~ User
+   . User Melakukan Register yang dapat masuk ke tampilan user
+   . User melakukan Reservasi dengan mengklik button "Book a Table"
+   . User Dapat Memilih Menu, Setelah itu akan mendapatkan Invoice
+   . User Mengklik Button "Konfirmasi" dan mendapatkan Softfile bukti
+   . User dapat memberikan testimoni
+   . user dapat mengirim pesan melalu message
+    ~ Admin
+   . Admin Melakukan Login sebagai admin yang dapat masuk ke Dashboard admin
+   
+      

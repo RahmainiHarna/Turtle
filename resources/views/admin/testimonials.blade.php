@@ -113,13 +113,27 @@
                         <tbody>
                             @foreach ($testimoni as $Testimoni)
                                 <tr>
-                                    <th>{{ $Testimoni->id }}</th>
-                                    <th>
+                                    <td>{{ $Testimoni->id }}</td>
+                                    <td>
                                         {{ $Testimoni->name }}
-                                    </th>
-                                    <th>{{ $Testimoni->email }}</th>
-                                    <th>{{ $Testimoni->subject }}</th>
-                                    <th>{{ $Testimoni->message }}</th>
+                                    </td>
+                                    <td>{{ $Testimoni->email }}</td>
+                                    <td>{{ $Testimoni->subject }}</td>
+                                    <td>{{ $Testimoni->message }}</td>
+                                    <td>
+                                        @if($Testimoni->status == 0)
+                                            <form action="{{ route('admin.testimoni.approve', $Testimoni->id) }}" method="POST"
+                                                style="display:inline">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="btn btn-success">
+                                                    ✔ Approve
+                                                </button>
+                                            </form>
+                                        @else
+                                            <span class="badge bg-success">Approved</span>
+                                        @endif
+                                    </td>
                                 </tr>
 
                             @endforeach
