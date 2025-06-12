@@ -37,7 +37,7 @@ class BookingController extends Controller
             'booking' => $data
         ]);
 
-        return redirect('/cart');
+        return redirect('/cart')->with('booking_success', 'Your booking details have been saved. Please choose your menu.');
     }
 
    

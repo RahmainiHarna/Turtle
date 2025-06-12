@@ -156,6 +156,25 @@
             </form>
         </div>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- SweetAlert untuk Konfirmasi Pesanan -->
+    @if(request()->has('confirm'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Reservation confirmed. Order received. See you soon!',
+                confirmButtonText: 'OK',
+                width: '400px',
+                customClass: {
+                    title: 'cormorant-alert',
+                    htmlContainer: 'poppins-alert'
+                }
+            });
+        </script>
+    @endif
+
 </body>
 
 </html>
