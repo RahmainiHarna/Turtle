@@ -27,10 +27,10 @@ class CartController extends Controller
         $cart = session()->get('cart', []);
         $cart[$id] = isset($cart[$id]) ? $cart[$id] + 1 : 1;
         session(['cart' => $cart]);
-        return back();
+        return back()->with('cart_success', 'Menu locked in.');
     }
 
-    // Kurangi item dari cartpublic function removeFromCart($id)
+    // Kurangi item dari cart
     public function removeFromCart($id)
     {
         $cart = session()->get('cart', []);
@@ -41,7 +41,7 @@ class CartController extends Controller
             }
         }
         session(['cart' => $cart]);
-        return back();
+        return back()->with('cart_success', 'Maybe next time.');
     }
 
     public function create()
@@ -81,6 +81,7 @@ class CartController extends Controller
             \Log::warning('Tidak ada file yang diupload!');
         }
         \Log::info('Path yang akan disimpan di DB: ' . $imagePath);
+        
         // Simpan data
         Cart::create([
             'name' => $request->name,
