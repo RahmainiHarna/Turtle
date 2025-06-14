@@ -27,10 +27,10 @@ class CartController extends Controller
         $cart = session()->get('cart', []);
         $cart[$id] = isset($cart[$id]) ? $cart[$id] + 1 : 1;
         session(['cart' => $cart]);
-        return back();
+        return back()->with('cart_success', 'Menu locked in.');
     }
 
-    // Kurangi item dari cartpublic function removeFromCart($id)
+    // Kurangi item dari cart
     public function removeFromCart($id)
     {
         $cart = session()->get('cart', []);
@@ -41,6 +41,55 @@ class CartController extends Controller
             }
         }
         session(['cart' => $cart]);
-        return back();
+        return back()->with('cart_success', 'Maybe next time.');
+    }
+
+    public function create()
+    {
+        return view('admin.createmenu');
+    }
+
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|integer|min:0',
+            'type' => 'required|in:makanan,minuman,snack',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName = 'menu_' . time() . '.' . $image->getClientOriginalExtension();
+
+            $category = $request->type;
+            $destinationPath = public_path('assets/menu/' . $category);
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Pindahkan file (tanpa if)
+            $image->move($destinationPath, $fileName);
+
+            // Simpan path relatif
+            $imagePath = 'assets/menu/' . $category . '/' . $fileName;
+            \Log::info('Gambar yang disimpan: ' . $imagePath);
+        } else {
+            \Log::warning('Tidak ada file yang diupload!');
+        }
+        \Log::info('Path yang akan disimpan di DB: ' . $imagePath);
+        
+        // Simpan data
+        Cart::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'type' => $request->type,
+            'image' => $imagePath,
+        ]);
+
+        return redirect()->back()->with('success', 'Menu berhasil ditambahkan.');
     }
 }

@@ -9,8 +9,8 @@
             <h2>Choose Your Favorite Menu!</h2>
         </div>
         <div>
-        <a href="{{ route('invoice.show')}}" class="btn btn-warning btn-md">
-            <i class="bi bi-cart me-2"></i>Lihat Invoice</a>
+        <a href="{{ route('invoice.show', ['confirm' => 'yes']) }}" class="btn btn-warning btn-md">
+            <i class="bi bi-cart me-2"></i>View Invoice</a>
         </div>
     </div>
 
@@ -31,19 +31,19 @@
 
                         <h5 class="harga mb-3">Rp{{ number_format($menu->price, 0, ',', '.') }}</h5>
                         <div class="d-flex justify-content-center align-items-center mt-2">
-                            <form method="POST" action="{{ route('cart.add', $menu->id) }}">
+                            <form method="POST" action="{{ route('cart.remove', $menu->id) }}">
                                 @csrf
                                 <button class="btn btn-warning btn-sm" type="submit">
-                                    <i class="bi bi-plus"></i>
+                                    <i class="bi bi-dash"></i>
                                 </button>
                             </form>
                             <div class="quantity-display">
                                 {{ $cart[$menu->id] ?? 0 }}
                             </div>
-                            <form method="POST" action="{{ route('cart.remove', $menu->id) }}">
+                            <form method="POST" action="{{ route('cart.add', $menu->id) }}">
                                 @csrf
                                 <button class="btn btn-warning btn-sm" type="submit">
-                                    <i class="bi bi-dash"></i>
+                                    <i class="bi bi-plus"></i>
                                 </button>
                             </form>
                         </div>

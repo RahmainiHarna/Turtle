@@ -18,7 +18,7 @@ class MessageController extends Controller
 
         Message::create($request->all());
 
-        return redirect()->back()->with('success', 'Pesan berhasil dikirim!');
+        return redirect()->back()->with('contact_success', 'We’ve received your message. Thank you for contacting us!');
     }
 
     public function index()
@@ -38,7 +38,7 @@ class MessageController extends Controller
 
         Testimoni::create($request->all());
 
-        return redirect()->back()->with('success', 'Testimoni berhasil dikirim!');
+        return redirect()->back()->with('testimonial_success', 'Your feedback means a lot to us.');
     }
     public function update(Request $request, $id)
     {

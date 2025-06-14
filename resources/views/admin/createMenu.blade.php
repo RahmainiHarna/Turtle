@@ -90,7 +90,7 @@
                 <div class="left">
                     <h1>Daftar Menu</h1>
                     <ul class="breadcrumb">
-                        <li><a href="#">Menu</a></li>
+                        <li><a href="#">Tamah Menu</a></li>
                     </ul>
                 </div>
             </div>
@@ -100,32 +100,42 @@
                     <div class="head">
                         <h3>Menu</h3>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th> ID</th>
-                                <th>Nama Menu</th>
-                                <th>Jenis</th>
-                                <th>Harga</th>
-                                <th>Gambar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($menus as $menu)
-                                <tr>
-                                    <td>{{ $menu->id }}</td>
-                                    <td>{{ $menu->name }}</td>
-                                    <td>{{ $menu->type }}</td>
-                                    <td>{{ $menu->price }}</td>
-                                    <td>{{ $menu->image }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+
+                    <form action="{{ route('menu.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="mb-3">
+                            <label for="name">Nama Menu</label>
+                            <input type="text" name="name" id="name" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="price">Harga</label>
+                            <input type="number" name="price" id="price" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="type">Tipe Menu</label>
+                            <select name="type" id="type" class="form-control" required>
+                                <option value="">-- Pilih Tipe --</option>
+                                <option value="makanan">Makanan</option>
+                                <option value="minuman">Minuman</option>
+                                <option value="snack">Snack</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image">Upload Gambar</label>
+                            <input type="file" name="image" id="image" class="form-control">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </form>
                 </div>
             </div>
             </div>
-            <a href="{{ route('admin.createmenu') }}"class="color : red"> + tambah menu</button>
+            <a href="{{ route('menuAdmin') }}" class="color : red"> back</>
         </main>
         <!-- MAIN -->
     </section>
