@@ -59,6 +59,8 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/orders', [AdminController::class, 'orders'])->name('orders');
 
     Route::get('/orders/{id}', [AdminController::class, 'showOrder'])->name('admin.ordershow');
+    Route::delete('/admin/order/{id}', [AdminOrderController::class, 'destroy'])->name('admin.orderdelete');
+
 
 });
 

@@ -7,6 +7,9 @@
 
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+      <!-- Google Font Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
     <!-- My CSS -->
     <link rel="stylesheet" href="/assets/css/admin.css">
 
@@ -18,9 +21,9 @@
     <!-- SIDEBAR -->
     <section id="sidebar">
         <a href="#" class="brand">
-            <i class='bx bxs-car'></i>
+           <img src="assets/img/logo-turtles.png" alt="Turtle Resto Logo" style="height: 40px; margin-right: 20px;">
             <span class="text">
-                <span class="octa">TUR</span><span class="prime">TLE</span>
+                <span class="octa">TUR</span><span class="prime">TLE RESTO</span>
             </span>
         </a>
         <ul class="side-menu top">
@@ -86,52 +89,77 @@
 
         <!-- MAIN -->
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Daftar Menu</h1>
-                    <ul class="breadcrumb">
-                        <li><a href="#">Menu</a></li>
-                    </ul>
-                </div>
-            </div>
+           <div class="menu-header">
+    <h1>Daftar Menu</h1>
+     <div class="search-container">
+              <input type="text" id="searchInput" placeholder="Cari nama menu atau jenis">
+              <i class='bx bx-search'></i>
+</div>
+    <a href="{{ route('admin.createmenu') }}" class="btn-card-add">
+        <i class='bx bx-plus'></i> Tambah Menu
+    </a>
+</div>
 
-            <div class="table-data">
-                <div class="order">
-                    <div class="head">
-                        <h3>Menu</h3>
+
+<div class="menu-table-container">
+    <table class="menu-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama Menu</th>
+                <th>Jenis</th>
+                <th>Harga</th>
+                <th>Gambar</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($menus as $menu)
+            <tr>
+                <td>{{ $menu->id }}</td>
+                <td>{{ $menu->name }}</td>
+                <td>{{ $menu->type }}</td>
+                <td>Rp{{ number_format($menu->price, 0, ',', '.') }}</td>
+                <td><img src="{{ asset('storage/' . $menu->image) }}" class="img-menu" alt="menu"></td>
+                <td>
+                    <div class="crud-buttons">
+                        <a href="{{ route('admin', $menu->id) }}" class="crud-btn edit">
+                            <i class='bx bxs-edit'></i>
+                            <span>Edit</span>
+                        </a>
+                        <form action="{{ route('admin', $menu->id) }}" method="POST" class="inline-form">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="crud-btn delete" onclick="return confirm('Yakin ingin menghapus?')">
+                                <i class='bx bxs-trash'></i>
+                                <span>Hapus</span>
+                            </button>
+                        </form>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th> ID</th>
-                                <th>Nama Menu</th>
-                                <th>Jenis</th>
-                                <th>Harga</th>
-                                <th>Gambar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($menus as $menu)
-                                <tr>
-                                    <td>{{ $menu->id }}</td>
-                                    <td>{{ $menu->name }}</td>
-                                    <td>{{ $menu->type }}</td>
-                                    <td>{{ $menu->price }}</td>
-                                    <td>{{ $menu->image }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            </div>
-            <a href="{{ route('admin.createmenu') }}"class="color : red"> + tambah menu</button>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
+
         </main>
         <!-- MAIN -->
     </section>
     <!-- CONTENT -->
+<script>
+     document.getElementById('searchInput').addEventListener('keyup', function () {
+      const value = this.value.toLowerCase();
+      const rows = document.querySelectorAll('#userTable tbody tr');
 
-    <script src="js/admin.js"></script>
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(value) ? '' : 'none';
+      });
+    });
+        
+    </script>
 </body>
 
 </html>
