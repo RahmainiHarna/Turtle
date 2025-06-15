@@ -125,7 +125,7 @@
 
 							<div class="card">
 								<div class="card-icon">
-									<i class="fas fa-envelope"></i>
+									<i class="fa-solid fa-circle-dollar-to-slot"></i>
 								</div>
 								<div class="card-info">
 									<h3>{{ $totalMessages }}</h3>
@@ -135,11 +135,11 @@
 
 							<div class="card">
 								<div class="card-icon">
-									<i class="fas fa-shopping-cart"></i>
+									<i class="fa-solid fa-rupiah-sign"></i>
 								</div>
 								<div class="card-info">
-									<h3>{{ $totalOrders }}</h3>
-									<p>Total Orders</p>
+									<h3>{{ $totalRevenue }}</h3>
+									<p>Revenue</p>
 								</div>
 							</div>
 						</div>

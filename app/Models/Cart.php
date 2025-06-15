@@ -10,5 +10,5 @@ class Cart extends Model
     use HasFactory;
 
     protected $table = 'menus'; // pakai tabel menus
-    protected $fillable = ['name','type' ,'price'];
+    protected $fillable = ['name','type' ,'price','image'];
 }
