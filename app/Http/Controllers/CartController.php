@@ -63,24 +63,18 @@ class CartController extends Controller
 
         $file = $request->file('image');
 
-        $slug = Str::slug($request->name,'_'); 
+        $slug = Str::slug($request->name, '_');
         $ext = $file->getClientOriginalExtension(); // jpg/png
         $filename = $slug . '.' . $ext;
 
-         $folder = 'assets/img/menu/' . $request->type;
+        $folder = 'assets/img/menu/' . $request->type;
         $destination = public_path($folder);
 
-    
-        if (file_exists($destination . '/' . $filename)) {
-            $filename = $slug . '-' . time() . '.' . $ext;
-        }
-
-        // Pindahkan file
         $file->move($destination, $filename);
 
-        $imagePath = $filename;
+        $imagePath = $request->type . '/' . $filename;
 
-       
+
 
         // Simpan data
         Cart::create([
@@ -92,4 +86,73 @@ class CartController extends Controller
 
         return redirect()->back()->with('success', 'Menu berhasil ditambahkan.');
     }
+
+    public function edit($id)
+    {
+        $menu = Cart::findOrFail($id);
+        return view('admin.editMenu', compact('menu'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $menu = Cart::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|integer|min:0',
+            'type' => 'required|in:makanan,minuman,snack',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $menu->name = $request->name;
+        $menu->type = $request->type;
+        $menu->price = $request->price;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            
+            $oldPath = public_path('assets/img/menu/' . $menu->type . '/' . $menu->image);
+            if (file_exists($oldPath)) {
+                unlink($oldPath);
+            }
+
+            $file = $request->file('image');
+            $slug = Str::slug($request->name, '_');
+            $ext = $file->getClientOriginalExtension();
+            $filename = $slug . '.' . $ext;
+
+            $folder = 'assets/img/menu/' . $request->type;
+            $destination = public_path($folder);
+
+            if (!file_exists($destination)) {
+                mkdir($destination, 0777, true);
+            }
+
+            if (file_exists($destination . '/' . $filename)) {
+                $filename = $slug . '-' . '.' . $ext;
+            }
+
+            $file->move($destination, $filename);
+            $menu->image = $request->type . '/' . $filename;
+            ;
+        }
+
+        $menu->save();
+
+        return redirect()->route('menuAdmin')->with('success', 'Menu berhasil diperbarui!');
+    }
+
+    public function destroy($id)
+    {
+        $menu = Cart::findOrFail($id);
+
+        if ($menu->gambar && file_exists(public_path($menu->gambar))) {
+            unlink(public_path('assets/img/menu/' . $menu->image));
+        }
+
+        $menu->delete();
+
+        return redirect()->back()->with('success', 'Menu berhasil dihapus.');
+    }
+
 }

@@ -31,7 +31,7 @@ class BookingController extends Controller
             return back()->with('error', 'Kuota penuh pada waktu tersebut.');
         }
 
-       $data = $request->only(['name', 'email', 'phone', 'date', 'time', 'people', 'message']);
+        $data = $request->only(['name', 'email', 'phone', 'date', 'time', 'people', 'message']);
 
         session([
             'booking' => $data
@@ -40,5 +40,15 @@ class BookingController extends Controller
         return redirect('/cart')->with('booking_success', 'Your booking details have been saved. Please choose your menu.');
     }
 
-   
+    public function destroy($id)
+    {
+        $booking = Booking::findOrFail($id);
+        $booking->status = 1;
+        $booking->save();
+
+        return redirect()->back()->with('success', 'Data berhasil dihapus!');
+    }
+
+
+
 }

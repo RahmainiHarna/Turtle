@@ -120,7 +120,7 @@
                 <td>{{ $menu->name }}</td>
                 <td>{{ $menu->type }}</td>
                 <td>Rp{{ number_format($menu->price, 0, ',', '.') }}</td>
-                <td><img src="{{ asset('storage/' . $menu->image) }}" class="img-menu" alt="menu"></td>
+                <td><img src="{{ asset('assets/img/menu/' . $menu->image) }}" alt="{{ $menu->name }}" class="menu-image"></td>
                 <td>
                     <div class="crud-buttons">
                         <a href="{{ route('admin', $menu->id) }}" class="crud-btn edit">

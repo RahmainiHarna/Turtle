@@ -48,9 +48,6 @@
             <div class="head-title">
                 <div class="left">
                     <h1>Message</h1>
-                    <ul class="breadcrumb">
-                        <li><a href="#">Message</a></li>
-                    </ul>
                 </div>
             </div>
 
@@ -85,7 +82,7 @@
                                     <td>{{ $pesan->created_at }}</td>
                                     <td>
                                         @if ($pesan->status == 0)
-                                            <form action="{{ route('messages', $pesan->id) }}" method="POST" style="display:inline">
+                                            <form action="{{ route('message.update', $pesan->id) }}" method="POST" style="display:inline">
                                                 @csrf
                                                 @method('PUT')
                                                 <button type="submit" class="btn-check">

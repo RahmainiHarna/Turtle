@@ -111,7 +111,7 @@
 								</div>
 								<div class="card-info">
 
-									<h3>{{ $totalRevenue}}</h3>
+									<h3>Rp{{ number_format($totalRevenue, 0, ',', '.') }}</h3>
 
 									<p>Revenue</p>
 								</div>
