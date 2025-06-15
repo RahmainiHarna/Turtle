@@ -37,7 +37,8 @@ class AdminController extends Controller
         $labels[] = 'Total Menu';
         $values[] = $totalMenus;
 
-        return view('admin.admin', compact('menuCounts', 'dates', 'totals', 'totalMenus', 'totalBookings', 'totalOrders','totalRevenue', 'totalMessages','labels','values'));
+        return view('admin.admin', compact('menuCounts', 'dates', 'totals', 'totalMenus', 'totalBookings', 'totalRevenue', 'totalMessages','labels','values'));
+
     }
     public function Akun()
     {

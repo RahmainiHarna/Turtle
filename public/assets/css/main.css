@@ -1651,7 +1651,7 @@ section,
 }
 
 .testimonials .swiper-pagination {
-  margin-top: 30px;
+  margin-top: 10px;
   position: relative;
 }
 
@@ -1827,6 +1827,17 @@ section,
 
 
 /*--------------------------------------------------------------
-# Starter Section Section
+# Alert
 --------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Cormorant+Garamond:wght@400;600&display=swap');
+
+.poppins-alert {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 17px !important;
+}
+
+.cormorant-alert {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 35px !important;
+}
 
