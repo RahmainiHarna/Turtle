@@ -48,5 +48,4 @@ class MessageController extends Controller
 
         return redirect()->back()->with('success', 'Pesan sudah ditandai sebagai dibaca.');
     }
-
 }

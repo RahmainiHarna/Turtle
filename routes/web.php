@@ -28,9 +28,11 @@ Route::post('/message', [MessageController::class, 'message'])->name('message.st
 Route::get('/menu', [PageController::class, 'menu'])->name('menu');
 
 
+
 // Auth
 Route::get('/register', [RegisterController::class, 'show'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
+
 Route::get('/redirect', [RoleController::class, 'redirectUser'])->middleware('auth');
 
 
@@ -55,7 +57,10 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::put('/admin/testimoni/{id}/approve', [AdminController::class, 'approve'])->name('admin.testimoni.approve');
 
     Route::get('/orders', [AdminController::class, 'orders'])->name('orders');
+
     Route::get('/orders/{id}', [AdminController::class, 'showOrder'])->name('admin.ordershow');
+    Route::delete('/admin/order/{id}', [AdminOrderController::class, 'destroy'])->name('admin.orderdelete');
+
 
 });
 
@@ -74,6 +79,12 @@ Route::middleware(['auth', UserMiddleware::class])->group(function () {
 
 
 
+// Halaman Baru
+
+Route::get('/book-a-table', [PageController::class, 'booking'])->name('book-a-table');
+Route::get('/testimonials', [PageController::class, 'testimoni'])->name('testimonials');
+
+
     // Halaman Baru
     Route::get('/book-a-table', [PageController::class, 'booking'])->name('book-a-table');
     Route::get('/testimonials', [PageController::class, 'testimoni'])->name('testimonials');
@@ -84,6 +95,5 @@ Route::middleware(['auth', UserMiddleware::class])->group(function () {
     // //Invoice
 // Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice');
 });
-
 
 

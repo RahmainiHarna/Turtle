@@ -35,3 +35,4 @@ class RegisterController extends Controller
         return redirect('/login')->with('success', 'Akun berhasil dibuat!');
     }
 }
+
