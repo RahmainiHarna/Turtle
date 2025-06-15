@@ -292,6 +292,10 @@
     pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
 
     pdf.save("invoice.pdf");
+
+    setTimeout(() => {
+        document.querySelector("form").submit();
+      }, 500);
   });
 });
 </script>

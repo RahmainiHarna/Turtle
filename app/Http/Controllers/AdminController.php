@@ -10,6 +10,7 @@ use App\Models\message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class AdminController extends Controller
 {
     public function index()
@@ -37,6 +38,7 @@ class AdminController extends Controller
         $values[] = $totalMenus;
 
         return view('admin.admin', compact('menuCounts', 'dates', 'totals', 'totalMenus', 'totalBookings', 'totalRevenue', 'totalMessages','labels','values'));
+
     }
     public function Akun()
     {
@@ -48,7 +50,6 @@ class AdminController extends Controller
         $menus = Cart::all();
         return view('admin.menu', compact('menus'));
     }
-
 
 
     public function TestimonialsAdmin()
@@ -66,7 +67,7 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Testimoni disetujui.');
     }
     public function Messages()
-    {
+{
         $message = message::all();
         return view('admin.messages', compact('message'));
     }
