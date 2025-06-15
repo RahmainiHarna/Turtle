@@ -7,6 +7,8 @@ use App\Models\Booking;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+
 
 class CartController extends Controller
 {
@@ -59,29 +61,27 @@ class CartController extends Controller
             'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $fileName = 'menu_' . time() . '.' . $image->getClientOriginalExtension();
+        $file = $request->file('image');
 
-            $category = $request->type;
-            $destinationPath = public_path('assets/menu/' . $category);
+        $slug = Str::slug($request->name,'_'); 
+        $ext = $file->getClientOriginalExtension(); // jpg/png
+        $filename = $slug . '.' . $ext;
 
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
-            }
+         $folder = 'assets/img/menu/' . $request->type;
+        $destination = public_path($folder);
 
-            // Pindahkan file (tanpa if)
-            $image->move($destinationPath, $fileName);
-
-            // Simpan path relatif
-            $imagePath = 'assets/menu/' . $category . '/' . $fileName;
-            \Log::info('Gambar yang disimpan: ' . $imagePath);
-        } else {
-            \Log::warning('Tidak ada file yang diupload!');
+    
+        if (file_exists($destination . '/' . $filename)) {
+            $filename = $slug . '-' . time() . '.' . $ext;
         }
-        \Log::info('Path yang akan disimpan di DB: ' . $imagePath);
-        
+
+        // Pindahkan file
+        $file->move($destination, $filename);
+
+        $imagePath = $filename;
+
+       
+
         // Simpan data
         Cart::create([
             'name' => $request->name,
