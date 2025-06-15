@@ -37,7 +37,7 @@ class AdminController extends Controller
         $labels[] = 'Total Menu';
         $values[] = $totalMenus;
 
-        return view('admin.admin', compact('menuCounts', 'dates', 'totals', 'totalMenus', 'totalBookings', 'totalRevenue', 'totalMessages','labels','values'));
+        return view('admin.admin', compact('menuCounts', 'dates', 'totals', 'totalMenus', 'totalBookings', 'totalRevenue', 'totalMessages', 'labels', 'values'));
 
     }
     public function Akun()
@@ -48,6 +48,7 @@ class AdminController extends Controller
     public function MenuAdmin()
     {
         $menus = Cart::all();
+        
         return view('admin.menu', compact('menus'));
     }
 
@@ -67,14 +68,15 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Testimoni disetujui.');
     }
     public function Messages()
-{
+    {
         $message = message::all();
         return view('admin.messages', compact('message'));
     }
 
+
     public function orders()
     {
-        $bookings = Booking::with('orders.menu')->latest()->get();
+        $bookings = Booking::with('orders.menu')->where('status', 0)->latest()->get();
         return view('admin.orders', compact('bookings'));
     }
 
@@ -84,4 +86,7 @@ class AdminController extends Controller
 
         return view('admin.ordershow', compact('booking'));
     }
+
+  
+
 }

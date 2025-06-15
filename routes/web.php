@@ -15,85 +15,56 @@ use App\Models\Booking;
 use GuzzleHttp\Psr7\Message;
 use App\Http\Controllers\InvoiceController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-// Halaman utama
+// Halaman utama -> halaman yang dapat diaskes oleh semua user, admin bahkan user yang tidak memiliki akun
 Route::get('/', [PageController::class, 'home'])->name('home');
-// message
 Route::post('/message', [MessageController::class, 'message'])->name('message.store');
-// lihat menu
 Route::get('/menu', [PageController::class, 'menu'])->name('menu');
-
-
 
 // Auth
 Route::get('/register', [RegisterController::class, 'show'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
-
 Route::get('/redirect', [RoleController::class, 'redirectUser'])->middleware('auth');
-
-
 Route::get('/login', [LoginController::class, 'show'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
-
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // admin
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {
-    // Route::get('/admin', function () {
-    //     return view('admin.admin');
-    // })->name('admin');
-     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    // halaman dashboard
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    // halaman daftar akun
     Route::get('/akun', [AdminController::class, 'akun'])->name('akun');
+    // halaman daftar menu
     Route::get('/menuAdmin', [AdminController::class, 'menuAdmin'])->name('menuAdmin');
-    Route::get('/menu/create', [CartController::class, 'create'])-> name('admin.createmenu');
+    Route::get('/menu/create', [CartController::class, 'create'])->name('admin.createmenu');
     Route::post('/menu/store', [CartController::class, 'store'])->name('menu.store');
+    Route::get('/menu/{id}/edit', [CartController::class, 'edit'])->name('menu.edit');
+    Route::put('/menu/{id}', [CartController::class, 'update'])->name('menu.update');
+    Route::delete('/menu/{id}', [CartController::class, 'destroy'])->name('menu.destroy');
+    // halaman daftar pesanan
     Route::get('/messages', [AdminController::class, 'messages'])->name('messages');
-    Route::put('/message/{id}', [MessageController::class, 'update'])->name('message.update');
+    Route::put('/message/{id}/update', [MessageController::class, 'update'])->name('message.update');
+    // halaman daftar testimoni
     Route::get('/testimonialsAdmin', [AdminController::class, 'testimonialsAdmin'])->name('testimonialsAdmin');
     Route::put('/admin/testimoni/{id}/approve', [AdminController::class, 'approve'])->name('admin.testimoni.approve');
-
+    // halaman daftar booking
     Route::get('/orders', [AdminController::class, 'orders'])->name('orders');
-
     Route::get('/orders/{id}', [AdminController::class, 'showOrder'])->name('admin.ordershow');
-    Route::delete('/admin/order/{id}', [AdminOrderController::class, 'destroy'])->name('admin.orderdelete');
-
-
+    Route::delete('/admin/order/{id}', [BookingController::class, 'destroy'])->name('admin.orderdelete');
 });
 
 
-// Booking
+// halaman yang hanya bisa dikases oleh user yang memiliki akun
 Route::middleware(['auth', UserMiddleware::class])->group(function () {
-    // Route::get('/booking', [BookingController::class, 'index']); // Bisa diaktifkan jika ada
+    Route::get('/book-a-table', [PageController::class, 'booking'])->name('book-a-table');
     Route::post('/booking', [BookingController::class, 'store'])->name('book.store');
-
-    // Menu & Pemesanan
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
     Route::get('/invoice', [InvoiceController::class, 'showFromSession'])->name('invoice.show');
     Route::post('/invoice/confirm', [InvoiceController::class, 'confirm'])->name('invoice.confirm');
-
-
-
-// Halaman Baru
-
-Route::get('/book-a-table', [PageController::class, 'booking'])->name('book-a-table');
-Route::get('/testimonials', [PageController::class, 'testimoni'])->name('testimonials');
-
-
-    // Halaman Baru
-    Route::get('/book-a-table', [PageController::class, 'booking'])->name('book-a-table');
     Route::get('/testimonials', [PageController::class, 'testimoni'])->name('testimonials');
-
-    // testimoni
     Route::post('/send-testimoni', [MessageController::class, 'testimoni'])->name('testimoni.store');
-
-    // //Invoice
-// Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice');
 });
 
 

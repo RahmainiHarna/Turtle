@@ -528,7 +528,10 @@ body.dark-mode .octa {
 /* MAIN */
 /* CONTENT */
 
-
+.menu-image {
+	width: 70px;
+	border-radius: 15px;
+}
 
 
 
