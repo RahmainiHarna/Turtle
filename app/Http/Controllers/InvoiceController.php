@@ -9,6 +9,7 @@ use App\Models\Order;
 
 class InvoiceController extends Controller
 {
+    
     public function index()
     {
         $items = [
@@ -17,8 +18,7 @@ class InvoiceController extends Controller
         ];
 
         $total = collect($items)->sum(fn($item) => $item['qty'] * $item['price']);
-        $booking = Booking::find(1); // pastikan Booking model sudah di-import dan ada data dengan ID 1
-
+        $booking = Booking::find(1); 
         return view('pages.invoice', compact('items', 'total', 'booking'));
     }
     public function showFromSession()

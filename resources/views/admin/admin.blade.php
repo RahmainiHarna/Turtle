@@ -6,8 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Admin Restoran</title>
 
-
-
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -23,12 +21,10 @@
 </head>
 
 <body>
-
-
 	<!-- SIDEBAR -->
-  <section id="sidebar">
+    <section id="sidebar">
     <a href="#" class="brand">
-       <img src="assets/img/logo-turtles.png" alt="Turtle Resto Logo" style="height: 40px; margin-right: 20px;">
+     <img src="assets/img/logo-turtles.png" alt="Turtle Resto Logo" style="height: 40px; margin-right: 20px;">
       <span class="text"><span class="octa">TUR</span><span class="prime">TLE RESTO</span></span>
     </a>
     <ul class="side-menu top">

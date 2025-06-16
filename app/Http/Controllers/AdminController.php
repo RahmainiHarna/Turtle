@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    // menamilpan halaman dashbord
     public function index()
     {
         $totalMenus = Cart::count();
@@ -40,25 +41,29 @@ class AdminController extends Controller
         return view('admin.admin', compact('menuCounts', 'dates', 'totals', 'totalMenus', 'totalBookings', 'totalRevenue', 'totalMessages', 'labels', 'values'));
 
     }
+    // menampilkan halaman daftar akun
     public function Akun()
     {
         $users = User::all();
         return view('admin.akun', compact('users'));
     }
+
+    // menampilkan halaman daftar menu pada halaman admin
     public function MenuAdmin()
     {
         $menus = Cart::all();
-        
+
         return view('admin.menu', compact('menus'));
     }
 
-
+    //menampilkan halaman daftar testimoni pada halaman admin
     public function TestimonialsAdmin()
     {
         $testimoni = Testimoni::all();
         return view('admin.testimonials', compact('testimoni'));
     }
 
+    // untuk menyutujui testimoni, jika sudah distujui maka akan tampil dihalaman user
     public function approve($id)
     {
         $testimoni = Testimoni::findOrFail($id);
@@ -67,19 +72,22 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Testimoni disetujui.');
     }
+
+    // menampilkan halaman daftar pesan
     public function Messages()
     {
         $message = message::all();
         return view('admin.messages', compact('message'));
     }
 
-
+    // menampilkan daftar booking ( data diri )
     public function orders()
     {
         $bookings = Booking::with('orders.menu')->where('status', 0)->latest()->get();
         return view('admin.orders', compact('bookings'));
     }
 
+    // menamiplakn detail dari setiap booking seperti data diri, menu yang dipesan, dan detail order
     public function showOrder($id)
     {
         $booking = Booking::with('orders.menu')->findOrFail($id);
@@ -87,6 +95,6 @@ class AdminController extends Controller
         return view('admin.ordershow', compact('booking'));
     }
 
-  
+
 
 }
