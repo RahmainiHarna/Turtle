@@ -81,6 +81,10 @@ Route::middleware(['auth', UserMiddleware::class])->group(function () {
     // testimoni
     Route::post('/send-testimoni', [MessageController::class, 'testimoni'])->name('testimoni.store');
 
+    //delete orders
+    Route::delete('/admin/orders/{id}', [OrderController::class, 'destroy'])->name('admin.orderdelete');
+
+
     // //Invoice
 // Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice');
 });

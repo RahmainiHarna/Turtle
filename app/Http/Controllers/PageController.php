@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
-use App\Models\Testimoni;
 
 class PageController extends Controller
 {
@@ -25,14 +24,17 @@ class PageController extends Controller
         return view('pages.book-a-table');
     }
 
-    public function home()
-    {
-        $testimoni = Testimoni::where('status', 1)-> get();
-        return view('pages.home', compact('testimoni'));
-    }
-
     public function testimoni()
     {
         return view('pages.testimonials');
     }
+
+    public function destroy($id)
+{
+    $booking = Booking::findOrFail($id);
+    $booking->delete();
+
+    return redirect()->route('admin.order')->with('success', 'Pesanan berhasil dihapus.');
+}
+
 }
