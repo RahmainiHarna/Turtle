@@ -55,6 +55,7 @@
                     <h1>Orders</h1>
                 </div>
             </div>
+        </div>
 
             <div class="table-data">
                 <div class="order">
@@ -86,7 +87,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php $total = 0; @endphp
                             @foreach ($booking->orders as $order)
+                                @php $total += $order->subtotal; @endphp
                                 <tr>
                                     <td>{{ $order->menu->name }}</td>
                                     <td>{{ $order->quantity }}</td>
@@ -95,7 +98,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
                     <a href="{{ route('orders') }}" class="back-btn">&larr; Kembali</a>
                 </div>
             </div>

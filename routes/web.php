@@ -65,6 +65,7 @@ Route::middleware(['auth', UserMiddleware::class])->group(function () {
     Route::post('/invoice/confirm', [InvoiceController::class, 'confirm'])->name('invoice.confirm');
     Route::get('/testimonials', [PageController::class, 'testimoni'])->name('testimonials');
     Route::post('/send-testimoni', [MessageController::class, 'testimoni'])->name('testimoni.store');
+
 });
 
 

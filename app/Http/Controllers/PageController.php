@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Testimoni;
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -28,4 +28,13 @@ class PageController extends Controller
     {
         return view('pages.testimonials');
     }
+
+    public function destroy($id)
+{
+    $booking = Booking::findOrFail($id);
+    $booking->delete();
+
+    return redirect()->route('admin.order')->with('success', 'Pesanan berhasil dihapus.');
+}
+
 }

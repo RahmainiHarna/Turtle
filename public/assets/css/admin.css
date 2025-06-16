@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap');
 
 * {
 	margin: 0;
@@ -110,6 +110,9 @@ body.dark {
 	--dark: #FBFBFB;
 }
 
+main{
+	background-color: #000000;
+}
 body {
 	background: var(--grey);
 	overflow-x: hidden;
@@ -128,7 +131,7 @@ body.dark-mode .octa {
 	left: 0;
 	width: 280px;
 	height: 100%;
-	background: #40372a; /* Putih gading mewah */
+	background: #000000; /* Putih gading mewah */
 	z-index: 2000;
 	font-family: var(--lato);
 	transition: .3s ease;
@@ -150,7 +153,7 @@ body.dark-mode .octa {
 	height: 56px;
 	display: flex;
 	align-items: center;
-	color:  #a03b40; /* Gold */
+	color:  #ffcc66; /* Gold */
 	position: sticky;
 	top: 0;
 	left: 0;
@@ -180,7 +183,7 @@ body.dark-mode .octa {
 }
 
 #sidebar .side-menu li.active {
-	background:  #cac9a4; /* Emas mewah */
+	background:  #121212; /* Emas mewah */
 	position: relative;
 }
 
@@ -192,7 +195,7 @@ body.dark-mode .octa {
 	border-radius: 50%;
 	top: -40px;
 	right: 0;
-	box-shadow: 20px 20px 0   #cac9a4;
+	box-shadow: 20px 20px 0   #121212;
 	z-index: -1;
 }
 
@@ -204,7 +207,7 @@ body.dark-mode .octa {
 	border-radius: 50%;
 	bottom: -40px;
 	right: 0;
-	box-shadow: 20px -20px 0  #cac9a4;
+	box-shadow: 20px -20px 0  #121212;
 	z-index: -1;
 }
 
@@ -216,14 +219,14 @@ body.dark-mode .octa {
 	align-items: center;
 	border-radius: 48px;
 	font-size: 16px;
-	color: #2C2C2C; /* Abu gelap klasik */
+	color: #121212; /* Abu gelap klasik */
 	white-space: nowrap;
 	overflow-x: hidden;
 	transition: background 0.2s ease, color 0.2s ease;
 }
 
 #sidebar .side-menu.top li.active a {
-	color: #C89F5D; /* Teks putih saat aktif (kontras dg gold) */
+	color: #cda45e; /* Teks putih saat aktif (kontras dg gold) */
 }
 
 #sidebar.hide .side-menu li a {
@@ -236,7 +239,7 @@ body.dark-mode .octa {
 }
 
 #sidebar .side-menu.top li a:hover {
-	color: #C89F5D; /* Hover emas */
+	color: #cda45e; /* Hover emas */
 }
 
 #sidebar .side-menu li a .bx {
@@ -419,7 +422,7 @@ body.dark-mode .octa {
 	font-family: var(--poppins);
 	max-height: calc(100vh - 56px);
 	overflow-y: auto;
-	background-color:  #cac9a4;
+	background-color:  #121212;
 	min-height: 100vh;
 }
 
@@ -427,15 +430,15 @@ body.dark-mode .octa {
 	font-size: 36px;
 	font-weight: 600;
 	margin-bottom: 10px;
-	color: #2C2C2C;
+	color: #ffcc66;
 }
 
 #content main .head-title .left .breadcrumb li {
-	color: #170d0d;
+	color: #ffcc66;
 }
 
 #content main .head-title .left .breadcrumb li a {
-	color: #999;
+	color: #ffcc66;
 	pointer-events: none;
 }
 
@@ -476,7 +479,7 @@ body.dark-mode .octa {
 
 #content main .table-data>div {
 	border-radius: 20px;
-	background: #FFFFFF;
+	background: #000000;
 	padding: 24px;
 	overflow-x: auto;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);

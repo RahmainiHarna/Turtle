@@ -39,7 +39,7 @@
 			@endauth
 		</ul>
 	</section>
-
+    
 	<section id="content">
 		<nav><i class='bx bx-menu'></i></nav>
 		<main>
@@ -109,6 +109,7 @@
 			</div>
 		</main>
 	</section>
+>>>>>>> 4d1957696d6ca6b09358bab3ea4ab4e37f991239
 
 	<script>
 		function searchTable() {
