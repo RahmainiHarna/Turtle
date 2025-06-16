@@ -5,12 +5,12 @@
           <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:turtle@gmail.com">turtle@gmail.com</a></i>
           <i class="bi bi-phone d-flex align-items-center ms-4"><a href="tel:0821 5577 4325">0821 5577 4325</a></i>
         </div>
-        <div class="languages d-none d-md-flex align-items-center">
+        <!-- <div class="languages d-none d-md-flex align-items-center">
           <ul>
             <li class="bi bi-globe d-flex align-items-center"></li>
             <li><a href="#">En</a></li>
           </ul>
-        </div>
+        </div> -->
       </div>
     </div>
   <!-- End Top Bar -->

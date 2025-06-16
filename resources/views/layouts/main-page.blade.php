@@ -80,6 +80,79 @@
     });
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- SweetAlert untuk Booking Success -->
+  @if(session('booking_success'))
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: 'Reserved!',
+              text: "{{ session('booking_success') }}",
+              showConfirmButton: false,
+              width: '400px',
+              timer: 3000,
+              customClass: {
+                title: 'cormorant-alert',
+                htmlContainer: 'poppins-alert'
+              }
+          });
+      </script>
+  @endif
+
+  <!-- SweetAlert untuk Menambah / Mengurangi Menu -->
+  @if(session('cart_success'))
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: 'Noted!',
+              text: "{{ session('cart_success') }}",
+              showConfirmButton: false,
+              width: '400px',
+              timer: 3000,
+              customClass: {
+                title: 'cormorant-alert',
+                htmlContainer: 'poppins-alert'
+              }
+          });
+      </script>
+  @endif
+
+  <!-- SweetAlert untuk Testimonials -->
+  @if(session('testimonial_success'))
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: 'Thank you!',
+              text: "{{ session('testimonial_success') }}",
+              showConfirmButton: false,
+              width: '400px',
+              timer: 3000,
+              customClass: {
+                title: 'cormorant-alert',
+                htmlContainer: 'poppins-alert'
+              }
+          });
+      </script>
+  @endif
+
+  <!-- SweetAlert untuk Contact -->
+  @if(session('contact_success'))
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: 'Sent!',
+              text: "{{ session('contact_success') }}",
+              showConfirmButton: false,
+              width: '400px',
+              timer: 3000,
+              customClass: {
+                title: 'cormorant-alert',
+                htmlContainer: 'poppins-alert'
+              }
+          });
+      </script>
+  @endif
+
 </body>
 
 </html>

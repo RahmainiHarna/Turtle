@@ -332,25 +332,24 @@
 
       @foreach($testimoni as $item)
       @if($item->status == 1)
-      <div class="swiper-slide">
-      <div class="testimonial-item">
-      <p>
-        <i class="bi bi-quote quote-icon-left"></i>
-        <span>{{ $item->message }}</span>
-        <i class="bi bi-quote quote-icon-right"></i>
-      </p>
-      {{-- Uncomment jika ada gambar --}}
-      {{-- <img src="{{ asset('path/to/image.jpg') }}" class="testimonial-img" alt=""> --}}
-      <h3>{{ $item->name }}</h3>
-      <h4>{{ $item->subject ?? '' }}</h4>
-      </div>
-      </div><!-- End testimonial item -->
+        <div class="swiper-slide">
+        <div class="testimonial-item">
+        <p>
+          <i class="bi bi-quote quote-icon-left"></i>
+          <span>{{ $item->message }}</span>
+          <i class="bi bi-quote quote-icon-right"></i>
+        </p>
+        {{-- Uncomment jika ada gambar --}}
+        {{-- <img src="{{ asset('path/to/image.jpg') }}" class="testimonial-img" alt=""> --}}
+        <h3>{{ $item->name }}</h3>
+        <h4>{{ $item->subject ?? '' }}</h4>
+        </div>
+        </div><!-- End testimonial item -->
       @endif
-    @endforeach
+      @endforeach
       </div>
       <div class="swiper-pagination"></div>
     </div>
-
     </div>
 
   </section>
@@ -447,12 +446,15 @@
     <div class="container section-title" data-aos="fade-up">
     <h2>Contact</h2>
     <p>Contact Us</p>
-    </div><!-- End Section Title -->
+    </div>
+    <!-- End Section Title -->
 
     <div class="mb-5" data-aos="fade-up" data-aos-delay="200">
     <iframe style="border:0; width: 100%; height: 400px;"
-      src="https://www.google.com/maps/place/Program+Studi+Teknologi+Informasi,+Fasilkom-TI,+Universitas+Sumatera+Utara/@3.5626522,98.6571451,17z/data=!3m1!4b1!4m6!3m5!1s0x30312fdf837c0b1b:0xa5ef19b5b1fb64a5!8m2!3d3.5626468!4d98.65972!16s%2Fg%2F11g8w8lt4g?entry=ttu&g_ep=EgoyMDI1MDQyMi4wIKXMDSoASAFQAw%3D%3D"></iframe>
-    </div><!-- End Google Maps -->
+       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.050627475845!2d98.66642690463004!3d3.5758358807751565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3031302c3c831809%3A0x5992c1155743dd42!2sSajian%20Bhinneka!5e0!3m2!1sid!2sid!4v1750035871518!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <!-- End Google Maps -->
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -509,6 +511,8 @@
         <!-- <div class="col-md-12">
             <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
           </div> -->
+
+    <!-- /Events Section -->
 
         <div class="col-md-12">
           <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>

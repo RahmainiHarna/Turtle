@@ -14,7 +14,6 @@ class AdminMiddleware
         if (Auth::check() && Auth::user()->level == 1) {
             return $next($request);
         }
-
         return redirect('/');
     }
 

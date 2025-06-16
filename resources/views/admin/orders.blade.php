@@ -4,233 +4,124 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<!-- My CSS -->
 	<link rel="stylesheet" href="/assets/css/admin.css">
-
 	<title>Admin</title>
 </head>
 
 <body>
-
-	<style>
-		.bold {
-			font-weight: bold;
-		}
-	</style>
-
-	<!-- SIDEBAR -->
 	<section id="sidebar">
 		<a href="#" class="brand">
-			<i class='bx bxs-car'></i>
-			<span class="text">
-				<span class="octa">TUR</span><span class="prime">TLE</span>
-			</span>
+			<img src="assets/img/logo-turtles.png" alt="Turtle Resto Logo" style="height: 40px; margin-right: 20px;">
+			<span class="text"><span class="octa">TUR</span><span class="prime">TLE RESTO</span></span>
 		</a>
 		<ul class="side-menu top">
-			<li>
-				<a href="{{route('admin')}}">
-					<i class='bx bxs-dashboard'></i>
-					<span class="text">Dashboard</span>
-				</a>
+			<li><a href="{{route('admin')}}"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a>
 			</li>
-			<li>
-				<a href="{{ route('akun') }}">
-					<i class='bx bxs-dashboard'></i>
-					<span class="text">Akun User</span>
-				</a>
+			<li><a href="{{ route('akun') }}"><i class='bx bxs-dashboard'></i><span class="text">Akun User</span></a>
 			</li>
-			<li>
-				<a href="{{ route('menuAdmin') }}">
-					<i class='bx bxs-shopping-bag-alt'></i>
-					<span class="text">Daftar Menu</span>
-				</a>
-			</li>
-			<li class="active">
-				<a href="{{ route('orders') }}">
-					<i class='bx bxs-shopping-bag-alt'></i>
-					<span class="text">Orders</span>
-				</a>
-			</li>
-			<li>
-				<a href="{{route('testimonialsAdmin')}}">
-					<i class='bx bxs-message-dots'></i>
-					<span class="text">Testimoni</span>
-				</a>
-			</li>
-			<li>
-				<a href="{{ route('messages') }}">
-					<i class='bx bxs-message-dots'></i>
-					<span class="text">Message</span>
-				</a>
-			</li>
+			<li><a href="{{ route('menuAdmin') }}"><i class='bx bxs-shopping-bag-alt'></i><span class="text">Daftar
+						Menu</span></a></li>
+			<li class="active"><a href="{{ route('orders') }}"><i class='bx bxs-shopping-bag-alt'></i><span
+						class="text">Orders</span></a></li>
+			<li><a href="{{route('testimonialsAdmin')}}"><i class='bx bxs-message-dots'></i><span
+						class="text">Testimoni</span></a></li>
+			<li><a href="{{ route('messages') }}"><i class='bx bxs-message-dots'></i><span
+						class="text">Message</span></a></li>
 			@auth
 				<li>
 					<a href="{{route('logout')}}"
 						onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout">
-						<i class='bx bxs-log-out-circle'></i>
-						<span class="text">Logout</span>
+						<i class='bx bxs-log-out-circle'></i><span class="text">Logout</span>
 					</a>
-					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-						@csrf
-					</form>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
 				</li>
 			@endauth
 		</ul>
 	</section>
-	<!-- SIDEBAR -->
+    
+	<section id="content">
+		<nav><i class='bx bx-menu'></i></nav>
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Orders</h1>
+				</div>
+			</div>
 
-<!-- CONTENT -->
-<section id="content">
-    <!-- NAVBAR -->
-    <nav>
-        <i class='bx bx-menu'></i>
-        <input type="checkbox" id="switch-mode" hidden>
-    </nav>
-    <!-- NAVBAR -->
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<div class="head" style="display: flex; justify-content: space-between; align-items: center;">
+							<h2>Recent Orders</h2>
+							<div style="display: flex; align-items: center; gap: 8px">
+								<i class='bx bx-search' style="font-size: 20px; color: #888;"></i>
+								<input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Cari nama..."
+									style="flex: 1; padding: 8px 14px; border-radius: 8px; border: 1px solid #ccc; outline: none; font-size: 14px;" />
+							</div>
 
-    <!-- MAIN -->
-    <main>
-        <div class="head-title">
-            <div class="left">
-                <h1>Orders</h1>
-                <p class="subtitle">Daftar reservasi terbaru dari pelanggan</p>
-            </div>
-        </div>
+						</div>
 
-        <div class="table-data">
-            <div class="order">
-                <div class="head">
-                    <h3>Recent Orders</h3>
-                </div>
-                <div class="table-container">
-                    <table class="styled-table">
-                        <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Tanggal</th>
-                                <th>Jam</th>
-                                <th>Jumlah Orang</th>
-                                <th>Kontak</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($bookings as $data_diri)
-                                <tr>
-                                    <td>{{ $data_diri->name }}</td>
-                                    <td>{{ $data_diri->date }}</td>
-                                    <td>{{ $data_diri->time }}</td>
-                                    <td>{{ $data_diri->people }}</td>
-                                    <td>
-                                        <div>{{ $data_diri->phone }}</div>
-                                        <small style="color: #888;">{{ $data_diri->email }}</small>
-                                    </td>
-                                    <td style="display: flex; gap: 6px;">
-                                        <a href="{{ route('admin.ordershow', $data_diri->id) }}" class="btn-more">More</a>
-                                        <form action="{{ route('admin.orderdelete', $data_diri->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus pesanan ini?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn-delete">Hapus</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6" style="text-align: center;">Tidak ada pesanan.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </main>
-    <!-- MAIN -->
-</section>
-<!-- CONTENT -->
+					</div>
+				</div>
+				<table class="menu-table">
+					<thead>
+						<tr>
+							<th>Nama</th>
+							<th>Tanggal Pesan</th>
+							<th>Jam</th>
+							<th>Jumlah Orang</th>
+							<th>Kontak</th>
+							<th>Aksi</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach ($bookings as $data_diri)
+							<tr>
+								<td>{{ $data_diri->name }}</td>
+								<td>{{ $data_diri->date }}</td>
+								<td>{{ $data_diri->time }}</td>
+								<td>{{ $data_diri->people }}</td>
+								<td>{{ $data_diri->phone }} / {{ $data_diri->email }}</td>
+								<td>
+									<a href="{{ route('admin.ordershow', $data_diri->id) }}" class="btn btn-more">
+										<i class='bx bx-show'></i> More
+									</a>
+									<form action="{{ route('admin.orderdelete', $data_diri->id) }}" method="POST"
+										style="display:inline;">
+										@csrf
+										@method('DELETE')
+										<button type="submit" class="crud-btn delete"
+											onclick="return confirm('Yakin ingin menghapus?')">
+											<i class='bx bxs-trash'></i>
+											<span>Hapus</span>
+										</button>
+									</form>
+								</td>
 
-<style>
-    .subtitle {
-        font-size: 14px;
-        color: #999;
-        margin-top: 5px;
-    }
+								</form>
+								</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+			</div>
+			</div>
+		</main>
+	</section>
+>>>>>>> 4d1957696d6ca6b09358bab3ea4ab4e37f991239
 
-    .table-container {
-        overflow-x: auto;
-    }
-
-    .styled-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 14px;
-        background-color: #fff;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .styled-table thead {
-        background-color: #f5f5f5;
-    }
-
-    .styled-table th, .styled-table td {
-        padding: 14px 18px;
-        text-align: left;
-        vertical-align: top;
-    }
-
-    .styled-table tbody tr:hover {
-        background-color: #f9f9f9;
-    }
-
-    .btn-more,
-    .btn-delete {
-        padding: 6px 14px;
-        font-size: 12px;
-        border-radius: 20px;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-        border: none;
-        cursor: pointer;
-    }
-
-    .btn-more {
-        background-color: #6C63FF;
-        color: #fff;
-    }
-
-    .btn-more:hover {
-        background-color: #5a52cc;
-    }
-
-    .btn-delete {
-        background-color: #ff6b6b;
-        color: #fff;
-    }
-
-    .btn-delete:hover {
-        background-color: #e94b4b;
-    }
-
-    @media (max-width: 768px) {
-        .styled-table th, .styled-table td {
-            font-size: 13px;
-            padding: 10px;
-        }
-    }
-</style>
-
-
-
-
-
-
-	<script src="js/admin.js"></script>
-
+	<script>
+		function searchTable() {
+			const input = document.getElementById("searchInput").value.toLowerCase();
+			const rows = document.querySelectorAll(".menu-table tbody tr");
+			rows.forEach(row => {
+				const name = row.cells[0].textContent.toLowerCase();
+				row.style.display = name.includes(input) ? "" : "none";
+			});
+		}
+	</script>
+	<script src="/js/admin.js"></script>
 </body>
 
 </html>

@@ -7,6 +7,9 @@
 
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Google Font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
     <!-- My CSS -->
     <link rel="stylesheet" href="/assets/css/admin.css">
 
@@ -18,9 +21,9 @@
     <!-- SIDEBAR -->
     <section id="sidebar">
         <a href="#" class="brand">
-            <i class='bx bxs-car'></i>
+            <img src="assets/img/logo-turtles.png" alt="Turtle Resto Logo" style="height: 40px; margin-right: 20px;">
             <span class="text">
-                <span class="octa">TUR</span><span class="prime">TLE</span>
+                <span class="octa">TUR</span><span class="prime">TLE RESTO</span>
             </span>
         </a>
         <ul class="side-menu top">
@@ -86,52 +89,86 @@
 
         <!-- MAIN -->
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Daftar Menu</h1>
-                    <ul class="breadcrumb">
-                        <li><a href="#">Menu</a></li>
-                    </ul>
+            <div class="menu-header">
+                <h1>Daftar Menu</h1>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Cari nama menu atau jenis" onkeyup="searchMenu()">
+                    <i class='bx bx-search'></i>
                 </div>
+                <a href="{{ route('admin.createmenu') }}" class="btn-card-add">
+                    <i class='bx bx-plus'></i> Tambah Menu
+                </a>
             </div>
 
-            <div class="table-data">
-                <div class="order">
-                    <div class="head">
-                        <h3>Menu</h3>
-                    </div>
-                    <table>
-                        <thead>
+
+            <div class="menu-table-container">
+                <table class="menu-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama Menu</th>
+                            <th>Jenis</th>
+                            <th>Harga</th>
+                            <th>Gambar</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($menus as $menu)
                             <tr>
-                                <th> ID</th>
-                                <th>Nama Menu</th>
-                                <th>Jenis</th>
-                                <th>Harga</th>
-                                <th>Gambar</th>
+                                <td>{{ $menu->id }}</td>
+                                <td>{{ $menu->name }}</td>
+                                <td>{{ $menu->type }}</td>
+                                <td>Rp{{ number_format($menu->price, 0, ',', '.') }}</td>
+                                <td><img src="{{ asset('assets/img/menu/' . $menu->image) }}" alt="{{ $menu->name }}"
+                                        class="menu-image"></td>
+                                <td>
+                                    <div class="crud-buttons">
+                                        <a href="{{ route('menu.edit', $menu->id) }}" class="crud-btn edit">
+                                            <i class='bx bxs-edit'></i>
+                                            <span>Edit</span>
+                                        </a>
+                                        <form action="{{ route('menu.destroy', $menu->id) }}" method="POST" class="inline-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="crud-btn delete"
+                                                onclick="return confirm('Yakin ingin menghapus?')">
+                                                <i class='bx bxs-trash'></i>
+                                                <span>Hapus</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($menus as $menu)
-                                <tr>
-                                    <td>{{ $menu->id }}</td>
-                                    <td>{{ $menu->name }}</td>
-                                    <td>{{ $menu->type }}</td>
-                                    <td>{{ $menu->price }}</td>
-                                    <td>{{ $menu->image }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-            </div>
-            <a href="{{ route('admin.createmenu') }}"class="color : red"> + tambah menu</button>
+
+
         </main>
         <!-- MAIN -->
     </section>
     <!-- CONTENT -->
+    <script>
+        function searchMenu() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const rows = document.querySelectorAll(".menu-table tbody tr");
 
-    <script src="js/admin.js"></script>
+            rows.forEach(row => {
+                const name = row.cells[1].textContent.toLowerCase(); 
+                const type = row.cells[2].textContent.toLowerCase();
+                 const price = row.cells[3].textContent.toLowerCase(); 
+
+                if (name.includes(input) || type.includes(input) ||  price.includes(input)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+
 </body>
 
 </html>

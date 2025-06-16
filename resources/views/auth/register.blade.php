@@ -47,7 +47,7 @@
                     <input type="password" name="password_confirmation" placeholder="password confirmation" required>
                 </div>
                 <div class="button input-box">
-                    <button type="submit">Sign up</button>
+                    <button type="submit">SIGN UP</button>
                 </div>
                 <div class="text login-text">Already have an account? <a href="{{ route('login') }}">Log in now</a></div>
               </div>
