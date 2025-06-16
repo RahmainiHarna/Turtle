@@ -124,11 +124,11 @@
                                         class="menu-image"></td>
                                 <td>
                                     <div class="crud-buttons">
-                                        <a href="{{ route('admin', $menu->id) }}" class="crud-btn edit">
+                                        <a href="{{ route('menu.edit', $menu->id) }}" class="crud-btn edit">
                                             <i class='bx bxs-edit'></i>
                                             <span>Edit</span>
                                         </a>
-                                        <form action="{{ route('admin', $menu->id) }}" method="POST" class="inline-form">
+                                        <form action="{{ route('menu.destroy', $menu->id) }}" method="POST" class="inline-form">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="crud-btn delete"
