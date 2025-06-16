@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 
 class CartController extends Controller
 {
+    // menampilkan halaamn untuk menambah menu yang dipesan setelah user booking
     public function index()
     {
         if (!session()->has('booking')) {
@@ -23,7 +24,7 @@ class CartController extends Controller
         return view('cart', compact('menus', 'cart'));
     }
 
-    // Tambah item ke cart
+    // menambah menu ke keranjang
     public function addToCart($id)
     {
         $cart = session()->get('cart', []);
@@ -32,7 +33,7 @@ class CartController extends Controller
         return back()->with('cart_success', 'Menu locked in.');
     }
 
-    // Kurangi item dari cart
+    // Kurangi menu dari keranjang
     public function removeFromCart($id)
     {
         $cart = session()->get('cart', []);
@@ -46,12 +47,13 @@ class CartController extends Controller
         return back()->with('cart_success', 'Maybe next time.');
     }
 
+    // memanpilakn halaman untuk menambahakan daftar menu oleh admin
     public function create()
     {
         return view('admin.createmenu');
     }
 
-
+    // menyimpan data menu tambahan yang diinut oleh admin
     public function store(Request $request)
     {
         $request->validate([
@@ -74,9 +76,6 @@ class CartController extends Controller
 
         $imagePath = $request->type . '/' . $filename;
 
-
-
-        // Simpan data
         Cart::create([
             'name' => $request->name,
             'price' => $request->price,
@@ -87,12 +86,14 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Menu berhasil ditambahkan.');
     }
 
+    // menampilkan halamnn untuk mengupdate/mengedit menu yang sudah ada oleh admin
     public function edit($id)
     {
         $menu = Cart::findOrFail($id);
         return view('admin.editMenu', compact('menu'));
     }
 
+    // menyimpan data menu yang sudah diupdate oleh admin
     public function update(Request $request, $id)
     {
         $menu = Cart::findOrFail($id);
@@ -110,7 +111,7 @@ class CartController extends Controller
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            
+
             $oldPath = public_path('assets/img/menu/' . $menu->type . '/' . $menu->image);
             if (file_exists($oldPath)) {
                 unlink($oldPath);
@@ -142,6 +143,7 @@ class CartController extends Controller
         return redirect()->route('menuAdmin')->with('success', 'Menu berhasil diperbarui!');
     }
 
+    // menghapus daftar menu
     public function destroy($id)
     {
         $menu = Cart::findOrFail($id);
