@@ -28,7 +28,7 @@
                         Menu</span></a></li>
             <li class="active"><a href="{{ route('orders') }}"><i class='bx bxs-cart'></i><span
                         class="text">Orders</span></a></li>
-            <li><a href="{{ route('testimonialsAdmin') }}"><i class='bx bxs-comment'></i><span
+            <li><a href="{{ route('testimonialsAdmin') }}"><i class='bx bxs-message-dots'></i><span
                         class="text">Testimoni</span></a></li>
             <li><a href="{{ route('messages') }}"><i class='bx bxs-envelope'></i><span class="text">Message</span></a>
             </li>
@@ -50,56 +50,53 @@
         <nav><i class='bx bx-menu'></i></nav>
 
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Orders</h1>
+            <div class="order">
+                <div class="head">
+                    <h3>Detail Orders</h3>
+                    <a href="{{ route('orders') }}" class="btn-card-back">&larr; Kembali</a>
                 </div>
-            </div>
-        </div>
-
-            <div class="table-data">
-                <div class="order">
-                    <div class="head">
-                        <h3>Detail Orders</h3>
+                <h5>Data Diri Pemesan:</h5>
+                <div class="order-detail-container">
+                    <div class="order-detail-column">
+                        <div class="detail-item"><strong>Nama:</strong> {{ $booking->name }}</div>
+                        <div class="detail-item"><strong>Telepon:</strong> {{ $booking->phone }}</div>
+                        <div class="detail-item"><strong>Email:</strong> {{ $booking->email }}</div>
+                        <div class="detail-item"><strong>Message:</strong>{{ $booking->message }}</div>
                     </div>
+                    <div class="order-detail-column">
+                        <div class="detail-item"><strong>Tanggal Pesan:</strong>
+                            {{ $booking->date }}</div>
+                        <div class="detail-item"><strong>Jam:</strong> {{ $booking->time }}</div>
+                        <div class="detail-item"><strong>Jumlah Orang:</strong> {{ $booking->people }}</div>
 
-                    <h5>Data Diri Pemesan:</h5>
-                    <ul>
-                        <li><strong>Nama:</strong> {{ $booking->name }}</li>
-                        <li><strong>Tanggal Pesan:</strong> {{ $booking->date }}</li>
-                        <li><strong>Jam:</strong> {{ $booking->time }}</li>
-                        <li><strong>Jumlah Orang:</strong> {{ $booking->people }}</li>
-                        <li><strong>Telepon:</strong> {{ $booking->phone }}</li>
-                        <li><strong>Email:</strong> {{ $booking->email }}</li>
-                        <li><strong>Total Harga:</strong>Rp {{ number_format($booking->orders->sum(function ($order) {
+                        <div class="detail-item"><strong>Total Harga:</strong>Rp {{ number_format($booking->orders->sum(function ($order) {
     return $order->menu->price * $order->quantity;
 }), 0, ',', '.') }}
-                        </li>
-                        <li><strong>Message:</strong>{{ $booking->message }}</li>
-                    </ul>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nama Menu</th>
-                                <th>Jumlah</th>
-                                <th>Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php $total = 0; @endphp
-                            @foreach ($booking->orders as $order)
-                                @php $total += $order->subtotal; @endphp
-                                <tr>
-                                    <td>{{ $order->menu->name }}</td>
-                                    <td>{{ $order->quantity }}</td>
-                                    <td>Rp {{ number_format($order->subtotal, 0, ',', '.') }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <a href="{{ route('orders') }}" class="back-btn">&larr; Kembali</a>
+                        </div>
+                    </div>
                 </div>
+
+
+                <table id="invoice">
+                    <thead>
+                        <tr>
+                            <th>Nama Menu</th>
+                            <th>Jumlah</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $total = 0; @endphp
+                        @foreach ($booking->orders as $order)
+                            @php $total += $order->subtotal; @endphp
+                            <tr>
+                                <td>{{ $order->menu->name }}</td>
+                                <td>{{ $order->quantity }}</td>
+                                <td>Rp {{ number_format($order->subtotal, 0, ',', '.') }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </main>
     </section>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Booking;
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
 

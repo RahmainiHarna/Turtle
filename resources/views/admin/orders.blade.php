@@ -18,15 +18,15 @@
 		<ul class="side-menu top">
 			<li><a href="{{route('admin')}}"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a>
 			</li>
-			<li><a href="{{ route('akun') }}"><i class='bx bxs-dashboard'></i><span class="text">Akun User</span></a>
+			<li><a href="{{ route('akun') }}"><i class='bx bxs-user'></i><span class="text">Akun User</span></a>
 			</li>
-			<li><a href="{{ route('menuAdmin') }}"><i class='bx bxs-shopping-bag-alt'></i><span class="text">Daftar
+			<li><a href="{{ route('menuAdmin') }}"><i class='bx bxs-food-menu'></i><span class="text">Daftar
 						Menu</span></a></li>
-			<li class="active"><a href="{{ route('orders') }}"><i class='bx bxs-shopping-bag-alt'></i><span
+			<li class="active"><a href="{{ route('orders') }}"><i class='bx bxs-cart'></i><span
 						class="text">Orders</span></a></li>
 			<li><a href="{{route('testimonialsAdmin')}}"><i class='bx bxs-message-dots'></i><span
 						class="text">Testimoni</span></a></li>
-			<li><a href="{{ route('messages') }}"><i class='bx bxs-message-dots'></i><span
+			<li><a href="{{ route('messages') }}"><i class='bx bxs-envelope'></i><span
 						class="text">Message</span></a></li>
 			@auth
 				<li>
@@ -39,77 +39,65 @@
 			@endauth
 		</ul>
 	</section>
-    
+
 	<section id="content">
 		<nav><i class='bx bx-menu'></i></nav>
 		<main>
-			<div class="head-title">
-				<div class="left">
-					<h1>Orders</h1>
-				</div>
-			</div>
 
-			<div class="table-data">
-				<div class="order">
-					<div class="head">
-						<div class="head" style="display: flex; justify-content: space-between; align-items: center;">
-							<h2>Recent Orders</h2>
-							<div style="display: flex; align-items: center; gap: 8px">
-								<i class='bx bx-search' style="font-size: 20px; color: #888;"></i>
-								<input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Cari nama..."
-									style="flex: 1; padding: 8px 14px; border-radius: 8px; border: 1px solid #ccc; outline: none; font-size: 14px;" />
-							</div>
-
+			<div class="menu-header">
+				<h1>Recent Orders<h1>
+						<div class="search-container">
+							<input type="text" id="searchInput" placeholder="Cari nama menu atau jenis"
+								onkeyup="searchTable()">
+							<i class='bx bx-search'></i>
 						</div>
-
-					</div>
-				</div>
-				<table class="menu-table">
-					<thead>
+			</div>
+			<table id="userTable">
+				<thead>
+					<tr>
+						<th>Nama</th>
+						<th>Tanggal Pesan</th>
+						<th>Jam</th>
+						<th>Jumlah Orang</th>
+						<th>Kontak</th>
+						<th>Aksi</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach ($bookings as $data_diri)
 						<tr>
-							<th>Nama</th>
-							<th>Tanggal Pesan</th>
-							<th>Jam</th>
-							<th>Jumlah Orang</th>
-							<th>Kontak</th>
-							<th>Aksi</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach ($bookings as $data_diri)
-							<tr>
-								<td>{{ $data_diri->name }}</td>
-								<td>{{ $data_diri->date }}</td>
-								<td>{{ $data_diri->time }}</td>
-								<td>{{ $data_diri->people }}</td>
-								<td>{{ $data_diri->phone }} / {{ $data_diri->email }}</td>
-								<td>
-									<a href="{{ route('admin.ordershow', $data_diri->id) }}" class="btn btn-more">
-										<i class='bx bx-show'></i> More
-									</a>
-									<form action="{{ route('admin.orderdelete', $data_diri->id) }}" method="POST"
-										style="display:inline;">
-										@csrf
-										@method('DELETE')
-										<button type="submit" class="crud-btn delete"
-											onclick="return confirm('Yakin ingin menghapus?')">
-											<i class='bx bxs-trash'></i>
-											<span>Hapus</span>
-										</button>
-									</form>
-								</td>
-
+							<td>{{ $data_diri->name }}</td>
+							<td>{{ $data_diri->date }}</td>
+							<td>{{ $data_diri->time }}</td>
+							<td>{{ $data_diri->people }}</td>
+							<td>{{ $data_diri->phone }} / {{ $data_diri->email }}</td>
+							<td>
+								<a href="{{ route('admin.ordershow', $data_diri->id) }}" class="btn btn-more">
+									<i class='bx bx-show'></i> More
+								</a>
+								<form action="{{ route('admin.orderdelete', $data_diri->id) }}" method="POST"
+									style="display:inline;">
+									@csrf
+									@method('DELETE')
+									<button type="submit" class="crud-btn delete"
+										onclick="return confirm('Yakin ingin menghapus?')">
+										<i class='bx bxs-trash'></i>
+										<span>Hapus</span>
+									</button>
 								</form>
-								</td>
-							</tr>
-						@endforeach
-					</tbody>
-				</table>
+							</td>
+
+							</form>
+							</td>
+						</tr>
+					@endforeach
+				</tbody>
+			</table>
 			</div>
-			</div>
+
 		</main>
 	</section>
->>>>>>> 4d1957696d6ca6b09358bab3ea4ab4e37f991239
+
 
 	<script>
 		function searchTable() {
