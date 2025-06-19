@@ -3,13 +3,19 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Invoice | TURTLE'S</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Invoice - TURTLE'S</title>
+  <!-- Favicons -->
+  <link href="/assets/img/logo-turtles.png" rel="icon">
+  <link href="/assets/img/logo-turtles.png" rel="apple-touch-icon">
+
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Open Sans', sans-serif;
       background: url('/assets/img/foto1.png') no-repeat center center fixed;
       background-size: cover;
       display: flex;
@@ -18,7 +24,6 @@
       min-height: 100vh;
       color: #fff;
       position: relative;
-      
     }
 
     body::before {
@@ -32,6 +37,13 @@
       z-index: 0;
     }
 
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
     .invoice-container {
       position: relative;
       width: 100%;
@@ -41,19 +53,22 @@
       border-radius: 16px;
       box-shadow: 0 0 15px rgba(255, 204, 102, 0.3);
       z-index: 1;
+      margin: 30px 0 30px 0;
     }
 
     .header {
       text-align: center;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Playfair Display', sans-serif;
       color: #ffcc66;
       font-size: 34px;
       margin-bottom: 5px;
     }
 
     .sub-header {
+      font-family: 'Poppins', sans-serif;
       text-align: center;
-      font-size: 15px;
+      font-size: 17px;
+      font-style: italic;
       margin-bottom: 30px;
       color: #ccc;
     }
@@ -62,8 +77,10 @@
       display: flex;
       gap: 20px;
       align-items: stretch;
-      margin-bottom: 30px;
+      margin: 0 20px 30px 20px;
       justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
     }
 
     .info-group {
@@ -80,11 +97,10 @@
     }
 
     .label {
-      width: 130px;
+      width: 120px;
       font-weight: bold;
       color: #eee;
       text-align: left;
-      margin-left: 60px;
     }
 
     .colon {
@@ -92,6 +108,7 @@
       text-align: center;
       font-weight: bold;
       color: #eee;
+      margin-right: 3px;
     }
 
     .value {
@@ -101,10 +118,11 @@
     }
 
     table {
+      font-family: 'Poppins', sans-serif;
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 20px;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     th,
@@ -120,12 +138,12 @@
     }
 
     .total {
+      font-family: 'Poppins', sans-serif;
       text-align: right;
       font-size: 17px;
       color: #ffcc66;
       font-weight: bold;
       margin-top: 5px;
-      padding-right: 10px;
     }
 
     .btn-print {
@@ -149,7 +167,7 @@
 
     @media (max-width: 600px) {
       .invoice-container {
-        padding: 15px 20px;
+        padding: 20px 24px;
       }
 
       .header {
@@ -165,33 +183,87 @@
       }
 
       .wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      width: 100%;
-      /* position: relative; */
-      z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        width: 100%;
+        z-index: 1;
+        padding: 0 12px;
       }
 
       #invoice-area {
-      width: 100%;
-      height: auto;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    /*------------------
+    # Alert
+    ------------------*/
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Cormorant+Garamond:wght@400;600&display=swap');
+
+    .poppins-alert {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 15px !important;
+    }
+
+    .cormorant-alert {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: 35px !important;
+    }
+    
+    /*------------------
+    # Preloader
+    ------------------*/
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      overflow: hidden;
+      background: #0c0b09;
+      transition: all 0.6s ease-out;
+    }
+
+    #preloader:before {
+      content: "";
+      position: fixed;
+      top: calc(50% - 30px);
+      left: calc(50% - 30px);
+      border: 6px solid #ffffff;
+      border-color: #cda45e transparent #cda45e transparent;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: animate-preloader 1.2s linear infinite;
+    }
+
+    @keyframes animate-preloader {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
       }
     }
   </style>
 </head>
 
 <body>
+  <!-- Preloader -->
+  <div id="preloader"></div>
+  
+  <!-- Content -->
   <div class="wrapper" id="capture-area">
   <div class="invoice-container" id="invoice-area">
-    <div class="header">TURTLE'S INVOICE</div>
+    <div class="header">TURTLE’S INVOICE</div>
     <div class="sub-header">Eat, Feel, and Fall in Love with Indonesian Flavor</div>
 
     <div class="info-columns">
       <div class="info-group">
         <div class="info-row">
-          <div class="label">Nama</div>
+          <div class="label">Name</div>
           <div class="colon">:</div>
           <div class="value">{{ $booking['name'] }}</div>
         </div>
@@ -201,7 +273,7 @@
           <div class="value">{{ $booking['email'] }}</div>
         </div>
         <div class="info-row">
-          <div class="label">No. Handphone</div>
+          <div class="label">Phone Number</div>
           <div class="colon">:</div>
           <div class="value">{{ $booking['phone'] }}</div>
         </div>
@@ -211,17 +283,17 @@
 
       <div class="info-group">
         <div class="info-row">
-          <div class="label">Tanggal</div>
+          <div class="label">Date</div>
           <div class="colon">:</div>
           <div class="value">{{ $booking['date'] }}</div>
         </div>
         <div class="info-row">
-          <div class="label">Jam</div>
+          <div class="label">Time</div>
           <div class="colon">:</div>
           <div class="value">{{ $booking['time'] }}</div>
         </div>
         <div class="info-row">
-          <div class="label">Jumlah Orang</div>
+          <div class="label">People</div>
           <div class="colon">:</div>
           <div class="value">{{ $booking['people'] }}</div>
         </div>
@@ -232,8 +304,8 @@
       <thead>
         <tr>
           <th>Item</th>
-          <th>Jumlah</th>
-          <th>Harga</th>
+          <th>Qty</th>
+          <th>Price</th>
           <th>Total</th>
         </tr>
       </thead>
@@ -250,27 +322,28 @@
     </table>
 
     <div class="total">
-      Total: Rp{{ number_format($total, 0, ',', '.') }}
+      Total :&nbsp;Rp{{ number_format($total, 0, ',', '.') }}
     </div>
      <div class="total">
-     Deposit 10%: Rp{{ number_format($deposit, 0, ',', '.') }}
+     Deposit 10% : Rp{{ number_format($deposit, 0, ',', '.') }}
     </div>
 
     <div style="text-align: center; margin-top: 25px;">
       <form method="POST" action="{{ route('invoice.confirm') }}">
         @csrf
-       <button type="button" class="btn-print" id="confirm-and-download">KONFIRMASI PESANAN</button>
+       <button type="button" class="btn-print" id="confirm-and-download">DOWNLOAD INVOICE</button>
       </form>
     </div>
   </div>
+  </div>
 
+  <!-- Print pdf Invoice -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
  
   <script>
   document.getElementById("confirm-and-download").addEventListener("click", function () {
   const { jsPDF } = window.jspdf;
-  const capture = document.getElementById("capture-area");
 
   html2canvas(document.querySelector("#invoice-area"), {
     scale: 2,
@@ -280,12 +353,20 @@
   }).then(function (canvas) {
     const imgData = canvas.toDataURL("image/png");
 
-    const pdf = new jsPDF('landscape', 'mm', 'a4');
+    const canvasWidth = canvas.width * 0.264583;  // px to mm
+    const canvasHeight = canvas.height * 0.264583;
+
+    const pdf = new jsPDF({
+      orientation: canvasWidth > canvasHeight ? "landscape" : "portrait",
+      unit: "mm",
+      format: [canvasWidth, canvasHeight],
+    });
+
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
 
     const imgProps = pdf.getImageProperties(imgData);
-    const maxWidth = pageWidth * 0.96; // beri margin 5% kiri-kanan
+    const maxWidth = pageWidth * 0.97;
     const imgWidth = maxWidth;
     const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
 
@@ -300,9 +381,36 @@
         document.querySelector("form").submit();
       }, 500);
   });
-});
-</script>
+  });
+  </script>
 
+  <!-- Preloader dan Alert -->
+  <script>
+  const preloader = document.querySelector('#preloader');
+  if (preloader) {
+    window.addEventListener('load', () => {
+      preloader.remove();
+    });
+  }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  @if(request()->has('confirm'))
+  <script>
+      Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'Reservation confirmed. Order received. See you soon!',
+          showConfirmButton: true,
+          // confirmButtonText: 'OK',
+          width: '400px',
+          customClass: {
+              title: 'cormorant-alert',
+              popup: 'poppins-alert'
+          }
+      });
+  </script>
+  @endif
 </body>
 
 </html>
