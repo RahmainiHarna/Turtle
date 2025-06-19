@@ -26,8 +26,8 @@
 						class="text">Orders</span></a></li>
 			<li><a href="{{route('testimonialsAdmin')}}"><i class='bx bxs-message-dots'></i><span
 						class="text">Testimoni</span></a></li>
-			<li><a href="{{ route('messages') }}"><i class='bx bxs-envelope'></i><span
-						class="text">Message</span></a></li>
+			<li><a href="{{ route('messages') }}"><i class='bx bxs-envelope'></i><span class="text">Message</span></a>
+			</li>
 			@auth
 				<li>
 					<a href="{{route('logout')}}"
@@ -47,7 +47,7 @@
 			<div class="menu-header">
 				<h1>Recent Orders<h1>
 						<div class="search-container">
-							<input type="text" id="searchInput" placeholder="Cari nama menu atau jenis"
+							<input type="text" id="searchInput" placeholder="Cari nama email atau nomor handphone"
 								onkeyup="searchTable()">
 							<i class='bx bx-search'></i>
 						</div>
@@ -98,14 +98,20 @@
 		</main>
 	</section>
 
-
 	<script>
 		function searchTable() {
 			const input = document.getElementById("searchInput").value.toLowerCase();
-			const rows = document.querySelectorAll(".menu-table tbody tr");
+			const rows = document.querySelectorAll("#userTable tbody tr");
+
 			rows.forEach(row => {
 				const name = row.cells[0].textContent.toLowerCase();
-				row.style.display = name.includes(input) ? "" : "none";
+				const contact = row.cells[4].textContent.toLowerCase();
+
+				if (name.includes(input) || contact.includes(input)) {
+					row.style.display = "";
+				} else {
+					row.style.display = "none";
+				}
 			});
 		}
 	</script>

@@ -108,7 +108,7 @@
                 const name = row.cells[1].textContent.toLowerCase();
                 const email = row.cells[2].textContent.toLowerCase();
                 const message = row.cells[3].textContent.toLowerCase();
-                row.style.display = (name.includes(input) || email.includes(input)) ? "" : "none";
+                row.style.display = (name.includes(input) || email.includes(input) || message.includes(input))? "" : "none";
             });
         }
     </script>
