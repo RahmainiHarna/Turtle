@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  <div id="main-wrapper">
   <!-- SIDEBAR -->
   <section id="sidebar">
     <a href="#" class="brand">
@@ -43,7 +44,7 @@
   <!-- CLOSE SIDEBAR -->
   <!-- CONTENT -->
   <section id="content">
-    <nav><i class='bx bx-menu'></i></nav>
+    <nav><i id="toggle-sidebar" class='bx bx-menu'></i></nav>
     <main>
       <div class="head">
         <h3>Daftar Akun User</h3>
@@ -59,8 +60,8 @@
               <th>ID</th>
               <th>Username</th>
               <th>Email</th>
-              <th>No. HP</th>
-              <th>Waktu Daftar</th>
+              <th>Phone number</th>
+              <th>Date & Time</th>
             </tr>
           </thead>
           <tbody>
@@ -81,8 +82,15 @@
 
     </main>
   </section>
+  </div>
 
   <script>
+     const toggleBtn = document.getElementById('toggle-sidebar');
+    const sidebar = document.getElementById('main-wrapper');
+
+    toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('sidebar-collapsed');
+    });
     // Filter pencarian
     document.getElementById('searchInput').addEventListener('keyup', function () {
       const value = this.value.toLowerCase();

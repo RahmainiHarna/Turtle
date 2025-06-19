@@ -13,31 +13,38 @@
 </head>
 
 <body>
+    <div id="main-wrapper">
     <!-- SIDEBAR -->
-    <section id="sidebar">
+    <section id="sidebar" class="sidebar">
         <a href="#" class="brand">
             <img src="assets/img/logo-turtles.png" alt="Turtle Resto Logo" style="height: 40px; margin-right: 20px;">
-            <span class="text"><span class="octa">TUR</span><span class="prime">TLE RESTO</span></span>
+            <span class="text">
+                <span class="octa">TUR</span><span class="prime">TLE RESTO</span>
+            </span>
         </a>
         <ul class="side-menu top">
+            <!-- unchanged sidebar links -->
             <li><a href="{{ route('admin') }}"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a>
             </li>
-            <li><a href="{{ route('akun') }}"><i class='bx bxs-user'></i><span class="text">Akun User</span></a></li>
+            <li><a href="{{ route('akun') }}"><i class='bx bxs-user'></i><span class="text">Akun
+                        User</span></a></li>
             <li><a href="{{ route('menuAdmin') }}"><i class='bx bxs-food-menu'></i><span class="text">Daftar
                         Menu</span></a></li>
-            <li><a href="{{ route('orders') }}"><i class='bx bxs-cart'></i><span class="text">Orders</span></a></li>
-            <li><a href="{{ route('testimonialsAdmin') }}"><i class='bx bxs-message-dots'></i><span
+            <li><a href="{{route('orders')}}"><i class='bx bxs-cart'></i><span class="text">Orders</span></a></li>
+            <li><a href="{{route('testimonialsAdmin')}}"><i class='bx bxs-message-dots'></i><span
                         class="text">Testimoni</span></a></li>
             <li class="active" id="message-link"><a href="{{ route('messages') }}"><i class='bx bxs-envelope'></i><span
                         class="text">Message</span></a></li>
-
             @auth
                 <li>
-                    <a href="{{ route('logout') }}"
+                    <a href="{{route('logout')}}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout">
-                        <i class='bx bxs-log-out-circle'></i><span class="text">Logout</span>
+                        <i class='bx bxs-log-out-circle'></i>
+                        <span class="text">Logout</span>
                     </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             @endauth
         </ul>
@@ -46,7 +53,7 @@
     <!-- CONTENT -->
     <section id="content">
         <nav>
-            <i class='bx bx-menu'></i>
+            <i id="toggle-sidebar" class='bx bx-menu'></i>
         </nav>
 
         <main>
@@ -99,8 +106,14 @@
             </div>
         </main>
     </section>
-
+</div>
     <script>
+        const toggleBtn = document.getElementById('toggle-sidebar');
+        const sidebar = document.getElementById('main-wrapper');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-collapsed');
+        });
         function searchTable() {
             const input = document.getElementById("searchInput").value.toLowerCase();
             const rows = document.querySelectorAll("tbody tr");
@@ -108,7 +121,7 @@
                 const name = row.cells[1].textContent.toLowerCase();
                 const email = row.cells[2].textContent.toLowerCase();
                 const message = row.cells[3].textContent.toLowerCase();
-                row.style.display = (name.includes(input) || email.includes(input) || message.includes(input))? "" : "none";
+                row.style.display = (name.includes(input) || email.includes(input) || message.includes(input)) ? "" : "none";
             });
         }
     </script>

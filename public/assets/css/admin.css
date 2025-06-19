@@ -61,20 +61,17 @@ body {
 
 .card {
 	background: rgba(156, 150, 134, 0.2);
-	/* merah soft */
 	color: #ffffff;
 	border-radius: 8px;
 	margin-bottom: 15px;
 	padding: 10px 15px;
 	width: 200px;
-	/* Lebih kecil */
 	text-align: center;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card-icon {
 	font-size: 1.5rem;
-	/* lebih kecil juga */
 	margin-bottom: 5px;
 	color: #ffcc66
 }
@@ -104,9 +101,7 @@ body {
 	justify-content: center;
 	align-items: flex-start;
 	gap: 20px;
-	/* jarak antara chart */
 	flex-wrap: wrap;
-	/* biar mobile friendly */
 }
 
 .chart-box {
@@ -212,7 +207,6 @@ body.dark-mode .octa {
 
 #sidebar .side-menu li.active {
 	background: #121212;
-	/* Emas mewah */
 	position: relative;
 }
 
@@ -249,15 +243,40 @@ body.dark-mode .octa {
 	border-radius: 48px;
 	font-size: 16px;
 	color: #121212;
-	/* Abu gelap klasik */
 	white-space: nowrap;
 	overflow-x: hidden;
 	transition: background 0.2s ease, color 0.2s ease;
 }
 
+.order h5 {
+    color: #ffffff !important;
+    font-size: 17px;
+    margin-bottom: 16px;
+    font-family: Verdana, sans-serif !important;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    border-left: 4px solid #ffd700;
+    padding-left: 10px;
+}
+
+.detail-item {
+    background-color: #1c1c1c;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    color: #dddddd !important;
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.05);
+}
+
+.detail-item strong {
+    color: #dddddd !important;
+    font-weight: 600;
+}
+
+
+
 #sidebar .side-menu.top li.active a {
 	color: #cda45e;
-	/* Teks putih saat aktif (kontras dg gold) */
 }
 
 #sidebar.hide .side-menu li a {
@@ -267,12 +286,10 @@ body.dark-mode .octa {
 
 #sidebar .side-menu li a.logout {
 	color: #D94C4C;
-	/* Merah soft */
 }
 
 #sidebar .side-menu.top li a:hover {
 	color: #cda45e;
-	/* Hover emas */
 }
 
 #sidebar .side-menu li a .bx {
@@ -1017,20 +1034,51 @@ body.dark .octa {
 	background-color: #c38b52;
 }
 
-.crud-btn.delete {
-	background-color: #bc4b51;
-	color: white;
+.action-buttons{
+    display: flex;         
+    gap: 8px;              
+    align-items: center;   
 }
 
-.crud-btn.delete:hover {
-	background-color: #a03b40;
+.action-buttons form{
+    margin: 0;
 }
+
+.crud-btn.more{
+    background:#007bff;
+    color:#fff;
+    border:none;
+    padding:6px 12px;
+    border-radius:6px;
+    display:inline-flex;
+    align-items:center;
+    font-size:14px;
+    cursor:pointer;
+    transition:background .3s;
+}
+.crud-btn.more:hover{background:#0056b3;}
+.crud-btn.more i{margin-right:5px;}
+
+.crud-btn.delete{
+    background:#c54b5d;    
+    color:#fff;
+    border:none;
+    padding:6px 12px;
+    border-radius:6px;
+    display:inline-flex;
+    align-items:center;
+    font-size:14px;
+    cursor:pointer;
+    transition:background .3s;
+}
+.crud-btn.delete:hover{background:#a73d4d;}
+.crud-btn.delete i{margin-right:5px;}
+
 
 .inline-form {
 	display: inline;
 }
 
-/*massages blade*/
 body {
 	font-family: 'Poppins', sans-serif;
 }

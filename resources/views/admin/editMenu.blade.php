@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin - Create Mwnu</title>
+    <title>Admin - Create Menu</title>
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/admin.css">
     <!-- Google Font Poppins -->
@@ -14,10 +14,11 @@
 </head>
 
 <body>
+    <div id="main-wrapper">
     <!-- SIDEBAR -->
     <section id="sidebar">
         <a href="#" class="brand">
-       <img src="{{ asset('assets/img/logo-turtles.png')}}" style="height: 40px; margin-right: 20px;">
+            <img src="{{ asset('assets/img/logo-turtles.png')}}" style="height: 40px; margin-right: 20px;">
             <span class="text"><span class="octa">TUR</span><span class="prime">TLE RESTO</span></span>
         </a>
         <ul class="side-menu top">
@@ -46,58 +47,65 @@
 
     <section id="content">
         <nav>
-            <i class='bx bx-menu'></i>
+            <i id="toggle-sidebar" class='bx bx-menu'></i>
         </nav>
 
         <main>
-              <div class="createmenu-header">
+            <div class="createmenu-header">
                 <h1>Edit Menu</h1>
                 <a href="{{ route('menuAdmin') }}" class="btn-card-back">
-                    <i class='bx bx-left-arrow'></i> Kembali
+                    <i class='bx bx-left-arrow'></i> Back
                 </a>
             </div>
-                <div class="order">
-                    <div class="head">
-                        <h3>Form Edit Menu</h3>
-                    </div>
-                    @if(session('success'))
-                        <div class="alert alert-success">{{ session('success') }}</div>
+            <div class="order">
+                <div class="head">
+                    <h3>Form Edit Menu</h3>
+                </div>
+                @if(session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                <form action="{{  route('menu.update', $menu->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
+                    <label for="name">Menu</label>
+                    <input type="text" name="name" id="name" value="{{ $menu->name }}" class="form-control" required>
+
+                    <label for="price">Price</label>
+                    <input type="number" name="price" id="price" value="{{ $menu->price }}" class="form-control"
+                        required>
+
+                    <label for="type">Type menu</label>
+                    <select name="type" id="type" class="form-control" required>
+                        <option value="">-- Choice Tipe --</option>
+                        <option value="makanan" {{ $menu->type == 'makanan' ? 'selected' : '' }}>Makanan</option>
+                        <option value="minuman" {{ $menu->type == 'minuman' ? 'selected' : '' }}>Minuman</option>
+                        <option value="snack" {{ $menu->type == 'snack' ? 'selected' : '' }}>Dessert</option>
+                    </select>
+
+                    <label for="image">Upload picture</label>
+                    <input type="file" name="image" id="image" class="form-control">
+                    @if($menu->image)
+                        <img src={{ asset('assets/img/menu/' . $menu->image) }} width="100" class="mt-2">
                     @endif
 
-                    <form action="{{  route('menu.update', $menu->id) }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
 
-                        <label for="name">Nama Menu</label>
-                        <input type="text" name="name" id="name" value="{{ $menu->name }}" class="form-control"
-                            required>
-
-                        <label for="price">Harga</label>
-                        <input type="number" name="price" id="price" value="{{ $menu->price }}" class="form-control"
-                            required>
-
-                        <label for="type">Tipe Menu</label>
-                        <select name="type" id="type" class="form-control" required>
-                            <option value="">-- Pilih Tipe --</option>
-                            <option value="makanan" {{ $menu->type == 'makanan' ? 'selected' : '' }}>Makanan</option>
-                            <option value="minuman" {{ $menu->type == 'minuman' ? 'selected' : '' }}>Minuman</option>
-                            <option value="snack" {{ $menu->type == 'snack' ? 'selected' : '' }}>Dessert</option>
-                        </select>
-
-                        <label for="image">Upload Gambar</label>
-                        <input type="file" name="image" id="image" class="form-control">
-                        @if($menu->image)
-                            <img src={{ asset('assets/img/menu/' . $menu->image) }} width="100" class="mt-2">
-                        @endif
-
-
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </form>
-                </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
         </main>
     </section>
-
+</div>
     <script src="js/admin.js"></script>
+    <script>
+        const toggleBtn = document.getElementById('toggle-sidebar');
+        const sidebar = document.getElementById('main-wrapper');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-collapsed');
+        });
+    </script>
 </body>
 
 </html>

@@ -72,7 +72,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nama</th>
+                            <th>Name</th>
                             <th>Email</th>
                             <th>Subject</th>
                             <th>Message</th>

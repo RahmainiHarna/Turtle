@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin - Create Mwnu</title>
+    <title>Admin - Create Menu</title>
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/admin.css">
     <!-- Google Font Poppins -->
@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <div id="main-wrapper">
     <!-- SIDEBAR -->
     <section id="sidebar">
         <a href="#" class="brand">
@@ -46,50 +47,58 @@
 
     <section id="content">
         <nav>
-            <i class='bx bx-menu'></i>
+            <i id="toggle-sidebar" class='bx bx-menu'></i>
         </nav>
 
         <main>
             <div class="createmenu-header">
                 <h1>Tambah Menu</h1>
                 <a href="{{ route('menuAdmin') }}" class="btn-card-back">
-                    <i class='bx bx-left-arrow'></i> Kembali
+                    <i class='bx bx-left-arrow'></i> Back
                 </a>
             </div>
-                <div class="order">
-                    <div class="head">
-                        <h3>Form Menu Baru</h3>
-                    </div>
-                    @if(session('success'))
-                        <div class="alert alert-success">{{ session('success') }}</div>
-                    @endif
-
-                    <form action="{{ route('menu.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <label for="name">Nama Menu</label>
-                        <input type="text" name="name" id="name" class="form-control" required>
-
-                        <label for="price">Harga</label>
-                        <input type="number" name="price" id="price" class="form-control" required>
-
-                        <label for="type">Tipe Menu</label>
-                        <select name="type" id="type" class="form-control" required>
-                            <option value="">-- Pilih Tipe --</option>
-                            <option value="makanan">Makanan</option>
-                            <option value="minuman">Minuman</option>
-                            <option value="snack">Snack</option>
-                        </select>
-
-                        <label for="image">Upload Gambar</label>
-                        <input type="file" name="image" id="image" class="form-control">
-
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </form>
+            <div class="order">
+                <div class="head">
+                    <h3>Form Menu Baru</h3>
                 </div>
+                @if(session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                <form action="{{ route('menu.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <label for="name">Nama Menu</label>
+                    <input type="text" name="name" id="name" class="form-control" required>
+
+                    <label for="price">Harga</label>
+                    <input type="number" name="price" id="price" class="form-control" required>
+
+                    <label for="type">Tipe Menu</label>
+                    <select name="type" id="type" class="form-control" required>
+                        <option value="">-- Pilih Tipe --</option>
+                        <option value="makanan">Makanan</option>
+                        <option value="minuman">Minuman</option>
+                        <option value="snack">Snack</option>
+                    </select>
+
+                    <label for="image">Upload Gambar</label>
+                    <input type="file" name="image" id="image" class="form-control">
+
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
+            </div>
         </main>
     </section>
-
+</div>
     <script src="js/admin.js"></script>
+    <script>
+        const toggleBtn = document.getElementById('toggle-sidebar');
+        const sidebar = document.getElementById('main-wrapper');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-collapsed');
+        });
+    </script>
 </body>
 
 </html>
