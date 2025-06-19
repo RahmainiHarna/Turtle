@@ -10,6 +10,7 @@
 </head>
 
 <body>
+	 <div id="main-wrapper">
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<img src="assets/img/logo-turtles.png" alt="Turtle Resto Logo" style="height: 40px; margin-right: 20px;">
@@ -41,7 +42,7 @@
 	</section>
 
 	<section id="content">
-		<nav><i class='bx bx-menu'></i></nav>
+		<nav><i id="toggle-sidebar" class='bx bx-menu'></i></nav>
 		<main>
 
 			<div class="menu-header">
@@ -55,12 +56,12 @@
 			<table id="userTable">
 				<thead>
 					<tr>
-						<th>Nama</th>
-						<th>Tanggal Pesan</th>
-						<th>Jam</th>
-						<th>Jumlah Orang</th>
-						<th>Kontak</th>
-						<th>Aksi</th>
+						<th>Name</th>
+						<th>Date</th>
+						<th>Time</th>
+						<th>People</th>
+						<th>Contact</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -72,19 +73,22 @@
 							<td>{{ $data_diri->people }}</td>
 							<td>{{ $data_diri->phone }} / {{ $data_diri->email }}</td>
 							<td>
-								<a href="{{ route('admin.ordershow', $data_diri->id) }}" class="btn btn-more">
-									<i class='bx bx-show'></i> More
-								</a>
-								<form action="{{ route('admin.orderdelete', $data_diri->id) }}" method="POST"
-									style="display:inline;">
-									@csrf
-									@method('DELETE')
-									<button type="submit" class="crud-btn delete"
-										onclick="return confirm('Yakin ingin menghapus?')">
-										<i class='bx bxs-trash'></i>
-										<span>Hapus</span>
-									</button>
-								</form>
+    							<div class="action-buttons">
+        							<form action="{{ route('admin.ordershow', $data_diri->id) }}" method="GET">
+            							<button type="submit" class="crud-btn more">
+                							<i class='bx bx-show'></i> More
+            							</button>
+        							</form>
+
+        							<form action="{{ route('admin.orderdelete', $data_diri->id) }}" method="POST">
+            							@csrf
+            							@method('DELETE')
+            							<button type="submit" class="crud-btn delete"
+                    							onclick="return confirm('Yakin ingin menghapus?')">
+                							<i class='bx bxs-trash'></i> Delete
+            							</button>
+        							</form>
+   								 </div>
 							</td>
 
 							</form>
@@ -97,8 +101,14 @@
 
 		</main>
 	</section>
+</div>
+	    <script>
+        const toggleBtn = document.getElementById('toggle-sidebar');
+        const sidebar = document.getElementById('main-wrapper');
 
-	<script>
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-collapsed');
+        });
 		function searchTable() {
 			const input = document.getElementById("searchInput").value.toLowerCase();
 			const rows = document.querySelectorAll("#userTable tbody tr");
