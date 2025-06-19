@@ -60,9 +60,6 @@
             <div class="head-title">
                 <div class="left">
                     <h1>Testimoni</h1>
-                    <ul class="breadcrumb">
-                        <li><a href="#">Testimoni</a></li>
-                    </ul>
                 </div>
             </div>
 

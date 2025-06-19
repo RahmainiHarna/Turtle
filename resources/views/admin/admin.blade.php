@@ -6,29 +6,39 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Admin Restoran</title>
 
-
-
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 	<!-- Google Font Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
 	<!-- My CSS -->
 	<link rel="stylesheet" href="/assets/css/admin.css">
 
-	<title>Admin</title>
-	
+	<style>
+		html, body {
+			height: 100%;
+			overflow: hidden;
+		}
+
+		#content main {
+			overflow-y: auto;
+			max-height: calc(100vh - 56px);
+		}
+
+		#sidebar {
+			height: 100vh;
+			overflow-y: auto;
+		}
+	</style>
+
 </head>
 
 <body>
-
-
 	<!-- SIDEBAR -->
-  <section id="sidebar">
+    <section id="sidebar">
     <a href="#" class="brand">
-       <img src="assets/img/logo-turtles.png" alt="Turtle Resto Logo" style="height: 40px; margin-right: 20px;">
+     <img src="assets/img/logo-turtles.png" alt="Turtle Resto Logo" style="height: 40px; margin-right: 20px;">
       <span class="text"><span class="octa">TUR</span><span class="prime">TLE RESTO</span></span>
     </a>
     <ul class="side-menu top">
@@ -62,14 +72,12 @@
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>DASBOARD</h1>
+					<h1>DASHBOARD</h1>
 					<ul class="breadcrumb">
-						<li><a href="#">selamat datang di Halaman Admin</a></li>
+						<li><a href="#">Selamat Datang di Halaman Admin</a></li>
 					</ul>
 				</div>
 			</div>
-
-
 
 			<div class="table-data">
 				<div class="order">
@@ -110,9 +118,7 @@
 									<i class="fa-solid fa-rupiah-sign"></i>
 								</div>
 								<div class="card-info">
-
-									<h3>{{ $totalRevenue}}</h3>
-
+									<h3>Rp{{ number_format($totalRevenue, 0, ',', '.') }}</h3>
 									<p>Revenue</p>
 								</div>
 							</div>
@@ -144,10 +150,10 @@
 									label: 'Jumlah Menu per Tipe',
 									data: {!! json_encode($values) !!},
 									backgroundColor: [
-										'rgba(153, 101, 21, 0.8)',  // makanan
-	                                    'rgba(204, 153, 102, 0.8)', // snack
-	                                    'rgba(92, 64, 51, 0.8)',    // minuman
-	                                    'rgba(233, 196, 106, 0.8)'  // Total Menu
+										'rgba(153, 101, 21, 0.8)',
+	                                    'rgba(204, 153, 102, 0.8)',
+	                                    'rgba(92, 64, 51, 0.8)',
+	                                    'rgba(233, 196, 106, 0.8)'
 									],
 									borderColor: [
 										'rgba(153, 101, 21, 1)',
@@ -158,7 +164,6 @@
 									borderWidth: 1
 								}]
 							},
-
 							options: {
 								responsive: true,
 								maintainAspectRatio: false,
@@ -179,12 +184,12 @@
 								datasets: [{
 									data: {!! json_encode($totals) !!},
 									backgroundColor: [
-										'rgba(92, 64, 51, 0.5)',     // Coklat tua
-	                                    'rgba(153, 101, 21, 0.5)',   // Karamel tua
-	                                    'rgba(204, 153, 102, 0.5)',  // Coklat muda / krem gelap
-	                                    'rgba(233, 196, 106, 0.5)',  // Kuning emas soft
-	                                    'rgba(242, 233, 228, 0.5)',  // Krem terang
-	                                    'rgba(189, 87, 73, 0.5)' 
+										'rgba(92, 64, 51, 0.5)',
+	                                    'rgba(153, 101, 21, 0.5)',
+	                                    'rgba(204, 153, 102, 0.5)',
+	                                    'rgba(233, 196, 106, 0.5)',
+	                                    'rgba(242, 233, 228, 0.5)',
+	                                    'rgba(189, 87, 73, 0.5)'
 									],
 									borderWidth: 1
 								}]
@@ -197,14 +202,8 @@
 					</script>
 				</div>
 			</div>
-		</div>
-	</div>
-</main>
-		<!-- END MAIN -->
-
-			</div>
 		</main>
-		<!-- MAIN -->
+		<!-- END MAIN -->
 	</section>
 	<!-- END CONTENT -->
 
