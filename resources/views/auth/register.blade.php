@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - TURTLE'S</title>
+
+    <!-- Favicons -->
+    <link href="/assets/img/logo-turtles.png" rel="icon">
+    <link href="/assets/img/logo-turtles.png" rel="apple-touch-icon">
     <link href="/assets/css/auth.css" rel="stylesheet">
     <!-- Fontawesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">

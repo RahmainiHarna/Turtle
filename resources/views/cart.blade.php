@@ -10,7 +10,7 @@
             <h2>Choose Your Favorite Menu!</h2>
         </div>
         <div>
-        <a href="{{ route('invoice.show', ['confirm' => 'yes']) }}" class="btn btn-warning btn-md">
+        <a href="#" onclick="cekSebelumInvoice(event)" class="btn btn-warning btn-md">
             <i class="bi bi-receipt me-2"></i>View Invoice</a>
         </div>
     </div>
@@ -105,6 +105,30 @@
                         window.location.href = '/invoice/' + data.booking_id;
                     }
                 });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function cekSebelumInvoice(e) {
+            e.preventDefault();
+
+            const hasBooking = "{{ session()->has('booking') ? 'true' : 'false' }}";
+            const hasCart = "{{ session()->has('cart') && count(session('cart')) > 0 ? 'true' : 'false' }}";
+
+            if (hasBooking !== "true" || hasCart !== "true") {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops!',
+                    text: 'Let’s pick your menu first.',
+                    width: '400px',
+                    customClass: {
+                        title: 'cormorant-alert',
+                        htmlContainer: 'poppins-alert'
+                    }
+                });
+            } else {
+                window.location.href = "{{ route('invoice.show', ['confirm' => 'yes']) }}";
+            }
         }
     </script>
 @endsection
