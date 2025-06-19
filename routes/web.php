@@ -58,6 +58,9 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
 Route::middleware(['auth', UserMiddleware::class])->group(function () {
     Route::get('/book-a-table', [PageController::class, 'booking'])->name('book-a-table');
     Route::post('/booking', [BookingController::class, 'store'])->name('book.store');
+    Route::post('/check-availability', [BookingController::class, 'checkAvailability'])->name('check.availability');
+
+    Route::get('/fully-booked-dates', [BookingController::class, 'getFullyBookedDates'])->name('book.fullybooked');
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
