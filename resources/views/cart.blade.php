@@ -11,7 +11,7 @@
         </div>
         <div>
         <a href="{{ route('invoice.show', ['confirm' => 'yes']) }}" class="btn btn-warning btn-md">
-            <i class="bi bi-cart me-2"></i>View Invoice</a>
+            <i class="bi bi-receipt me-2"></i>View Invoice</a>
         </div>
     </div>
 

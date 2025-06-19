@@ -90,7 +90,7 @@
               text: "{{ session('booking_success') }}",
               showConfirmButton: false,
               width: '400px',
-              timer: 3000,
+              timer: 2500,
               customClass: {
                 title: 'cormorant-alert',
                 htmlContainer: 'poppins-alert'
@@ -108,7 +108,7 @@
               text: "{{ session('cart_success') }}",
               showConfirmButton: false,
               width: '400px',
-              timer: 3000,
+              timer: 2500,
               customClass: {
                 title: 'cormorant-alert',
                 htmlContainer: 'poppins-alert'
@@ -126,7 +126,7 @@
               text: "{{ session('testimonial_success') }}",
               showConfirmButton: false,
               width: '400px',
-              timer: 3000,
+              timer: 2500,
               customClass: {
                 title: 'cormorant-alert',
                 htmlContainer: 'poppins-alert'
@@ -144,7 +144,7 @@
               text: "{{ session('contact_success') }}",
               showConfirmButton: false,
               width: '400px',
-              timer: 3000,
+              timer: 2500,
               customClass: {
                 title: 'cormorant-alert',
                 htmlContainer: 'poppins-alert'

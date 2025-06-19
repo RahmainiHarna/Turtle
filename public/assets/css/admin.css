@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 * {
 	margin: 0;
@@ -31,25 +31,42 @@ li {
 	--light-orange: #FFE0D3;
 }
 
-html {
-	overflow-x: hidden;
+html, body {
+	overflow-y: auto;
+	height : auto;
+}
+
+body {
+	background: var(--grey);
+	font-family: 'Open Sans', sans-serif;
+	overflow: auto;
+}
+
+#content main {
+	width: 100%;
+	padding: 36px 24px;
+	font-family: var(--poppins);
+	background-color: #121212;
+	height: auto;
+	overflow: unset;
 }
 
 .dashboard {
 	display: flex;
-	gap: 25px;
+	gap: 10px;
 	flex-wrap: wrap;
 	justify-content: center;
+	margin-top: 10px;
 }
 
 .card {
 	background: rgba(156, 150, 134, 0.2);
 	/* merah soft */
-	color: #9b7e7e;
+	color: #ffffff;
 	border-radius: 8px;
 	margin-bottom: 15px;
 	padding: 10px 15px;
-	width: 150px;
+	width: 200px;
 	/* Lebih kecil */
 	text-align: center;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -66,12 +83,15 @@ html {
 	font-size: 1.2rem;
 	color: #F7F5F2;
 	margin: 0;
+	color : white;
+	font-family: 'Playfair Display', serif;
 }
 
 .card-info p {
 	margin: 0;
 	font-size: 0.9rem;
 	color: #C89F5D;
+  	font-family: 'Playfair Display', serif;
 }
 
 
@@ -125,8 +145,6 @@ body.dark-mode .octa {
 	color: white;
 }
 
-
-
 /* SIDEBAR */
 #sidebar {
 	position: fixed;
@@ -141,6 +159,7 @@ body.dark-mode .octa {
 	overflow-x: hidden;
 	scrollbar-width: none;
 	float: left;
+  	font-family: 'Playfair Display', serif;
 }
 
 #sidebar::--webkit-scrollbar {
@@ -469,7 +488,7 @@ body.dark-mode .octa {
 }
 
 #content main .head-title .left h1 {
-	font-size: 36px;
+	font-size: 40px;
 	font-weight: 600;
 	margin-bottom: 10px;
 	color: #ffcc66;
@@ -483,6 +502,9 @@ body.dark-mode .octa {
 #content main .head-title .left .breadcrumb li a {
 	color: #ffcc66;
 	pointer-events: none;
+	font-size: 30px;
+	font-weight: 30 px;
+	font-family: 'Playfair Display', serif;
 }
 
 #content main .head-title .left .breadcrumb li a.active {
@@ -527,11 +549,11 @@ body.dark-mode .octa {
 	overflow-x: auto;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 	border: 1px solid #E0DFDC;
+	margin-top : 0px;
 }
 
 #content main .table-data .head h3 {
 	color: #ffcc66;
-
 }
 
 #content main .head h3 {
@@ -798,6 +820,7 @@ body.dark .octa {
 	font-size: 26px;
 	font-weight: 600;
 	color: #5d4037;
+	font-family: 'Playfair Display', serif;
 }
 
 .search-container {
@@ -843,7 +866,7 @@ body.dark .octa {
 .table-data th,
 .table-data td {
 	padding: 14px 18px;
-	text-align: left;
+	text-align: center;
 	font-size: 14px;
 	color: #241e1d;
 }
@@ -852,16 +875,19 @@ body.dark .octa {
 	background-color: #6e4128;
 	color: #82736d;
 	font-weight: 600;
+	text-align: center;
 }
 
 .table-data tr:nth-child(even) {
 	background-color: #c9c6c4;
+	text-align: center;
 }
 
 .table-data tr:hover {
 	background-color: #544239;
 	cursor: pointer;
 	transition: background 0.3s;
+	text-align:center;
 }
 
 /*logo curd*/
@@ -1130,6 +1156,7 @@ body {
 	font-size: 2rem;
 	font-weight: 700;
 	color: #333;
+  	font-family: 'Playfair Display', serif;
 }
 
 
@@ -1138,7 +1165,7 @@ body {
 	padding: 1rem;
 	border-radius: 20px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-
+  	margin-top: 1.5rem;
 }
 
 .table-data .order h3 {
@@ -1324,11 +1351,15 @@ a.back-btn:hover {
 	border-radius: 15px;
 	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
+.table-data {
+	background: #121212;
+}
 
 .table-data table {
 	width: 100%;
 	border-collapse: collapse;
 	margin-top: 20px;
+	background: #121212;
 }
 
 .table-data table th,
@@ -1379,6 +1410,7 @@ a.back-btn:hover {
 
 .order .head h3 {
 	color: #2c3e50;
+
 	font-weight: 600;
 }
 
@@ -1405,3 +1437,4 @@ a.back-btn:hover {
 	font-weight: 500;
 	box-shadow: 0 2px 5px #302d2d
 }
+

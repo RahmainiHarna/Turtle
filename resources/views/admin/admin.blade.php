@@ -10,9 +10,7 @@
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 	<!-- Google Font Poppins -->
-	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap"
-		rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
 	<!-- My CSS -->
 	<link rel="stylesheet" href="/assets/css/admin.css">
@@ -64,9 +62,9 @@
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>DASBOARD</h1>
+					<h1>DASHBOARD</h1>
 					<ul class="breadcrumb">
-						<li><a href="#">selamat datang di Halaman Admin</a></li>
+						<li><a href="#">Selamat Datang di Halaman Admin</a></li>
 					</ul>
 				</div>
 			</div>
@@ -129,78 +127,73 @@
 					</div>
 				</div>
 
-				<!-- Chart.js Library -->
-				<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+					<!-- Chart.js Library -->
+					<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-				<script>
-					const menuCtx = document.getElementById('menuChart').getContext('2d');
-					const menuChart = new Chart(menuCtx, {
-						type: 'bar',
-						data: {
-							labels: {!! json_encode($labels) !!},
-							datasets: [{
-								label: 'Jumlah Menu per Tipe',
-								data: {!! json_encode($values) !!},
-								backgroundColor: [
-									'rgba(153, 101, 21, 0.8)',  // makanan
-									'rgba(204, 153, 102, 0.8)', // snack
-									'rgba(92, 64, 51, 0.8)',    // minuman
-									'rgba(233, 196, 106, 0.8)'  // Total Menu
-								],
-								borderColor: [
-									'rgba(153, 101, 21, 1)',
-									'rgba(204, 153, 102, 1)',
-									'rgba(92, 64, 51, 1)',
-									'rgba(233, 196, 106, 1)'
-								],
-								borderWidth: 1
-							}]
-						},
-
-						options: {
-							responsive: true,
-							maintainAspectRatio: false,
-							scales: {
-								y: {
-									beginAtZero: true,
-									precision: 0
+					<script>
+						const menuCtx = document.getElementById('menuChart').getContext('2d');
+						const menuChart = new Chart(menuCtx, {
+							type: 'bar',
+							data: {
+								labels: {!! json_encode($labels) !!},
+								datasets: [{
+									label: 'Jumlah Menu per Tipe',
+									data: {!! json_encode($values) !!},
+									backgroundColor: [
+										'rgba(153, 101, 21, 0.8)',
+	                                    'rgba(204, 153, 102, 0.8)',
+	                                    'rgba(92, 64, 51, 0.8)',
+	                                    'rgba(233, 196, 106, 0.8)'
+									],
+									borderColor: [
+										'rgba(153, 101, 21, 1)',
+	                                    'rgba(204, 153, 102, 1)',
+	                                    'rgba(92, 64, 51, 1)',
+	                                    'rgba(233, 196, 106, 1)'
+									],
+									borderWidth: 1
+								}]
+							},
+							options: {
+								responsive: true,
+								maintainAspectRatio: false,
+								scales: {
+									y: {
+										beginAtZero: true,
+										precision: 0
+									}
 								}
 							}
-						}
-					});
+						});
 
-					const bookingCtx = document.getElementById('bookingChart').getContext('2d');
-					const bookingChart = new Chart(bookingCtx, {
-						type: 'pie',
-						data: {
-							labels: {!! json_encode($dates) !!},
-							datasets: [{
-								data: {!! json_encode($totals) !!},
-								backgroundColor: [
-									'rgba(92, 64, 51, 0.5)',     // Coklat tua
-									'rgba(153, 101, 21, 0.5)',   // Karamel tua
-									'rgba(204, 153, 102, 0.5)',  // Coklat muda / krem gelap
-									'rgba(233, 196, 106, 0.5)',  // Kuning emas soft
-									'rgba(242, 233, 228, 0.5)',  // Krem terang
-									'rgba(189, 87, 73, 0.5)'
-								],
-								borderWidth: 1
-							}]
-						},
-						options: {
-							responsive: true,
-							maintainAspectRatio: false
-						}
-					});
-				</script>
-			</div>
-
-			</div>
+						const bookingCtx = document.getElementById('bookingChart').getContext('2d');
+						const bookingChart = new Chart(bookingCtx, {
+							type: 'pie',
+							data: {
+								labels: {!! json_encode($dates) !!},
+								datasets: [{
+									data: {!! json_encode($totals) !!},
+									backgroundColor: [
+										'rgba(92, 64, 51, 0.5)',
+	                                    'rgba(153, 101, 21, 0.5)',
+	                                    'rgba(204, 153, 102, 0.5)',
+	                                    'rgba(233, 196, 106, 0.5)',
+	                                    'rgba(242, 233, 228, 0.5)',
+	                                    'rgba(189, 87, 73, 0.5)'
+									],
+									borderWidth: 1
+								}]
+							},
+							options: {
+								responsive: true,
+								maintainAspectRatio: false
+							}
+						});
+					</script>
+				</div>
 			</div>
 		</main>
 		<!-- END MAIN -->
-
-
 	</section>
 	<!-- END CONTENT -->
 
