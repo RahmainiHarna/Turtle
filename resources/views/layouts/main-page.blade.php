@@ -15,8 +15,9 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" 
-        rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,6 +28,8 @@
 
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
+  @stack('styles')
+
 
   <!-- Custom CSS -->
   <link href="/assets/css/style.css" rel="stylesheet">
@@ -47,7 +50,8 @@
   </footer>
 
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
   <div id="preloader"></div>
@@ -83,75 +87,76 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- SweetAlert untuk Booking Success -->
   @if(session('booking_success'))
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: 'Reserved!',
-              text: "{{ session('booking_success') }}",
-              showConfirmButton: false,
-              width: '400px',
-              timer: 2500,
-              customClass: {
-                title: 'cormorant-alert',
-                htmlContainer: 'poppins-alert'
-              }
-          });
-      </script>
+    <script>
+    Swal.fire({
+      icon: 'success',
+      title: 'Reserved!',
+      text: "{{ session('booking_success') }}",
+      showConfirmButton: false,
+      width: '400px',
+      timer: 2500,
+      customClass: {
+      title: 'cormorant-alert',
+      htmlContainer: 'poppins-alert'
+      }
+    });
+    </script>
   @endif
 
   <!-- SweetAlert untuk Menambah / Mengurangi Menu -->
   @if(session('cart_success'))
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: 'Noted!',
-              text: "{{ session('cart_success') }}",
-              showConfirmButton: false,
-              width: '400px',
-              timer: 2500,
-              customClass: {
-                title: 'cormorant-alert',
-                htmlContainer: 'poppins-alert'
-              }
-          });
-      </script>
+    <script>
+    Swal.fire({
+      icon: 'success',
+      title: 'Noted!',
+      text: "{{ session('cart_success') }}",
+      showConfirmButton: false,
+      width: '400px',
+      timer: 2500,
+      customClass: {
+      title: 'cormorant-alert',
+      htmlContainer: 'poppins-alert'
+      }
+    });
+    </script>
   @endif
 
   <!-- SweetAlert untuk Testimonials -->
   @if(session('testimonial_success'))
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: 'Thank you!',
-              text: "{{ session('testimonial_success') }}",
-              showConfirmButton: false,
-              width: '400px',
-              timer: 2500,
-              customClass: {
-                title: 'cormorant-alert',
-                htmlContainer: 'poppins-alert'
-              }
-          });
-      </script>
+    <script>
+    Swal.fire({
+      icon: 'success',
+      title: 'Thank you!',
+      text: "{{ session('testimonial_success') }}",
+      showConfirmButton: false,
+      width: '400px',
+      timer: 2500,
+      customClass: {
+      title: 'cormorant-alert',
+      htmlContainer: 'poppins-alert'
+      }
+    });
+    </script>
   @endif
 
   <!-- SweetAlert untuk Contact -->
   @if(session('contact_success'))
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: 'Sent!',
-              text: "{{ session('contact_success') }}",
-              showConfirmButton: false,
-              width: '400px',
-              timer: 2500,
-              customClass: {
-                title: 'cormorant-alert',
-                htmlContainer: 'poppins-alert'
-              }
-          });
-      </script>
+    <script>
+    Swal.fire({
+      icon: 'success',
+      title: 'Sent!',
+      text: "{{ session('contact_success') }}",
+      showConfirmButton: false,
+      width: '400px',
+      timer: 2500,
+      customClass: {
+      title: 'cormorant-alert',
+      htmlContainer: 'poppins-alert'
+      }
+    });
+    </script>
   @endif
+  @stack('scripts')
 
 </body>
 
