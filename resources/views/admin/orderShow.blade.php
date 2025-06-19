@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <div id="main-wrapper">
     <!-- SIDEBAR -->
     <section id="sidebar">
         <a href="#" class="brand">
@@ -47,7 +48,7 @@
 
     <!-- CONTENT -->
     <section id="content">
-        <nav><i class='bx bx-menu'></i></nav>
+        <nav><i id="toggle-sidebar" class='bx bx-menu'></i></nav>
 
         <main>
             <div class="order">
@@ -58,18 +59,18 @@
                 <h5>Data Diri Pemesan:</h5>
                 <div class="order-detail-container">
                     <div class="order-detail-column">
-                        <div class="detail-item"><strong>Nama:</strong> {{ $booking->name }}</div>
-                        <div class="detail-item"><strong>Telepon:</strong> {{ $booking->phone }}</div>
+                        <div class="detail-item"><strong>Name:</strong> {{ $booking->name }}</div>
+                        <div class="detail-item"><strong>Phone:</strong> {{ $booking->phone }}</div>
                         <div class="detail-item"><strong>Email:</strong> {{ $booking->email }}</div>
                         <div class="detail-item"><strong>Message:</strong>{{ $booking->message }}</div>
                     </div>
                     <div class="order-detail-column">
-                        <div class="detail-item"><strong>Tanggal Pesan:</strong>
+                        <div class="detail-item"><strong>Date reservation:</strong>
                             {{ $booking->date }}</div>
-                        <div class="detail-item"><strong>Jam:</strong> {{ $booking->time }}</div>
-                        <div class="detail-item"><strong>Jumlah Orang:</strong> {{ $booking->people }}</div>
+                        <div class="detail-item"><strong>Time:</strong> {{ $booking->time }}</div>
+                        <div class="detail-item"><strong>People:</strong> {{ $booking->people }}</div>
 
-                        <div class="detail-item"><strong>Total Harga:</strong>Rp {{ number_format($booking->orders->sum(function ($order) {
+                        <div class="detail-item"><strong>Total price:</strong>Rp {{ number_format($booking->orders->sum(function ($order) {
     return $order->menu->price * $order->quantity;
 }), 0, ',', '.') }}
                         </div>
@@ -80,8 +81,8 @@
                 <table id="invoice">
                     <thead>
                         <tr>
-                            <th>Nama Menu</th>
-                            <th>Jumlah</th>
+                            <th>Menu</th>
+                            <th>Total items</th>
                             <th>Subtotal</th>
                         </tr>
                     </thead>
@@ -100,8 +101,16 @@
             </div>
         </main>
     </section>
-
+</div>
     <script src="/js/admin.js"></script>
+        <script>
+        const toggleBtn = document.getElementById('toggle-sidebar');
+        const sidebar = document.getElementById('main-wrapper');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-collapsed');
+        });
+    </script>
 </body>
 
 </html>
