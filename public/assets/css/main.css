@@ -1510,7 +1510,7 @@ section,
 .book-a-table .book input[type=email],
 .book-a-table .book input[type=number],
 .book-a-table .book input[type=date],
-.book-a-table .book input[type=time],
+.book-a-table .book select[type=time],
 .book-a-table .book textarea {
   font-size: 15px;
   font-family: "Poppins", sans-serif;
@@ -1526,7 +1526,7 @@ section,
 .book-a-table .book input[type=email]:focus,
 .book-a-table .book input[type=number]:focus,
 .book-a-table .book input[type=date]:focus,
-.book-a-table .book input[type=time]:focus,
+.book-a-table .book select[type=time]:focus,
 .book-a-table .book textarea:focus {
   border-color: var(--accent-color);
 }
@@ -1535,7 +1535,7 @@ section,
 .book-a-table .book input[type=email]::placeholder,
 .book-a-table .book input[type=number]::placeholder,
 .book-a-table .book input[type=date]::placeholder,
-.book-a-table .book input[type=time]::placeholder,
+.book-a-table .book select[type=time]::placeholder,
 .book-a-table .book textarea::placeholder {
   color: color-mix(in srgb, var(--background-color) 90%, white 15%);
 }

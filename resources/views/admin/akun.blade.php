@@ -16,24 +16,28 @@
   <!-- SIDEBAR -->
   <section id="sidebar">
     <a href="#" class="brand">
-     <img src="assets/img/logo-turtles.png" alt="Turtle Resto Logo" style="height: 40px; margin-right: 20px;">
+      <img src="assets/img/logo-turtles.png" alt="Turtle Resto Logo" style="height: 40px; margin-right: 20px;">
       <span class="text"><span class="octa">TUR</span><span class="prime">TLE RESTO</span></span>
     </a>
     <ul class="side-menu top">
       <li><a href="{{ route('admin') }}"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a></li>
-      <li class="active"><a href="{{ route('akun') }}"><i class='bx bxs-user'></i><span class="text">Akun User</span></a></li>
-      <li><a href="{{ route('menuAdmin') }}"><i class='bx bxs-shopping-bag'></i><span class="text">Daftar Menu</span></a></li>
+      <li class="active"><a href="{{ route('akun') }}"><i class='bx bxs-user'></i><span class="text">Akun
+            User</span></a></li>
+      <li><a href="{{ route('menuAdmin') }}"><i class='bx bxs-food-menu'></i><span class="text">Daftar
+            Menu</span></a></li>
       <li><a href="{{ route('orders') }}"><i class='bx bxs-cart'></i><span class="text">Orders</span></a></li>
-      <li><a href="{{ route('testimonialsAdmin') }}"><i class='bx bxs-message-dots'></i><span class="text">Testimoni</span></a></li>
+      <li><a href="{{ route('testimonialsAdmin') }}"><i class='bx bxs-message-dots'></i><span
+            class="text">Testimoni</span></a></li>
       <li><a href="{{ route('messages') }}"><i class='bx bxs-envelope'></i><span class="text">Message</span></a></li>
       @auth
       <li>
-        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout">
-          <i class='bx bxs-log-out-circle'></i><span class="text">Logout</span>
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+      <a href="{{ route('logout') }}"
+        onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout">
+        <i class='bx bxs-log-out-circle'></i><span class="text">Logout</span>
+      </a>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
       </li>
-      @endauth
+    @endauth
     </ul>
   </section>
   <!-- CLOSE SIDEBAR -->
@@ -41,40 +45,40 @@
   <section id="content">
     <nav><i class='bx bx-menu'></i></nav>
     <main>
-      <div class="table-data">
-        <div class="order">
-          <div class="head">
-            <h3>Daftar Akun User</h3>
-            <div class="search-container">
-              <input type="text" id="searchInput" placeholder="Cari username atau email...">
-              <i class='bx bx-search'></i>
-            </div>
-          </div>
-
-          <table id="userTable">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>No. HP</th>
-                <th>Waktu Daftar</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($users as $user)
-              <tr>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->username }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->no_hp }}</td>
-                <td>{{ $user->created_at }}</td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
+      <div class="head">
+        <h3>Daftar Akun User</h3>
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Cari username atau email...">
+          <i class='bx bx-search'></i>
         </div>
       </div>
+   
+        <table id="userTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>No. HP</th>
+              <th>Waktu Daftar</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($users as $user)
+        <tr>
+          <td>{{ $user->id }}</td>
+          <td>{{ $user->username }}</td>
+          <td>{{ $user->email }}</td>
+          <td>{{ $user->no_hp }}</td>
+          <td>{{ $user->created_at }}</td>
+        </tr>
+      @endforeach
+          </tbody>
+
+        </table>
+    
+
+
     </main>
   </section>
 

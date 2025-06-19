@@ -50,13 +50,12 @@
         </nav>
 
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Edit Menu</h1>
-                </div>
+              <div class="createmenu-header">
+                <h1>Edit Menu</h1>
+                <a href="{{ route('menuAdmin') }}" class="btn-card-back">
+                    <i class='bx bx-left-arrow'></i> Kembali
+                </a>
             </div>
-
-            <div class="table-data">
                 <div class="order">
                     <div class="head">
                         <h3>Form Edit Menu</h3>
@@ -95,9 +94,6 @@
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
                 </div>
-            </div>
-
-            <a href="{{ route('menuAdmin') }}" class="color">&larr; Kembali ke Daftar Menu</a>
         </main>
     </section>
 

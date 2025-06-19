@@ -35,19 +35,19 @@
             </li>
             <li>
                 <a href="{{ route('akun') }}">
-                    <i class='bx bxs-dashboard'></i>
+                    <i class='bx bxs-user'></i>
                     <span class="text">Akun User</span>
                 </a>
             </li>
             <li class="active">
                 <a href="{{ route('menuAdmin') }}">
-                    <i class='bx bxs-shopping-bag-alt'></i>
+                    <i class='bx bxs-shopping-bag'></i>
                     <span class="text">Daftar Menu</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('orders') }}">
-                    <i class='bx bxs-shopping-bag-alt'></i>
+                    <i class='bx bxs-cart'></i>
                     <span class="text">Orders</span>
                 </a>
             </li>
@@ -59,7 +59,7 @@
             </li>
             <li id="message-link">
                 <a href="{{ route('messages') }}">
-                    <i class='bx bxs-message-dots'></i>
+                    <i class='bx bxs-envelope'></i>
                     <span class="text">Message</span>
                 </a>
             </li>
@@ -99,53 +99,50 @@
                     <i class='bx bx-plus'></i> Tambah Menu
                 </a>
             </div>
-
-
-            <div class="menu-table-container">
-                <table class="menu-table">
-                    <thead>
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nama Menu</th>
+                        <th>Jenis</th>
+                        <th>Harga</th>
+                        <th>Gambar</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($menus as $menu)
                         <tr>
-                            <th>ID</th>
-                            <th>Nama Menu</th>
-                            <th>Jenis</th>
-                            <th>Harga</th>
-                            <th>Gambar</th>
-                            <th>Aksi</th>
+                            <td>{{ $menu->id }}</td>
+                            <td>{{ $menu->name }}</td>
+                            <td>{{ $menu->type }}</td>
+                            <td>Rp{{ number_format($menu->price, 0, ',', '.') }}</td>
+                            <td><img src="{{ asset('assets/img/menu/' . $menu->image) }}" alt="{{ $menu->name }}"
+                                    class="menu-image"></td>
+                            <td>
+                                <div class="crud-buttons">
+                                    <a href="{{ route('menu.edit', $menu->id) }}" class="crud-btn edit">
+                                        <i class='bx bxs-edit'></i>
+                                        <span>Edit</span>
+                                    </a>
+                                    <form action="{{ route('menu.destroy', $menu->id) }}" method="POST" class="inline-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="crud-btn delete"
+                                            onclick="return confirm('Yakin ingin menghapus?')">
+                                            <i class='bx bxs-trash'></i>
+                                            <span>Hapus</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($menus as $menu)
-                            <tr>
-                                <td>{{ $menu->id }}</td>
-                                <td>{{ $menu->name }}</td>
-                                <td>{{ $menu->type }}</td>
-                                <td>Rp{{ number_format($menu->price, 0, ',', '.') }}</td>
-                                <td><img src="{{ asset('assets/img/menu/' . $menu->image) }}" alt="{{ $menu->name }}"
-                                        class="menu-image"></td>
-                                <td>
-                                    <div class="crud-buttons">
-                                        <a href="{{ route('menu.edit', $menu->id) }}" class="crud-btn edit">
-                                            <i class='bx bxs-edit'></i>
-                                            <span>Edit</span>
-                                        </a>
-                                        <form action="{{ route('menu.destroy', $menu->id) }}" method="POST" class="inline-form">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="crud-btn delete"
-                                                onclick="return confirm('Yakin ingin menghapus?')">
-                                                <i class='bx bxs-trash'></i>
-                                                <span>Hapus</span>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-
-
+                    @endforeach
+                </tbody>
+            </table>
+           <!-- <div class="pagination-container" >
+                {{ $menus->links('') }}
+            </div>  -->
         </main>
         <!-- MAIN -->
     </section>
@@ -153,14 +150,14 @@
     <script>
         function searchMenu() {
             const input = document.getElementById("searchInput").value.toLowerCase();
-            const rows = document.querySelectorAll(".menu-table tbody tr");
+            const rows = document.querySelectorAll("#userTable tbody tr");
 
             rows.forEach(row => {
-                const name = row.cells[1].textContent.toLowerCase(); 
+                const name = row.cells[1].textContent.toLowerCase();
                 const type = row.cells[2].textContent.toLowerCase();
-                 const price = row.cells[3].textContent.toLowerCase(); 
+                const price = row.cells[3].textContent.toLowerCase();
 
-                if (name.includes(input) || type.includes(input) ||  price.includes(input)) {
+                if (name.includes(input) || type.includes(input) || price.includes(input)) {
                     row.style.display = "";
                 } else {
                     row.style.display = "none";

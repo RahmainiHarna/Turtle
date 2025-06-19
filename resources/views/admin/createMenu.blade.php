@@ -17,14 +17,14 @@
     <!-- SIDEBAR -->
     <section id="sidebar">
         <a href="#" class="brand">
-              <img src="{{ asset('assets/img/logo-turtles.png')}}" style="height: 40px; margin-right: 20px;">
+            <img src="{{ asset('assets/img/logo-turtles.png')}}" style="height: 40px; margin-right: 20px;">
             <span class="text"><span class="octa">TUR</span><span class="prime">TLE RESTO</span></span>
         </a>
         <ul class="side-menu top">
             <li><a href="{{ route('admin') }}"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a>
             </li>
             <li><a href="{{ route('akun') }}"><i class='bx bxs-user'></i><span class="text">Akun User</span></a></li>
-            <li class="active"><a href="{{ route('menuAdmin') }}"><i class='bx bxs-shopping-bag'></i><span
+            <li class="active"><a href="{{ route('menuAdmin') }}"><i class='bx bxs-food-menu'></i><span
                         class="text">Daftar Menu</span></a></li>
             <li><a href="{{ route('orders') }}"><i class='bx bxs-cart'></i><span class="text">Orders</span></a></li>
             <li><a href="{{ route('testimonialsAdmin') }}"><i class='bx bxs-message-dots'></i><span
@@ -50,16 +50,12 @@
         </nav>
 
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Daftar Menu</h1>
-                    <ul class="breadcrumb">
-                        <li><a href="#">Tambah Menu</a></li>
-                    </ul>
-                </div>
+            <div class="createmenu-header">
+                <h1>Tambah Menu</h1>
+                <a href="{{ route('menuAdmin') }}" class="btn-card-back">
+                    <i class='bx bx-left-arrow'></i> Kembali
+                </a>
             </div>
-
-            <div class="table-data">
                 <div class="order">
                     <div class="head">
                         <h3>Form Menu Baru</h3>
@@ -90,9 +86,6 @@
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
                 </div>
-            </div>
-
-            <a href="{{ route('menuAdmin') }}" class="color">&larr; Kembali ke Daftar Menu</a>
         </main>
     </section>
 

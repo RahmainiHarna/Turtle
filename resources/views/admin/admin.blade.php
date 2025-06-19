@@ -15,47 +15,37 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="/assets/css/admin.css">
 
-	<style>
-		html, body {
-			height: 100%;
-			overflow: hidden;
-		}
-
-		#content main {
-			overflow-y: auto;
-			max-height: calc(100vh - 56px);
-		}
-
-		#sidebar {
-			height: 100vh;
-			overflow-y: auto;
-		}
-	</style>
+	<title>Admin</title>
 
 </head>
 
 <body>
 	<!-- SIDEBAR -->
-    <section id="sidebar">
-    <a href="#" class="brand">
-     <img src="assets/img/logo-turtles.png" alt="Turtle Resto Logo" style="height: 40px; margin-right: 20px;">
-      <span class="text"><span class="octa">TUR</span><span class="prime">TLE RESTO</span></span>
-    </a>
-    <ul class="side-menu top">
-      <li class="active"><a href="{{ route('admin') }}"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a></li>
-      <li><a href="{{ route('akun') }}"><i class='bx bxs-user'></i><span class="text">Akun User</span></a></li>
-      <li><a href="{{ route('menuAdmin') }}"><i class='bx bxs-shopping-bag'></i><span class="text">Daftar Menu</span></a></li>
-      <li><a href="{{ route('orders') }}"><i class='bx bxs-cart'></i><span class="text">Orders</span></a></li>
-      <li><a href="{{ route('testimonialsAdmin') }}"><i class='bx bxs-message-dots'></i><span class="text">Testimoni</span></a></li>
-      <li><a href="{{ route('messages') }}"><i class='bx bxs-envelope'></i><span class="text">Message</span></a></li>
-      @auth
-      <li>
-        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout">
-          <i class='bx bxs-log-out-circle'></i><span class="text">Logout</span>
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
-      </li>
-      @endauth
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<img src="assets/img/logo-turtles.png" alt="Turtle Resto Logo" style="height: 40px; margin-right: 20px;">
+			<span class="text"><span class="octa">TUR</span><span class="prime">TLE RESTO</span></span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active"><a href="{{ route('admin') }}"><i class='bx bxs-dashboard'></i><span
+						class="text">Dashboard</span></a></li>
+			<li><a href="{{ route('akun') }}"><i class='bx bxs-user'></i><span class="text">Akun User</span></a></li>
+			<li><a href="{{ route('menuAdmin') }}"><i class='bx bxs-shopping-bag'></i><span class="text">Daftar
+						Menu</span></a></li>
+			<li><a href="{{ route('orders') }}"><i class='bx bxs-cart'></i><span class="text">Orders</span></a></li>
+			<li><a href="{{ route('testimonialsAdmin') }}"><i class='bx bxs-message-dots'></i><span
+						class="text">Testimoni</span></a></li>
+			<li><a href="{{ route('messages') }}"><i class='bx bxs-envelope'></i><span class="text">Message</span></a>
+			</li>
+			@auth
+				<li>
+					<a href="{{ route('logout') }}"
+						onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout">
+						<i class='bx bxs-log-out-circle'></i><span class="text">Logout</span>
+					</a>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+				</li>
+			@endauth
 	</section>
 	<!-- END SIDEBAR -->
 
@@ -78,64 +68,64 @@
 					</ul>
 				</div>
 			</div>
-
-			<div class="table-data">
-				<div class="order">
-					<div class="container">
-						<div class="dashboard">
-							<div class="card">
-								<div class="card-icon">
-									<i class="fas fa-utensils"></i>
-								</div>
-								<div class="card-info">
-									<h3>{{ $totalMenus }}</h3>
-									<p>Total Menu</p>
-								</div>
+			<div class="order">
+				<div class="container">
+					<div class="dashboard">
+						<div class="card">
+							<div class="card-icon">
+								<i class="fas fa-utensils"></i>
 							</div>
-
-							<div class="card">
-								<div class="card-icon">
-									<i class="fas fa-book"></i>
-								</div>
-								<div class="card-info">
-									<h3>{{ $totalBookings }}</h3>
-									<p>Total Booking</p>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="card-icon">
-									<i class="fa-solid fa-circle-dollar-to-slot"></i>
-								</div>
-								<div class="card-info">
-									<h3>{{ $totalMessages }}</h3>
-									<p>Total Messages</p>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="card-icon">
-									<i class="fa-solid fa-rupiah-sign"></i>
-								</div>
-								<div class="card-info">
-									<h3>Rp{{ number_format($totalRevenue, 0, ',', '.') }}</h3>
-									<p>Revenue</p>
-								</div>
+							<div class="card-info">
+								<h3>{{ $totalMenus }}</h3>
+								<p>Total Menu</p>
 							</div>
 						</div>
 
-						<div class="charts-row">
-							<!-- Menu Chart -->
-							<div class="chart-box">
-								<canvas id="menuChart" width="400" height="300"></canvas>
+						<div class="card">
+							<div class="card-icon">
+								<i class="fas fa-book"></i>
 							</div>
+							<div class="card-info">
+								<h3>{{ $totalBookings }}</h3>
+								<p>Total Booking</p>
+							</div>
+						</div>
 
-							<!-- Booking Chart -->
-							<div class="chart-box">
-								<canvas id="bookingChart" width="400" height="200"></canvas>
+						<div class="card">
+							<div class="card-icon">
+								<i class="fa-solid fa-message"></i>
+							</div>
+							<div class="card-info">
+								<h3>{{ $totalMessages }}</h3>
+								<p>Total Messages</p>
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-icon">
+								<i class="fa-solid fa-circle-dollar-to-slot"></i>
+							</div>
+							<div class="card-info">
+
+								<h3>Rp{{ number_format($totalRevenue, 0, ',', '.') }}</h3>
+
+								<p>Revenue</p>
 							</div>
 						</div>
 					</div>
+
+					<div class="charts-row">
+						<!-- Menu Chart -->
+						<div class="chart-box">
+							<canvas id="menuChart" width="400" height="300"></canvas>
+						</div>
+
+						<!-- Booking Chart -->
+						<div class="chart-box">
+							<canvas id="bookingChart" width="400" height="200"></canvas>
+						</div>
+					</div>
+				</div>
 
 					<!-- Chart.js Library -->
 					<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
