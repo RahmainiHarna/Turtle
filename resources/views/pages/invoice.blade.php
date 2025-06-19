@@ -325,7 +325,7 @@
       Total :&nbsp;Rp{{ number_format($total, 0, ',', '.') }}
     </div>
      <div class="total">
-     Deposit 10%: Rp{{ number_format($deposit, 0, ',', '.') }}
+     Deposit 10% : Rp{{ number_format($deposit, 0, ',', '.') }}
     </div>
 
     <div style="text-align: center; margin-top: 25px;">
