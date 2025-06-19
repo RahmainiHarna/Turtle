@@ -24,7 +24,9 @@
         <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="">
       </div>
       <div class="col-lg-4 col-md-6">
-        <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" required="">
+        <input type="text" name="phone" maxlength="13" class="form-control" required
+       oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+       placeholder="Your Phone">
       </div>
       <div class="col-lg-4 col-md-6">
         <input type="date" name="date" class="form-control" id="date" min="{{ date('Y-m-d') }}" placeholder="Date" required="">
@@ -32,10 +34,11 @@
       <div class="col-lg-4 col-md-6">
         <select class="form-control" name="time" type="time" id="time" required>
         <option value="">Select Time</option>
-        <option value="10:00">10:00</option>
-        <option value="13:00">13:00</option>
-        <option value="16:00">16:00</option>
-        <option value="19:00">19:00</option>
+        <option value="11:00:00" >11:00 - 13:00</option>
+        <option value="13:15:00" >13:15 - 15-15</option>
+        <option value="15:30:00">15:30 - 17:30</option>
+        <option value="17:45:00">17:45 - 19:45</option>
+        <option value="20:00:00">20:00 - 22:00</option>
         </select>
       </div>
       <div class="col-lg-4 col-md-6">
@@ -60,3 +63,58 @@
   </section>
   <!-- /Book A Table Section -->
 @endsection
+<!-- Flatpickr CSS -->
+
+@push('styles')
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+@endpush
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const timeSelect = document.getElementById('time');
+
+    fetch("{{ route('book.fullybooked') }}")
+      .then(res => res.json())
+      .then((fullDates) => {
+        console.log("Full Booked Dates:", fullDates); // cek di console
+
+        flatpickr("#date", {
+          minDate: "today",
+          dateFormat: "Y-m-d",
+          disable: fullDates,
+          onChange: function(selectedDates, dateStr) {
+            fetch("{{ route('check.availability') }}", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+              },
+              body: JSON.stringify({ date: dateStr })
+            })
+            .then(res => res.json())
+            .then(disabledTimes => {
+              Array.from(timeSelect.options).forEach(opt => {
+                if (opt.value) {
+                  opt.disabled = disabledTimes.includes(opt.value);
+                  opt.style.color = opt.disabled ? "#aaa" : "#000";
+                }
+              });
+            });
+          },
+          onDayCreate: function(dObj, dStr, fp, dayElem) {
+            // Format: "2025-07-17"
+            const dateFormatted =  flatpickr.formatDate(dayElem.dateObj, "Y-m-d");
+
+            if (fullDates.includes(dateFormatted)) {
+              dayElem.style.background = "#ffdddd";
+              dayElem.style.color = "#a00";
+            }
+          }
+        });
+      });
+  });
+</script>
+
+@endpush
