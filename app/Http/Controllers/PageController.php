@@ -21,7 +21,8 @@ class PageController extends Controller
 
     public function booking()
     {
-        return view('pages.book-a-table');
+        $user = auth()->user();
+        return view('pages.book-a-table', compact('user'));
     }
 
     public function testimoni()
