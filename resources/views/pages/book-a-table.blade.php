@@ -34,8 +34,10 @@
       <div class="col-lg-4 col-md-6">
         <select class="form-control" name="time" type="time" id="time" required>
         <option value="">Select Time</option>
+
         <option value="11:00:00" >11:00 - 13:00</option>
         <option value="13:15:00" >13:15 - 15:15</option>
+
         <option value="15:30:00">15:30 - 17:30</option>
         <option value="17:45:00">17:45 - 19:45</option>
         <option value="20:00:00">20:00 - 22:00</option>

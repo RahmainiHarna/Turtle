@@ -38,7 +38,7 @@ class AdminController extends Controller
         $labels[] = 'Total Menu';
         $values[] = $totalMenus;
 
-        return view('admin.admin', compact('menuCounts', 'dates', 'totals', 'totalMenus', 'totalBookings', 'totalRevenue', 'totalMessages', 'labels', 'values'));
+        return view('admin.dashboard', compact('menuCounts', 'dates', 'totals', 'totalMenus', 'totalBookings', 'totalRevenue', 'totalMessages', 'labels', 'values'));
 
     }
     // menampilkan halaman daftar akun
@@ -93,7 +93,7 @@ class AdminController extends Controller
     {
         $booking = Booking::with('orders.menu')->findOrFail($id);
 
-        return view('admin.ordershow', compact('booking'));
+        return view('admin.orderShow', compact('booking'));
     }
 
 
