@@ -112,7 +112,7 @@
       text: "{{ session('cart_success') }}",
       showConfirmButton: false,
       width: '400px',
-      timer: 2500,
+      timer: 1500,
       customClass: {
       title: 'cormorant-alert',
       htmlContainer: 'poppins-alert'

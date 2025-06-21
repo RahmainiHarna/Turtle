@@ -75,7 +75,7 @@
 
     .info-columns {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       align-items: stretch;
       margin: 0 20px 30px 20px;
       justify-content: center;
@@ -324,9 +324,6 @@
     <div class="total">
       Total :&nbsp;Rp{{ number_format($total, 0, ',', '.') }}
     </div>
-     <div class="total">
-     Deposit 10% : Rp{{ number_format($deposit, 0, ',', '.') }}
-    </div>
 
     <div style="text-align: center; margin-top: 25px;">
       <form method="POST" action="{{ route('invoice.confirm') }}">
@@ -401,9 +398,9 @@
           icon: 'success',
           title: 'Success!',
           text: 'Reservation confirmed. Order received. See you soon!',
-          showConfirmButton: true,
-          // confirmButtonText: 'OK',
+          showConfirmButton: false,
           width: '400px',
+          timer: 2500,
           customClass: {
               title: 'cormorant-alert',
               popup: 'poppins-alert'
