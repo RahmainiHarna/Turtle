@@ -51,7 +51,8 @@ class AdminController extends Controller
     // menampilkan halaman daftar menu pada halaman admin
     public function MenuAdmin()
     {
-        $menus = Cart::paginate(10);
+        
+        $menus = Cart::all();
 
         return view('admin.menu', compact('menus'));
     }
