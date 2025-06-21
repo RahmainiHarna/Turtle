@@ -18,13 +18,13 @@
       @csrf
       <div class="row gy-4">
       <div class="col-lg-4 col-md-6">
-        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required="">
+        <input type="text" name="name" value="{{ old('username', $user->username) }}" class="form-control" id="name" placeholder="Your Name" required="">
       </div>
       <div class="col-lg-4 col-md-6">
-        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="">
+        <input type="email" value="{{ old('email', $user->email) }}" class="form-control" name="email" id="email" placeholder="Your Email" required="">
       </div>
       <div class="col-lg-4 col-md-6">
-        <input type="text" name="phone" maxlength="13" class="form-control" required
+        <input type="text" name="phone" maxlength="13" value="{{ old('phone', $user->no_hp) }}" class="form-control" required
        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
        placeholder="Your Phone">
       </div>
@@ -34,8 +34,10 @@
       <div class="col-lg-4 col-md-6">
         <select class="form-control" name="time" type="time" id="time" required>
         <option value="">Select Time</option>
-        <option value="11:00:00">11:00 - 13:00</option>
-        <option value="13:15:00">13:15 - 15:15</option>
+
+        <option value="11:00:00" >11:00 - 13:00</option>
+        <option value="13:15:00" >13:15 - 15:15</option>
+
         <option value="15:30:00">15:30 - 17:30</option>
         <option value="17:45:00">17:45 - 19:45</option>
         <option value="20:00:00">20:00 - 22:00</option>
