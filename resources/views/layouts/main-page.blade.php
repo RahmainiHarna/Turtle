@@ -156,6 +156,23 @@
     });
     </script>
   @endif
+  
+  <!-- Alert untuk Booking Error -->
+  @if (session('error'))
+  <script>
+      Swal.fire({
+          icon: 'error',
+          title: 'Reservation Failed',
+          text: "{{ session('error') }}",
+          confirmButtonText: 'OK',
+          width: '400px',
+          customClass: {
+            title: 'cormorant-alert',
+            htmlContainer: 'poppins-alert'
+          }
+      });
+  </script>
+  @endif
   @stack('scripts')
 
 </body>

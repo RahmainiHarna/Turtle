@@ -35,12 +35,24 @@
         <div class="form-content">
           <div class="login-form">
           <div class="title">Login</div>
+          
+          @if (session('success'))
+              <div class="alert alert-success">
+                  {{ session('success') }}
+              </div>
+          @endif
+          @if ($errors->has('login'))
+              <div class="alert alert-danger">
+                  {{ $errors->first('login') }}
+              </div>
+          @endif
+
             <form action="{{ route('login.submit') }}" method="POST">
             @csrf
             <div class="input-boxes">
               <div class="input-box">
                 <i class="fas fa-user"></i>
-                <input type="text" name="login" placeholder="username" required>
+                <input type="text" name="login" value="{{ old('login') }}" placeholder="username or email" required>
               </div>
               <div class="input-box">
                 <i class="fas fa-key"></i>

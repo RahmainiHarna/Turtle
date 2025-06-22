@@ -28,8 +28,25 @@ class BookingController extends Controller
             ->where('time', $request->time)
             ->sum('people');
 
-        if ($bookingCount + $request->people > 5) {
-            return back()->with('error', 'Kuota penuh pada waktu tersebut.');
+        $maxCapacity = 5;
+        $userRequest = $request->people;
+
+        if ($userRequest > $maxCapacity) {
+            return back()->with('error', "You can only reserve up to $maxCapacity seats.");
+        }
+
+        $bookingCount = Booking::where('date', $request->date)
+            ->where('time', $request->time)
+            ->sum('people');
+
+        if ($bookingCount + $userRequest > $maxCapacity) {
+            $remaining = $maxCapacity - $bookingCount;
+
+            if ($remaining <= 0) {
+                return back()->with('error', 'Sorry, the table is fully booked at that time.');
+            } else {
+                return back()->with('error', "Only $remaining seat(s) available at that time.");
+            }
         }
 
         $data = $request->only(['name', 'email', 'phone', 'date', 'time', 'people', 'message']);
