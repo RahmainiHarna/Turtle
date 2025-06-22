@@ -54,7 +54,9 @@
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
-  <div id="preloader"></div>
+  @if (!session('skip_preloader'))
+    <div id="preloader"></div>
+  @endif
 
   <!-- Vendor JS Files -->
   <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -112,7 +114,7 @@
       text: "{{ session('cart_success') }}",
       showConfirmButton: false,
       width: '400px',
-      timer: 1500,
+      timer: 1000,
       customClass: {
       title: 'cormorant-alert',
       htmlContainer: 'poppins-alert'

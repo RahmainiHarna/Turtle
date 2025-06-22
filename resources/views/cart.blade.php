@@ -5,12 +5,14 @@
 
 @section('content')
     <section id="cartmenu" class="cartmenu section">
-    <div class="container position-relative d-flex align-items-center justify-content-between" data-aos="fade-up">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
         <div class="container" data-aos="fade-up">
             <h2>Choose Your Favorite Menu!</h2>
         </div>
-        <div>
-        <a href="#" onclick="cekSebelumInvoice(event)" class="btn btn-warning btn-md">
+        <div><button class="btn btn-warning btn-md" onclick="showCartPopup()" style="margin-right: 10px;" data-aos="fade-up">
+            <i class="bi bi-cart4" style="font-size: 20px;"></i></button>
+        </div>
+        <div><a href="#" onclick="cekSebelumInvoice(event)" class="btn btn-warning btn-md" data-aos="fade-up">
             <i class="bi bi-receipt me-2"></i>View Invoice</a>
         </div>
     </div>
@@ -56,57 +58,6 @@
     </div>
     </section>
 
-    <script>
-        let cart = [];
-
-        function addToCart(menuId, name, price) {
-            let item = cart.find(i => i.menu_id === menuId);
-            if (item) {
-                item.quantity += 1;
-            } else {
-                cart.push({ menu_id: menuId, name: name, price: price, quantity: 1 });
-            }
-
-            document.getElementById('qty-' + menuId).innerText = cart.find(i => i.menu_id === menuId).quantity;
-        }
-        function decreaseQty(menuId) {
-            let item = cart.find(i => i.menu_id === menuId);
-            if (item && item.quantity > 0) {
-                item.quantity -= 1;
-                if (item.quantity === 0) {
-                    cart = cart.filter(i => i.menu_id !== menuId); // hapus dari cart
-                }
-                document.getElementById('qty-' + menuId).innerText = item.quantity || 0;
-            }
-        }
-
-        function submitBooking() {
-            // Simulasi data booking - ganti dengan input form kalau ada
-            const bookingData = {
-                name: "Nama Dummy",
-                date: "2025-04-29"
-            };
-
-            fetch('/booking-with-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                },
-                body: JSON.stringify({
-                    booking: bookingData,
-                    cart: cart
-                })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        alert("Pesanan berhasil disimpan!");
-                        window.location.href = '/invoice/' + data.booking_id;
-                    }
-                });
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function cekSebelumInvoice(e) {
@@ -131,5 +82,45 @@
             }
         }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function showCartPopup() {
+            const cartData = @json($cart);
+            const menus = @json($menus);
+
+            let cartHTML = '';
+            let foundItem = false;
+
+            menus.forEach(menu => {
+                if (cartData[menu.id]) {
+                    foundItem = true;
+                    cartHTML += `
+                        <div style="margin-bottom: 5px;">
+                            ${menu.name} - <span>${cartData[menu.id]}x</span>
+                        </div>
+                    `;
+                }
+            });
+
+            if (!foundItem) {
+                cartHTML = `<p style="font-style: italic; color: #888;">Your cart is empty.</p>`;
+            }
+
+            Swal.fire({
+                title: 'Your Menu',
+                html: cartHTML,
+                icon: 'info',
+                width: 400,
+                confirmButtonText: 'Close',
+                customClass: {
+                    popup: 'rounded-4',
+                    title: 'cormorant-alert',
+                    htmlContainer: 'poppins-alert'
+                }
+            });
+        }
+    </script>
+
 @endsection
 
