@@ -24,6 +24,12 @@
 			<span class="text">Menu List</span>
 			</a>
 		</li>
+		<li class="{{ request()->routeIs('promoAdmin') ? 'active' : '' }}">
+			<a href="{{ route('promoAdmin') }}">
+			<i class='bx bxs-tag'></i>
+			<span class="text">Promo</span>
+			</a>
+		</li>
 		<li class="{{ request()->routeIs('orders') ? 'active' : '' }}">
 			<a href="{{ route('orders') }}">
 			<i class='bx bxs-cart'></i>

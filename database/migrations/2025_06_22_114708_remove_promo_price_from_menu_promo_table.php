@@ -9,20 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-  public function up()
-{
-    Schema::table('messages', function (Blueprint $table) {
-        $table->boolean('status')->default(0); // 0 = belum dibaca, 1 = sudah dibaca
+    public function up(): void
+    {
+       Schema::table('menu_promo', function (Blueprint $table) {
+        $table->dropColumn('promo_price');
     });
-}
-
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::table('messages', function (Blueprint $table) {
+        Schema::table('menu_promo', function (Blueprint $table) {
             //
         });
     }

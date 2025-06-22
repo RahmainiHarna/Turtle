@@ -119,69 +119,49 @@
     <div class="row">
       <div class="col-lg-3">
       <ul class="nav nav-tabs flex-column">
-        <li class="nav-item">
-        <a class="nav-link active show" data-bs-toggle="tab" href="#promotions-tab-0">Pocket Set</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#promotions-tab-1">Tropical Set</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#promotions-tab-2">Family Set</a>
-        </li>
+        @foreach ($promos as $index => $promo)
+      <li class="nav-item">
+      <a class="nav-link {{ $index === 0 ? 'active show' : '' }}" data-bs-toggle="tab"
+        href="#promotions-{{ $promo->id }}">{{ $promo->title }}</a>
+      </li>
+      @endforeach
+        <!-- <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#promotions-tab-1">Tropical Set</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#promotions-tab-2">Family Set</a>
+      </li> -->
       </ul>
       </div>
 
       <div class="col-lg-9 mt-5 mt-lg-0">
       <div class="tab-content">
-        <!-- Pocket Set -->
-        <div class="tab-pane active show" id="promotions-tab-0">
-        <div class="row">
-          <div class="col-lg-8 details order-2 order-lg-1">
-          <h3>Ayam Penyet, Lemon Tea, Perkedel Jagung</h3>
-          <p class="fst-italic">Everyday favorite, easy on the budget, rich in flavor.</p>
-          <h5><strong>Rp60.000</strong></h5>
-          </div>
-          <div class="col-lg-4 text-center order-1 order-lg-2 mb-5">
-          <img src="/assets/img/promo/pocket_set.jpg" alt=""
-            style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover">
-          </div>
+        @foreach($promos as $index => $promo)
+      <!-- Pocket Set -->
+      <div class="tab-pane {{ $index === 0 ? 'active show' : '' }}" id="promotions-{{ $promo->id }}">
+      <div class="row">
+        <div class="col-lg-8 details order-2 order-lg-1">
+        <h3>{{ $promo->menus->pluck('name')->implode(', ') }}</h3>
+        <p class="fst-italic">{{ $promo->description }}</p>
+        <h5><strong>Rp{{ number_format($promo->promo_price, 0, ',', '.') }}</strong></h5>
         </div>
-        </div>
-
-        <!-- Tropical Set -->
-        <div class="tab-pane" id="promotions-tab-1">
-        <div class="row">
-          <div class="col-lg-8 details order-2 order-lg-1">
-          <h3>Klepon, Rujak, Sop Buah</h3>
-          <p class="fst-italic">Three iconic bites, one tropical vibe.</p>
-          <h5><strong>Rp45.000</strong></h5>
-          </div>
-          <div class="col-lg-4 text-center order-1 order-lg-2 mb-5">
-          <img src="/assets/img/promo/tropical_set.jpg" alt=""
-            style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover">
-          </div>
-        </div>
-        </div>
-
-        <!-- Family Set -->
-        <div class="tab-pane" id="promotions-tab-2">
-        <div class="row">
-          <div class="col-lg-8 details order-2 order-lg-1">
-          <h3>4 Ice Tea, 4 Rice, Cah Kangkung, Grilled Fish, Tempe Mendoan</h3>
-          <p class="fst-italic">Perfect for sharing, packed with bold flavors and heartwarming tastes.</p>
-          <h5><strong>Rp130.000</strong></h5>
-          </div>
-          <div class="col-lg-4 text-center order-1 order-lg-2 mb-5">
-          <img src="/assets/img/promo/family_set.jpg" alt=""
-            style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover">
-          </div>
-        </div>
+        <div class="col-lg-4 text-center order-1 order-lg-2 mb-5">
+        <img src="{{ asset('assets/img/promo/' . $promo->image) }}" alt=""
+        style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover">
         </div>
       </div>
       </div>
-
+      @endforeach
+      </div>
+      </div>
     </div>
-    </div><!-- /Promotion Section -->
+
+
+    <!-- Tropical Set -->
+
+
+
+    <!-- /Promotion Section -->
 
   </section>
   <!-- /Specials Section -->
@@ -194,20 +174,20 @@
 
     <div class="swiper init-swiper" data-aos="fade-up" data-aos-delay="100">
       <script type="application/json" class="swiper-config">
-        {
-          "loop": true,
-          "speed": 600,
-          "autoplay": {
-          "delay": 5000
-          },
-          "slidesPerView": "auto",
-          "pagination": {
-          "el": ".swiper-pagination",
-          "type": "bullets",
-          "clickable": true
-          }
-        }
-        </script>
+      {
+      "loop": true,
+      "speed": 600,
+      "autoplay": {
+      "delay": 5000
+      },
+      "slidesPerView": "auto",
+      "pagination": {
+      "el": ".swiper-pagination",
+      "type": "bullets",
+      "clickable": true
+      }
+      }
+      </script>
       <div class="swiper-wrapper">
 
       <div class="swiper-slide">
@@ -304,49 +284,49 @@
     <div class="swiper init-swiper" data-speed="600" data-delay="5000"
       data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
       <script type="application/json" class="swiper-config">
-        {
-          "loop": true,
-          "speed": 600,
-          "autoplay": {
-          "delay": 5000
-          },
-          "slidesPerView": "auto",
-          "pagination": {
-          "el": ".swiper-pagination",
-          "type": "bullets",
-          "clickable": true
-          },
-          "breakpoints": {
-          "320": {
-            "slidesPerView": 1,
-            "spaceBetween": 40
-          },
-          "1200": {
-            "slidesPerView": 3,
-            "spaceBetween": 20
-          }
-          }
-        }
-        </script>
+      {
+      "loop": true,
+      "speed": 600,
+      "autoplay": {
+      "delay": 5000
+      },
+      "slidesPerView": "auto",
+      "pagination": {
+      "el": ".swiper-pagination",
+      "type": "bullets",
+      "clickable": true
+      },
+      "breakpoints": {
+      "320": {
+      "slidesPerView": 1,
+      "spaceBetween": 40
+      },
+      "1200": {
+      "slidesPerView": 3,
+      "spaceBetween": 20
+      }
+      }
+      }
+      </script>
       <div class="swiper-wrapper">
 
       @foreach($testimoni as $item)
       @if($item->status == 1)
-        <div class="swiper-slide">
-        <div class="testimonial-item">
-        <p>
-          <i class="bi bi-quote quote-icon-left"></i>
-          <span>{{ $item->message }}</span>
-          <i class="bi bi-quote quote-icon-right"></i>
-        </p>
-        {{-- Uncomment jika ada gambar --}}
-        {{-- <img src="{{ asset('path/to/image.jpg') }}" class="testimonial-img" alt=""> --}}
-        <h3>{{ $item->name }}</h3>
-        <h4>{{ $item->subject ?? '' }}</h4>
-        </div>
-        </div><!-- End testimonial item -->
+      <div class="swiper-slide">
+      <div class="testimonial-item">
+      <p>
+        <i class="bi bi-quote quote-icon-left"></i>
+        <span>{{ $item->message }}</span>
+        <i class="bi bi-quote quote-icon-right"></i>
+      </p>
+      {{-- Uncomment jika ada gambar --}}
+      {{-- <img src="{{ asset('path/to/image.jpg') }}" class="testimonial-img" alt=""> --}}
+      <h3>{{ $item->name }}</h3>
+      <h4>{{ $item->subject ?? '' }}</h4>
+      </div>
+      </div><!-- End testimonial item -->
       @endif
-      @endforeach
+    @endforeach
       </div>
       <div class="swiper-pagination"></div>
     </div>
@@ -451,8 +431,10 @@
 
     <div class="mb-5" data-aos="fade-up" data-aos-delay="200">
     <iframe style="border:0; width: 100%; height: 400px;"
-       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.050627475845!2d98.66642690463004!3d3.5758358807751565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3031302c3c831809%3A0x5992c1155743dd42!2sSajian%20Bhinneka!5e0!3m2!1sid!2sid!4v1750035871518!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.050627475845!2d98.66642690463004!3d3.5758358807751565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3031302c3c831809%3A0x5992c1155743dd42!2sSajian%20Bhinneka!5e0!3m2!1sid!2sid!4v1750035871518!5m2!1sid!2sid"
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
     </div>
     <!-- End Google Maps -->
 
@@ -509,10 +491,10 @@
         </div>
 
         <!-- <div class="col-md-12">
-            <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-          </div> -->
+      <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+      </div> -->
 
-    <!-- /Events Section -->
+        <!-- /Events Section -->
 
         <div class="col-md-12">
           <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>

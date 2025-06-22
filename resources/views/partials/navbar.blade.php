@@ -46,6 +46,12 @@
       <div class="user-dropdown">
         <button id="dropdownButton">{{ Auth::user()->username }}</button>
         <div id="dropdownContent" class="user-dropdown-content">
+        <a href="">
+          Profile
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          @csrf
+        </form>
         <a href="{{ route('logout') }}"
           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
           Logout

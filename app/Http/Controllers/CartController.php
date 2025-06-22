@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
+use App\Models\Menu;
 use App\Models\Booking;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class CartController extends Controller
             return redirect('/booking')->with('error', 'Isi form booking terlebih dahulu.');
         }
 
-        $menus = Cart::all();
+        $menus = Menu::all();
         $cart = session('cart', []);
         return view('cart', compact('menus', 'cart'));
     }
@@ -60,6 +60,7 @@ class CartController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|integer|min:0',
             'type' => 'required|in:makanan,minuman,snack',
+            'description' => 'required|text',
             'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
@@ -76,7 +77,7 @@ class CartController extends Controller
 
         $imagePath = $request->type . '/' . $filename;
 
-        Cart::create([
+        Menu::create([
             'name' => $request->name,
             'price' => $request->price,
             'type' => $request->type,
@@ -89,25 +90,27 @@ class CartController extends Controller
     // menampilkan halamnn untuk mengupdate/mengedit menu yang sudah ada oleh admin
     public function edit($id)
     {
-        $menu = Cart::findOrFail($id);
+        $menu = Menu::findOrFail($id);
         return view('admin.editMenu', compact('menu'));
     }
 
     // menyimpan data menu yang sudah diupdate oleh admin
     public function update(Request $request, $id)
     {
-        $menu = Cart::findOrFail($id);
+        $menu = Menu::findOrFail($id);
 
         $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|integer|min:0',
             'type' => 'required|in:makanan,minuman,snack',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'description' => 'required|string'
         ]);
 
         $menu->name = $request->name;
         $menu->type = $request->type;
         $menu->price = $request->price;
+        $menu->description = $request->description;
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -146,7 +149,7 @@ class CartController extends Controller
     // menghapus daftar menu
     public function destroy($id)
     {
-        $menu = Cart::findOrFail($id);
+        $menu = menu::findOrFail($id);
 
         if ($menu->gambar && file_exists(public_path($menu->gambar))) {
             unlink(public_path('assets/img/menu/' . $menu->image));
