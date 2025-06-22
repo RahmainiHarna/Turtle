@@ -14,6 +14,7 @@ use App\Http\Controllers\PageController;
 use App\Models\Booking;
 use GuzzleHttp\Psr7\Message;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ProfileController;
 
 // Halaman utama -> halaman yang dapat diaskes oleh semua user, admin bahkan user yang tidak memiliki akun
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -71,4 +72,8 @@ Route::middleware(['auth', UserMiddleware::class])->group(function () {
 
 });
 
-
+// Route profile
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+});

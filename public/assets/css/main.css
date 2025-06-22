@@ -1841,3 +1841,59 @@ section,
   font-size: 35px !important;
 }
 
+/*--------------------------------------------------------------
+# User Profile
+--------------------------------------------------------------*/
+.profile-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--accent-color);
+}
+
+.user-dropdown {
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  color: var(--background-color);
+  font-weight: 550;
+  font-size: 17px;
+}
+
+.user-dropdown button {
+  background: none;
+  border: none;
+  font-weight: 600;
+  font-size: 17px;
+  cursor: pointer;
+  color: var(--accent-color);
+  font-family: 'Poppins', sans-serif;
+}
+
+.user-dropdown-content {
+  display: none;
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: #fff;
+  min-width: 160px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 999;
+  color: var(--background-color);
+  font-family: 'Poppins', sans-serif;
+}
+
+.user-dropdown-content a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: var(--background-color);
+}
+
+.user-dropdown-content a:hover {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  border-radius: 8px;
+}
