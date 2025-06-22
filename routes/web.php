@@ -11,6 +11,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PromoController;
 use App\Models\Booking;
 use GuzzleHttp\Psr7\Message;
 use App\Http\Controllers\InvoiceController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\InvoiceController;
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::post('/message', [MessageController::class, 'message'])->name('message.store');
 Route::get('/menu', [PageController::class, 'menu'])->name('menu');
+
 
 // Auth
 Route::get('/register', [RegisterController::class, 'show'])->name('register');
@@ -32,6 +34,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     // halaman dashboard
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('/admin/chart-data', [AdminController::class, 'dashboardChartData']);
+    Route::get('/admin/filter-bookings', [AdminController::class, 'filterBookings']);
+
     // halaman daftar akun
     Route::get('/akun', [AdminController::class, 'akun'])->name('akun');
     // halaman daftar menu
@@ -41,6 +46,12 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/menu/{id}/edit', [CartController::class, 'edit'])->name('menu.edit');
     Route::put('/menu/{id}', [CartController::class, 'update'])->name('menu.update');
     Route::delete('/menu/{id}', [CartController::class, 'destroy'])->name('menu.destroy');
+    Route::get('/promo', action: [PromoController::class, 'index'])->name('promoAdmin');
+    Route::get('/promo/create', action: [PromoController::class, 'create'])->name('promo.create');
+    Route::post('/promo/store', [PromoController::class, 'store'])->name('promo.store');
+    Route::get('/promo/{id}/edit', [PromoController::class, 'edit'])->name('promo.edit');
+    Route::put('/promo/{id}', [PromoController::class, 'update'])->name('promo.update');
+      Route::delete('/promo/{id}', [PromoController::class, 'destroy'])->name('promo.destroy');
     // halaman daftar pesanan
     Route::get('/messages', [AdminController::class, 'messages'])->name('messages');
     Route::put('/message/{id}/update', [MessageController::class, 'update'])->name('message.update');

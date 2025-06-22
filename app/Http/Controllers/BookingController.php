@@ -45,8 +45,7 @@ class BookingController extends Controller
     public function destroy($id)
     {
         $booking = Booking::findOrFail($id);
-        $booking->status = 1;
-        $booking->save();
+        $booking->delete();
 
         return redirect()->back()->with('success', 'Data berhasil dihapus!');
     }

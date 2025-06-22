@@ -17,7 +17,7 @@ class Order extends Model
     }
     public function menu()
     {
-        return $this->belongsTo(Cart::class, 'menu_id');
+        return $this->belongsTo(menu::class, 'menu_id');
     }
 
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Testimoni;
 use App\Models\Order;
-use App\Models\Cart;
+use App\Models\Menu;
 use App\Models\Booking;
 use App\Models\message;
 use Illuminate\Http\Request;
@@ -16,29 +16,66 @@ class AdminController extends Controller
     // menamilpan halaman dashbord
     public function index()
     {
-        $totalMenus = Cart::count();
+        $totalMenus = Menu::count();
         $totalBookings = Booking::count();
         $totalMessages = Message::count();
         $totalOrders = Order::count();
         $totalRevenue = Order::sum('subtotal');
-        $menuCounts = Cart::selectRaw('type, COUNT(*) as total')
+
+        $slotWaktu = [
+            '11:00:00',
+            '13:15:00',
+            '15:30:00',
+            '17:45:00',
+            '20:00:00',
+        ];
+
+
+        $menuCounts = Menu::selectRaw('type, COUNT(*) as total')
             ->groupBy('type')
             ->pluck('total', 'type');
         $bookings = DB::table('bookings')
-            ->select(DB::raw('date, SUM(people) as total_people'))
-            ->groupBy('date')
-            ->orderBy('date', 'asc')
+            ->select('date', 'time', DB::raw('SUM(people) as total_people'))
+            // ->whereIn('time', $slotWaktu)
+            ->groupBy('date', 'time')
+            ->orderBy('date')
+            ->orderBy('time')
             ->get();
+        $bookingLabels = [];
+        $bookedValues = [];
+        $emptyValues = [];
 
-
+        foreach ($bookings as $row) {
+            $label = $row->date . ' ' . substr($row->time, 0, 5); // contoh: "2025-06-22 13:15"
+            $bookingLabels[] = $label;
+            $bookedValues[] = (int) $row->total_people;
+            $emptyValues[] = max(0, 5 - (int) $row->total_people);
+        }
         $dates = $bookings->pluck('date');
         $totals = $bookings->pluck('total_people');
         $labels = $menuCounts->keys()->toArray();
         $values = $menuCounts->values()->toArray();
         $labels[] = 'Total Menu';
         $values[] = $totalMenus;
+        $availableDates = Booking::select('date')->distinct()->pluck('date');
 
-        return view('admin.dashboard', compact('menuCounts', 'dates', 'totals', 'totalMenus', 'totalBookings', 'totalRevenue', 'totalMessages', 'labels', 'values'));
+
+
+        return view('admin.dashboard', compact(
+            'menuCounts',
+            'dates',
+            'totals',
+            'totalMenus',
+            'totalBookings',
+            'totalRevenue',
+            'totalMessages',
+            'labels',
+            'values',
+            'bookingLabels',
+            'bookedValues',
+            'emptyValues',
+            'availableDates'
+        ));
 
     }
     // menampilkan halaman daftar akun
@@ -51,8 +88,8 @@ class AdminController extends Controller
     // menampilkan halaman daftar menu pada halaman admin
     public function MenuAdmin()
     {
-        
-        $menus = Cart::all();
+
+        $menus = Menu::all();
 
         return view('admin.menu', compact('menus'));
     }
@@ -96,6 +133,76 @@ class AdminController extends Controller
         return view('admin.orderShow', compact('booking'));
     }
 
+    public function dashboardChartData()
+    {
+        $slots = [
+            '11:00:00',
+            '13:15:00',
+            '15:30:00',
+            '17:45:00',
+            '20:00:00'
+        ];
+
+        $results = DB::table('bookings')
+            ->select(
+                'date',
+                'time',
+                DB::raw('SUM(people) as total_people')
+            )
+            ->whereIn('time', $slots)
+            ->groupBy('date', 'time')
+            ->orderBy('date')
+            ->orderBy('time')
+            ->get();
+
+        // Format data untuk chart.js
+        $formatted = [];
+        foreach ($results as $row) {
+            $key = $row->date . ' ' . $row->time;
+            $formatted[] = [
+                'label' => $key,
+                'booked' => (int) $row->total_people,
+                'empty' => max(0, 5 - (int) $row->total_people),
+            ];
+        }
+
+        return response()->json($formatted);
+    }
+
+public function filterBookings(Request $request)
+{
+    $slotWaktu = ['11:00:00', '13:15:00', '15:30:00', '17:45:00', '20:00:00'];
+    $selectedDate = $request->input('date');
+
+    $data = DB::table('bookings')
+        ->select('time', DB::raw('SUM(people) as total_people'))
+        ->where('date', $selectedDate)
+        ->where(function ($query) use ($slotWaktu) {
+            foreach ($slotWaktu as $slot) {
+                $query->orWhere('time', 'like', $slot . '%');
+            }
+        })
+        ->groupBy('time')
+        ->orderBy('time')
+        ->get();
+
+    $labels = [];
+    $booked = [];
+    $empty = [];
+
+    foreach ($slotWaktu as $time) {
+        $match = $data->firstWhere('time', $time);
+        $labels[] = substr($time, 0, 5); // Tampilkan hanya "11:00"
+        $booked[] = $match ? (int)$match->total_people : 0;
+        $empty[] = max(0, 5 - ($match ? (int)$match->total_people : 0));
+    }
+
+    return response()->json([
+        'labels' => $labels,
+        'booked' => $booked,
+        'empty' => $empty,
+    ]);
+}
 
 
 }

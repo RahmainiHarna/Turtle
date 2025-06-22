@@ -56,7 +56,6 @@
             @endforeach
         </tbody>
     </table>
-    <!-- <div class="pagination-container" >{{ $menus->links('') }}</div>  -->
 </main>
 <!-- MAIN -->
 
