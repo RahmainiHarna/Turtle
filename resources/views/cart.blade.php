@@ -83,7 +83,7 @@
                                         </button>
                                     </form>
                                     <div class="quantity-display">
-                                        {{ $cart[$menu->id] ?? 0 }}
+                                        {{ $cart['menus'][$menu->id]['qty'] ?? 0 }}
                                     </div>
                                     <form method="POST" action="{{ route('cart.add', $menu->id) }}">
                                         @csrf
@@ -130,20 +130,38 @@
         function showCartPopup() {
             const cartData = @json($cart);
             const menus = @json($menus);
+            const promos = @json($promos);
 
             let cartHTML = '';
             let foundItem = false;
 
-            menus.forEach(menu => {
-                if (cartData[menu.id]) {
-                    foundItem = true;
-                    cartHTML += `
-                        <div style="margin-bottom: 5px;">
-                            ${menu.name} - <span>${cartData[menu.id]}x</span>
-                        </div>
-                    `;
-                }
-            });
+            // Loop Menu Biasa
+            if (cartData.menus) {
+                menus.forEach(menu => {
+                    if (cartData.menus[menu.id]) {
+                        foundItem = true;
+                        cartHTML += `
+                            <div style="margin-bottom: 5px;">
+                                ${menu.name} - <span>${cartData.menus[menu.id].qty}x</span>
+                            </div>
+                        `;
+                    }
+                });
+            }
+
+            // Loop Promo
+            if (cartData.promos) {
+                promos.forEach(promo => {
+                    if (cartData.promos[promo.id]) {
+                        foundItem = true;
+                        cartHTML += `
+                            <div style="margin-bottom: 5px;">
+                                ${promo.title} (Promo) - <span>${cartData.promos[promo.id].qty}x</span>
+                            </div>
+                        `;
+                    }
+                });
+            }
 
             if (!foundItem) {
                 cartHTML = `<p style="font-style: italic; color: #888;">Your cart is empty.</p>`;
