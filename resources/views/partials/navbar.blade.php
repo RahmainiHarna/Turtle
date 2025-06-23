@@ -54,7 +54,7 @@
 
           {{-- Username + dropdown --}}
           <div class="user-dropdown">
-            <button id="dropdownButton" onclick="toggleDropdown()">{{ Auth::user()->username }}</button>
+            <button id="dropdownButton" onclick="toggleDropdown()">{{ Auth::user()->username }} <i class="fa-solid fa-chevron-down" style="margin-left: 5px;"></i></button>
             <div id="dropdownContent" class="user-dropdown-content">
               <a href="{{ route('profile.edit') }}">
                 <i class="bi bi-person-circle me-2" style="margin-left: 5px;"></i> Profile

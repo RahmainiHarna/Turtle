@@ -10,6 +10,7 @@ class ProfileController extends Controller
 {
     public function edit()
     {
+        /** @var \App\Models\User $user */
         $user = Auth::user();
         return view('profile.edit', compact('user'));
     }

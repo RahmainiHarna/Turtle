@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Menu')
+@section('page-title', 'Menu')
 
 @section('content')
 <!-- MAIN -->
