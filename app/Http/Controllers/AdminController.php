@@ -7,8 +7,10 @@ use App\Models\Order;
 use App\Models\Menu;
 use App\Models\Booking;
 use App\Models\message;
+use App\Models\Galery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 
 class AdminController extends Controller
@@ -93,6 +95,55 @@ class AdminController extends Controller
 
         return view('admin.menu', compact('menus'));
     }
+    public function GaleryAdmin()
+    {
+
+        $galery = Galery::all();
+
+        return view('admin.galery', compact('galery'));
+    }
+
+    public function editGalery(string $id)
+    {
+        $galery = Galery::findOrFail($id);
+        return view('admin.editGalery', compact('galery'));
+    }
+    public function updateGalery(Request $request, string $id)
+    {
+        $galery = Galery::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $galery->name = $request->name;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+
+            // Hapus gambar lama
+            $oldPath = public_path('assets/img/gallery/' . $galery->image);
+            if (file_exists($oldPath)) {
+                unlink($oldPath);
+            }
+
+            // Simpan gambar baru
+            $slug = Str::slug($request->name, '-');
+            $ext = $file->getClientOriginalExtension();
+            $filename = $slug . '.' . $ext;
+
+            $destination = public_path('assets/img/gallery/');
+            $file->move($destination, $filename);
+
+            $galery->image = $filename;
+        }
+
+        $galery->save();
+
+        return redirect()->route('galeryAdmin')->with('success', 'Galeri berhasil diperbarui!');
+    }
+
 
     //menampilkan halaman daftar testimoni pada halaman admin
     public function TestimonialsAdmin()
@@ -111,7 +162,7 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Testimoni disetujui.');
     }
 
-       public function destroyTestimoni($id)
+    public function destroyTestimoni($id)
     {
         $testimoni = Testimoni::findOrFail($id);
         $testimoni->delete();
@@ -176,40 +227,40 @@ class AdminController extends Controller
         return response()->json($formatted);
     }
 
-public function filterBookings(Request $request)
-{
-    $slotWaktu = ['11:00:00', '13:15:00', '15:30:00', '17:45:00', '20:00:00'];
-    $selectedDate = $request->input('date');
+    public function filterBookings(Request $request)
+    {
+        $slotWaktu = ['11:00:00', '13:15:00', '15:30:00', '17:45:00', '20:00:00'];
+        $selectedDate = $request->input('date');
 
-    $data = DB::table('bookings')
-        ->select('time', DB::raw('SUM(people) as total_people'))
-        ->where('date', $selectedDate)
-        ->where(function ($query) use ($slotWaktu) {
-            foreach ($slotWaktu as $slot) {
-                $query->orWhere('time', 'like', $slot . '%');
-            }
-        })
-        ->groupBy('time')
-        ->orderBy('time')
-        ->get();
+        $data = DB::table('bookings')
+            ->select('time', DB::raw('SUM(people) as total_people'))
+            ->where('date', $selectedDate)
+            ->where(function ($query) use ($slotWaktu) {
+                foreach ($slotWaktu as $slot) {
+                    $query->orWhere('time', 'like', $slot . '%');
+                }
+            })
+            ->groupBy('time')
+            ->orderBy('time')
+            ->get();
 
-    $labels = [];
-    $booked = [];
-    $empty = [];
+        $labels = [];
+        $booked = [];
+        $empty = [];
 
-    foreach ($slotWaktu as $time) {
-        $match = $data->firstWhere('time', $time);
-        $labels[] = substr($time, 0, 5); // Tampilkan hanya "11:00"
-        $booked[] = $match ? (int)$match->total_people : 0;
-        $empty[] = max(0, 5 - ($match ? (int)$match->total_people : 0));
+        foreach ($slotWaktu as $time) {
+            $match = $data->firstWhere('time', $time);
+            $labels[] = substr($time, 0, 5); // Tampilkan hanya "11:00"
+            $booked[] = $match ? (int) $match->total_people : 0;
+            $empty[] = max(0, 5 - ($match ? (int) $match->total_people : 0));
+        }
+
+        return response()->json([
+            'labels' => $labels,
+            'booked' => $booked,
+            'empty' => $empty,
+        ]);
     }
-
-    return response()->json([
-        'labels' => $labels,
-        'booked' => $booked,
-        'empty' => $empty,
-    ]);
-}
 
 
 }

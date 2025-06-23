@@ -69,37 +69,17 @@
     <div class="container">
 
     <div class="row gy-4">
-
+      @foreach ($bestSellers as $menu)
       <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
       <div class="card-item">
-        <h4>Sop Buntut</h4>
-        <h5>Rp52.000</h5>
-        <p><img src="/assets/img/menu/makanan/sop_buntut.png" alt=""
-          style="width: 175px; height: 175px; border-radius: 50%; object-fit: cover;"></p>
-        <p>Clear broth soup with tender oxtail, vegetables, and Indonesian spices.</p>
+      <h4>{{ $menu->name }}</h4>
+      <h5>Rp{{ number_format($menu->price, 0, ',', '.') }}</h5>
+      <p><img src="{{ asset('assets/img/menu/' . $menu->image) }}" alt="{{ $menu->name }}"
+        style="width: 175px; height: 175px; border-radius: 50%; object-fit: cover;"></p>
+      <p>{{ $menu->description }}</p>
       </div>
       </div><!-- Card Item -->
-
-      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-      <div class="card-item">
-        <h4>Cendol</h4>
-        <h5>Rp25.000</h5>
-        <p><img src="/assets/img/menu/minuman/cendol.png" alt=""
-          style="width: 175px; height: 175px; border-radius: 50%; object-fit: cover;"></p>
-        <p>Iced sweet dessert with pandan jelly, coconut milk, red beans, and palm sugar syrup.</p>
-      </div>
-      </div><!-- Card Item -->
-
-      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-      <div class="card-item">
-        <h4>Roti Jala</h4>
-        <h5>Rp20.000</h5>
-        <p><img src="/assets/img/menu/snack/roti_jala.png" alt=""
-          style="width: 175px; height: 175px; border-radius: 50%; object-fit: cover;"></p>
-        <p>Lacy net-like crepes made from turmeric-flavored batter, often served with curry.</p>
-      </div>
-      </div><!-- Card Item -->
-
+    @endforeach
     </div>
 
     </div><!-- /Best Sellers Section -->
@@ -347,70 +327,17 @@
     <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
 
     <div class="row g-0">
-
+      @forelse ($gallery as $image)
       <div class="col-lg-3 col-md-4">
       <div class="gallery-item">
-        <a href="/assets/img/gallery/foto1.jpeg" class="glightbox" data-gallery="images-gallery">
-        <img src="/assets/img/gallery/foto1.jpeg" alt="" class="img-fluid">
-        </a>
+      <a href="{{ asset('assets/img/gallery/' . $image->image)}}" class="glightbox" data-gallery="images-gallery">
+      <img src="{{ asset('assets/img/gallery/' . $image->image)}}" alt="{{ $image->title }}" class="img-fluid">
+      </a>
       </div>
       </div><!-- End Gallery Item -->
-
-      <div class="col-lg-3 col-md-4">
-      <div class="gallery-item">
-        <a href="/assets/img/gallery/foto2.jpeg" class="glightbox" data-gallery="images-gallery">
-        <img src="/assets/img/gallery/foto2.jpeg" alt="" class="img-fluid">
-        </a>
-      </div>
-      </div><!-- End Gallery Item -->
-
-      <div class="col-lg-3 col-md-4">
-      <div class="gallery-item">
-        <a href="/assets/img/gallery/foto3.jpeg" class="glightbox" data-gallery="images-gallery">
-        <img src="/assets/img/gallery/foto3.jpeg" alt="" class="img-fluid">
-        </a>
-      </div>
-      </div><!-- End Gallery Item -->
-
-      <div class="col-lg-3 col-md-4">
-      <div class="gallery-item">
-        <a href="/assets/img/gallery/foto4.jpeg" class="glightbox" data-gallery="images-gallery">
-        <img src="/assets/img/gallery/foto4.jpeg" alt="" class="img-fluid">
-        </a>
-      </div>
-      </div><!-- End Gallery Item -->
-
-      <div class="col-lg-3 col-md-4">
-      <div class="gallery-item">
-        <a href="/assets/img/gallery/foto5.jpeg" class="glightbox" data-gallery="images-gallery">
-        <img src="/assets/img/gallery/foto5.jpeg" alt="" class="img-fluid">
-        </a>
-      </div>
-      </div><!-- End Gallery Item -->
-
-      <div class="col-lg-3 col-md-4">
-      <div class="gallery-item">
-        <a href="/assets/img/gallery/foto6.jpeg" class="glightbox" data-gallery="images-gallery">
-        <img src="/assets/img/gallery/foto6.jpeg" alt=" " class="img-fluid">
-        </a>
-      </div>
-      </div><!-- End Gallery Item -->
-
-      <div class="col-lg-3 col-md-4">
-      <div class="gallery-item">
-        <a href="/assets/img/gallery/foto7.jpeg" class="glightbox" data-gallery="images-gallery">
-        <img src="/assets/img/gallery/foto7.jpeg" alt="" class="img-fluid">
-        </a>
-      </div>
-      </div><!-- End Gallery Item -->
-
-      <div class="col-lg-3 col-md-4">
-      <div class="gallery-item">
-        <a href="/assets/img/gallery/foto8.jpeg" class="glightbox" data-gallery="images-gallery">
-        <img src="/assets/img/gallery/foto8.jpeg" alt="" class="img-fluid">
-        </a>
-      </div>
-      </div><!-- End Gallery Item -->
+    @empty
+      <p class="text-center">Tidak ada gambar di galeri.</p>
+    @endforelse
 
     </div>
 

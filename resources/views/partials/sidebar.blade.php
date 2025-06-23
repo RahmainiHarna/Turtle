@@ -36,6 +36,12 @@
 			<span class="text">Orders</span>
 			</a>
 		</li>
+		<li class="{{ request()->routeIs('galeryAdmin') ? 'active' : '' }}">
+			<a href="{{ route('galeryAdmin') }}">
+			<i class='bx bxs-image-alt'></i>
+			<span class="text">Gallery</span>
+			</a>
+		</li>
 		<li class="{{ request()->routeIs('testimonialsAdmin') ? 'active' : '' }}">
 			<a href="{{ route('testimonialsAdmin') }}">
 			<i class='bx bxs-message-dots'></i>
