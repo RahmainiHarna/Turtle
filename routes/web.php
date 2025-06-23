@@ -51,13 +51,14 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::post('/promo/store', [PromoController::class, 'store'])->name('promo.store');
     Route::get('/promo/{id}/edit', [PromoController::class, 'edit'])->name('promo.edit');
     Route::put('/promo/{id}', [PromoController::class, 'update'])->name('promo.update');
-      Route::delete('/promo/{id}', [PromoController::class, 'destroy'])->name('promo.destroy');
+    Route::delete('/promo/{id}', [PromoController::class, 'destroy'])->name('promo.destroy');
     // halaman daftar pesanan
     Route::get('/messages', [AdminController::class, 'messages'])->name('messages');
     Route::put('/message/{id}/update', [MessageController::class, 'update'])->name('message.update');
     // halaman daftar testimoni
     Route::get('/testimonialsAdmin', [AdminController::class, 'testimonialsAdmin'])->name('testimonialsAdmin');
     Route::put('/admin/testimoni/{id}/approve', [AdminController::class, 'approve'])->name('admin.testimoni.approve');
+     Route::delete('/testimoni/{id}', [AdminController::class, 'destroyTestimoni'])->name('destroyTestimoni');
     // halaman daftar booking
     Route::get('/orders', [AdminController::class, 'orders'])->name('orders');
     Route::get('/orders/{id}', [AdminController::class, 'showOrder'])->name('admin.ordershow');
@@ -73,6 +74,9 @@ Route::middleware(['auth', UserMiddleware::class])->group(function () {
 
     Route::get('/fully-booked-dates', [BookingController::class, 'getFullyBookedDates'])->name('book.fullybooked');
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/cart/promo/{id}', [CartController::class, 'addPromo'])->name('cart.addPromo');
+    Route::delete('/cart/promo/{id}', [CartController::class, 'removePromo'])->name('cart.removePromo');
+
     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
     Route::get('/invoice', [InvoiceController::class, 'showFromSession'])->name('invoice.show');

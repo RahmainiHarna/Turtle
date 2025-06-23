@@ -111,6 +111,13 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Testimoni disetujui.');
     }
 
+       public function destroyTestimoni($id)
+    {
+        $testimoni = Testimoni::findOrFail($id);
+        $testimoni->delete();
+
+        return redirect()->back()->with('success', 'Data berhasil dihapus!');
+    }
     // menampilkan halaman daftar pesan
     public function Messages()
     {

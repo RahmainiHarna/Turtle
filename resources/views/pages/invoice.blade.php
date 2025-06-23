@@ -10,8 +10,11 @@
   <link href="/assets/img/logo-turtles.png" rel="apple-touch-icon">
 
   <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -212,7 +215,7 @@
       font-family: 'Cormorant Garamond', serif !important;
       font-size: 35px !important;
     }
-    
+
     /*------------------
     # Preloader
     ------------------*/
@@ -253,160 +256,201 @@
 <body>
   <!-- Preloader -->
   <div id="preloader"></div>
-  
+ 
+
+
   <!-- Content -->
   <div class="wrapper" id="capture-area">
-  <div class="invoice-container" id="invoice-area">
-    <div class="header">TURTLE’S INVOICE</div>
-    <div class="sub-header">Eat, Feel, and Fall in Love with Indonesian Flavor</div>
+    <div class="invoice-container" id="invoice-area">
+      <div class="header">TURTLE’S INVOICE</div>
+      <div class="sub-header">Eat, Feel, and Fall in Love with Indonesian Flavor</div>
 
-    <div class="info-columns">
-      <div class="info-group">
-        <div class="info-row">
-          <div class="label">Name</div>
-          <div class="colon">:</div>
-          <div class="value">{{ $booking['name'] }}</div>
+      <div class="info-columns">
+        <div class="info-group">
+          <div class="info-row">
+            <div class="label">Name</div>
+            <div class="colon">:</div>
+            <div class="value">{{ $booking['name'] }}</div>
+          </div>
+          <div class="info-row">
+            <div class="label">Email</div>
+            <div class="colon">:</div>
+            <div class="value">{{ $booking['email'] }}</div>
+          </div>
+          <div class="info-row">
+            <div class="label">Phone Number</div>
+            <div class="colon">:</div>
+            <div class="value">{{ $booking['phone'] }}</div>
+          </div>
         </div>
-        <div class="info-row">
-          <div class="label">Email</div>
-          <div class="colon">:</div>
-          <div class="value">{{ $booking['email'] }}</div>
-        </div>
-        <div class="info-row">
-          <div class="label">Phone Number</div>
-          <div class="colon">:</div>
-          <div class="value">{{ $booking['phone'] }}</div>
+
+        <div class="vertical-line"></div>
+
+        <div class="info-group">
+          <div class="info-row">
+            <div class="label">Date</div>
+            <div class="colon">:</div>
+            <div class="value">{{ $booking['date'] }}</div>
+          </div>
+          <div class="info-row">
+            <div class="label">Time</div>
+            <div class="colon">:</div>
+            <div class="value">{{ $booking['time'] }}</div>
+          </div>
+          <div class="info-row">
+            <div class="label">People</div>
+            <div class="colon">:</div>
+            <div class="value">{{ $booking['people'] }}</div>
+          </div>
         </div>
       </div>
+      @if(!empty($promos) && count($promos) > 0)
 
-      <div class="vertical-line"></div>
-
-      <div class="info-group">
-        <div class="info-row">
-          <div class="label">Date</div>
-          <div class="colon">:</div>
-          <div class="value">{{ $booking['date'] }}</div>
-        </div>
-        <div class="info-row">
-          <div class="label">Time</div>
-          <div class="colon">:</div>
-          <div class="value">{{ $booking['time'] }}</div>
-        </div>
-        <div class="info-row">
-          <div class="label">People</div>
-          <div class="colon">:</div>
-          <div class="value">{{ $booking['people'] }}</div>
-        </div>
-      </div>
-    </div>
-
-    <table>
+      <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Item</th>
-          <th>Qty</th>
-          <th>Price</th>
-          <th>Total</th>
+        <th>Nama Promo</th>
+        <th>Qty</th>
+        <th>Harga Promo</th>
+        <th>Subtotal</th>
+        <th>Menu Dalam Promo</th>
         </tr>
       </thead>
       <tbody>
-        @foreach ($menus as $item)
+        @foreach($promos as $promo)
+        @php
+      $qty = $promo->qty ?? 0;
+      $subtotal = $promo->subtotal ?? 0;
+      @endphp
+
         <tr>
-          <td style="text-align: left;">{{ $item['name'] }}</td>
-          <td>{{ $item['quantity'] }}</td>
-          <td>Rp{{ number_format($item['price'], 0, ',', '.') }}</td>
-          <td>Rp{{ number_format($item['quantity'] * $item['price'], 0, ',', '.') }}</td>
+        <td>{{ $promo->title }}</td>
+        <td>{{ $qty }}</td>
+        <td>Rp{{ number_format($promo->promo_price, 0, ',', '.') }}</td>
+        <td>Rp{{ number_format($subtotal, 0, ',', '.') }}</td>
+        <td>
+        <ul class="mb-0">
+        @foreach($promo->menus as $menu)
+        <li>{{ $menu->name }}</li>
+      @endforeach
+        </ul>
+        </td>
         </tr>
-        @endforeach
+      @endforeach
       </tbody>
-    </table>
+      </table>
+    @endif
 
-    <div class="total">
-      Total :&nbsp;Rp{{ number_format($total, 0, ',', '.') }}
-    </div>
+     @if(count($menus))
 
-    <div style="text-align: center; margin-top: 25px;">
-      <form method="POST" action="{{ route('invoice.confirm') }}">
-        @csrf
-       <button type="button" class="btn-print" id="confirm-and-download">DOWNLOAD INVOICE</button>
-      </form>
+      <table>
+      <thead>
+        <tr>
+        <th>Item</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach ($menus as $menu)
+      <tr>
+      <td style="text-align: left;">{{ $menu->name }}</td>
+      <td>{{ $menu->qty }}</td>
+      <td>Rp{{ number_format($menu->price, 0, ',', '.') }}</td>
+      <td>Rp{{ number_format($menu->subtotal, 0, ',', '.') }}</td>
+      </tr>
+      @endforeach
+      </tbody>
+      </table>
+    @endif
+
+      <div class="total">
+        Total :&nbsp;Rp{{ number_format($total, 0, ',', '.') }}
+      </div>
+
+      <div style="text-align: center; margin-top: 25px;">
+        <form method="POST" action="{{ route('invoice.confirm') }}">
+          @csrf
+          <button type="button" class="btn-print" id="confirm-and-download">DOWNLOAD INVOICE</button>
+        </form>
+      </div>
     </div>
-  </div>
   </div>
 
   <!-- Print pdf Invoice -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
- 
+
   <script>
-  document.getElementById("confirm-and-download").addEventListener("click", function () {
-  const { jsPDF } = window.jspdf;
+    document.getElementById("confirm-and-download").addEventListener("click", function () {
+      const { jsPDF } = window.jspdf;
 
-  html2canvas(document.querySelector("#invoice-area"), {
-    scale: 2,
-    useCORS: true,
-    windowWidth: document.querySelector("#invoice-area").scrollWidth,
-    windowHeight: document.querySelector("#invoice-area").scrollHeight,
-  }).then(function (canvas) {
-    const imgData = canvas.toDataURL("image/png");
+      html2canvas(document.querySelector("#invoice-area"), {
+        scale: 2,
+        useCORS: true,
+        windowWidth: document.querySelector("#invoice-area").scrollWidth,
+        windowHeight: document.querySelector("#invoice-area").scrollHeight,
+      }).then(function (canvas) {
+        const imgData = canvas.toDataURL("image/png");
 
-    const canvasWidth = canvas.width * 0.264583;  // px to mm
-    const canvasHeight = canvas.height * 0.264583;
+        const canvasWidth = canvas.width * 0.264583;  // px to mm
+        const canvasHeight = canvas.height * 0.264583;
 
-    const pdf = new jsPDF({
-      orientation: canvasWidth > canvasHeight ? "landscape" : "portrait",
-      unit: "mm",
-      format: [canvasWidth, canvasHeight],
+        const pdf = new jsPDF({
+          orientation: canvasWidth > canvasHeight ? "landscape" : "portrait",
+          unit: "mm",
+          format: [canvasWidth, canvasHeight],
+        });
+
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+
+        const imgProps = pdf.getImageProperties(imgData);
+        const maxWidth = pageWidth * 0.97;
+        const imgWidth = maxWidth;
+        const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+
+        const x = (pageWidth - imgWidth) / 2;
+        const y = (pageHeight - imgHeight) / 2;
+
+        pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
+
+        pdf.save("invoice.pdf");
+
+        setTimeout(() => {
+          document.querySelector("form").submit();
+        }, 500);
+      });
     });
-
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = pdf.internal.pageSize.getHeight();
-
-    const imgProps = pdf.getImageProperties(imgData);
-    const maxWidth = pageWidth * 0.97;
-    const imgWidth = maxWidth;
-    const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
-
-    const x = (pageWidth - imgWidth) / 2;
-    const y = (pageHeight - imgHeight) / 2;
-
-    pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
-
-    pdf.save("invoice.pdf");
-
-    setTimeout(() => {
-        document.querySelector("form").submit();
-      }, 500);
-  });
-  });
   </script>
 
   <!-- Preloader dan Alert -->
   <script>
-  const preloader = document.querySelector('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove();
-    });
-  }
+    const preloader = document.querySelector('#preloader');
+    if (preloader) {
+      window.addEventListener('load', () => {
+        preloader.remove();
+      });
+    }
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   @if(request()->has('confirm'))
-  <script>
-      Swal.fire({
-          icon: 'success',
-          title: 'Success!',
-          text: 'Reservation confirmed. Order received. See you soon!',
-          showConfirmButton: false,
-          width: '400px',
-          timer: 2500,
-          customClass: {
-              title: 'cormorant-alert',
-              popup: 'poppins-alert'
-          }
-      });
-  </script>
+    <script>
+    Swal.fire({
+      icon: 'success',
+      title: 'Success!',
+      text: 'Reservation confirmed. Order received. See you soon!',
+      showConfirmButton: false,
+      width: '400px',
+      timer: 2500,
+      customClass: {
+      title: 'cormorant-alert',
+      popup: 'poppins-alert'
+      }
+    });
+    </script>
   @endif
 </body>
 
