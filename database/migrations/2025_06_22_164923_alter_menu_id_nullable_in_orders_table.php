@@ -9,18 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+  public function up()
+{
+    Schema::table('orders', function (Blueprint $table) {
+        $table->unsignedBigInteger('menu_id')->nullable()->change();
+    });
+}
+
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->integer('subtotal')->default(0);
+            //
         });
     }
-
-    public function down()
-    {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('subtotal');
-        });
-    }
-
 };

@@ -1,4 +1,3 @@
-
 @extends('layouts.main-page')
 
 @section('title', 'CartMenu')
@@ -17,45 +16,88 @@
         </div>
     </div>
 
-    <div class="container position-relative d-flex align-items-center justify-content-between" data-aos="fade-up">
-        <div class="row g-4">
-            @foreach ($menus as $menu)
-            <div class="col-md-3 col-sm-6">
-                <div class="card card-menu p-4">
-                <img src="{{ asset('assets/img/menu/' . $menu->image) }}" alt="{{ $menu->name }}">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ $menu->name }}</h4>
+        <div class="container position-relative d-flex align-items-center justify-content-between" data-aos="fade-up">
+            <div class="row g-4">
+                {{-- === PROMO SECTION === --}}
+                <h2 class="mt-5">Our Promotions</h2>
+                <div class="row g-4 mb-5">
+                   
 
-                        <!-- <div class="row mb-2">
-                            <div class="col">
-                                <strong>{{ ucfirst($menu->type) }}</strong>
-                            </div>
-                        </div> -->
+                    @foreach($promos as $promo)
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card card-menu p-4">
+                                <img src="{{ asset('assets/img/promo/' . $promo->image) }}" alt="{{ $promo->title }}">
+                                <div class="card-body ">
+                                    <h4 class="card-title">{{ $promo->title }}</h4>
+                                    <h5 class="harga mb-3">Rp{{ number_format($promo->promo_price, 0, ',', '.') }}</h5>
+                                    <div class="d-flex justify-content-center align-items-center mt-2">
+                                        <form method="POST" action="{{ route('cart.removePromo', $promo->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-warning btn-sm" type="submit">
+                                                <i class="bi bi-dash"></i>
+                                            </button>
+                                        </form>
+                                        <div class="quantity-display">
+                                        @php
+                                            $qty = 0;
+                                            if (isset($cart['promos'][$promo->id]) && is_array($cart['promos'][$promo->id])) {
+                                                $qty = $cart['promos'][$promo->id]['qty'];
+                                            }
+                                        @endphp
+                                        {{ $qty }}
 
-                        <h5 class="harga mb-3">Rp{{ number_format($menu->price, 0, ',', '.') }}</h5>
-                        <div class="d-flex justify-content-center align-items-center mt-2">
-                            <form method="POST" action="{{ route('cart.remove', $menu->id) }}">
-                                @csrf
-                                <button class="btn btn-warning btn-sm" type="submit">
-                                    <i class="bi bi-dash"></i>
-                                </button>
-                            </form>
-                            <div class="quantity-display">
-                                {{ $cart[$menu->id] ?? 0 }}
+                                        </div>
+                                        <form method="POST" action="{{ route('cart.addPromo', $promo->id) }}">
+                                            @csrf
+                                            <button class="btn btn-warning btn-sm" type="submit">
+                                                <i class="bi bi-plus"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <form method="POST" action="{{ route('cart.add', $menu->id) }}">
-                                @csrf
-                                <button class="btn btn-warning btn-sm" type="submit">
-                                    <i class="bi bi-plus"></i>
-                                </button>
-                            </form>
+                        </div>
+                    @endforeach
+                </div>
+
+                @foreach ($menus as $menu)
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-menu p-4">
+                            <img src="{{ asset('assets/img/menu/' . $menu->image) }}" alt="{{ $menu->name }}">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ $menu->name }}</h4>
+
+                                <!-- <div class="row mb-2">
+                                            <div class="col">
+                                                <strong>{{ ucfirst($menu->type) }}</strong>
+                                            </div>
+                                        </div> -->
+
+                                <h5 class="harga mb-3">Rp{{ number_format($menu->price, 0, ',', '.') }}</h5>
+                                <div class="d-flex justify-content-center align-items-center mt-2">
+                                    <form method="POST" action="{{ route('cart.remove', $menu->id) }}">
+                                        @csrf
+                                        <button class="btn btn-warning btn-sm" type="submit">
+                                            <i class="bi bi-dash"></i>
+                                        </button>
+                                    </form>
+                                    <div class="quantity-display">
+                                        {{ $cart[$menu->id] ?? 0 }}
+                                    </div>
+                                    <form method="POST" action="{{ route('cart.add', $menu->id) }}">
+                                        @csrf
+                                        <button class="btn btn-warning btn-sm" type="submit">
+                                            <i class="bi bi-plus"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
-    </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -123,4 +165,3 @@
     </script>
 
 @endsection
-

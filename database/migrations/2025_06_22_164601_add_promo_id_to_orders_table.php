@@ -9,10 +9,11 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-  public function up()
+   public function up()
 {
-    Schema::table('messages', function (Blueprint $table) {
-        $table->boolean('status')->default(0); // 0 = belum dibaca, 1 = sudah dibaca
+    Schema::table('orders', function (Blueprint $table) {
+        $table->unsignedBigInteger('promo_id')->nullable()->after('menu_id');
+        $table->foreign('promo_id')->references('id')->on('promos')->onDelete('set null');
     });
 }
 
@@ -22,7 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('messages', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             //
         });
     }

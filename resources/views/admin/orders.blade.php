@@ -70,8 +70,9 @@
 			rows.forEach(row => {
 				const name = row.cells[0].textContent.toLowerCase();
 				const contact = row.cells[4].textContent.toLowerCase();
+				const date = row.cells[1].textContent.toLowerCase();
 
-				if (name.includes(input) || contact.includes(input)) {
+				if (name.includes(input) || contact.includes(input) || date.includes(input)) {
 					row.style.display = "";
 				} else {
 					row.style.display = "none";
