@@ -38,30 +38,38 @@
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-      @guest
-      <a href="{{ route('login') }}" class="btn-login d-none d-xl-block">LOGIN</a>
-      @endguest
-
-      @auth
-      <div class="user-dropdown">
-        <button id="dropdownButton">{{ Auth::user()->username }}</button>
-        <div id="dropdownContent" class="user-dropdown-content">
-        <a href="">
-          Profile
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-          @csrf
-        </form>
-        <a href="{{ route('logout') }}"
-          onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-          Logout
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-          @csrf
-        </form>
+        {{-- Kalau belum login --}}
+        @guest
+        <div class="d-flex align-items-center gap-2">
+          <img src="{{ asset('assets/img/default.png') }}" class="profile-img">
+          <a href="{{ route('login') }}" class="btn-login d-none d-xl-block">LOGIN</a>
         </div>
-      </div>
-      @endauth
+        @endguest
+
+        {{-- Kalau sudah login --}}
+        @auth
+        <div class="d-flex align-items-center gap-2 user-area" style="position: relative;">
+          {{-- Foto profil --}}
+          <img src="{{ asset(Auth::user()->photo ?? 'assets/img/default.png') }}" class="profile-img">
+
+          {{-- Username + dropdown --}}
+          <div class="user-dropdown">
+            <button id="dropdownButton" onclick="toggleDropdown()">{{ Auth::user()->username }} <i class="fa-solid fa-chevron-down" style="margin-left: 5px;"></i></button>
+            <div id="dropdownContent" class="user-dropdown-content">
+              <a href="{{ route('profile.edit') }}">
+                <i class="bi bi-person-circle me-2" style="margin-left: 5px;"></i> Profile
+              </a>
+              <a href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="bi bi-box-arrow-right me-2" style="margin-left: 5px;"></i> Logout
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
+            </div>
+          </div>
+        </div>
+        @endauth
 
       </div>
 

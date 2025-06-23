@@ -28,7 +28,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'login' => 'Login gagal. Periksa kembali data kamu.',
+            'login' => 'Oops! Incorrect username or password.',
         ])->onlyInput('login');
     }
 

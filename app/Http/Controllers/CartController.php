@@ -51,7 +51,7 @@ class CartController extends Controller
     }
 
     session()->put('cart', $cart);
-    return back()->with('success', 'Menu ditambahkan ke keranjang!');
+    return back()->with('cart_success', 'Menu locked in.')->with('skip_preloader', true);
     }
 
     // Kurangi menu dari keranjang
@@ -69,7 +69,7 @@ class CartController extends Controller
     }
 
     session()->put('cart', $cart);
-    return back()->with('cart_success', 'Menu dikurangi dari keranjang.');
+    return back()->with('cart_success', 'Maybe next time.')->with('skip_preloader', true);
     }
 
     // memanpilakn halaman untuk menambahakan daftar menu oleh admin

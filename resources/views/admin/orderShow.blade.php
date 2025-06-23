@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Detail Orders')
+@section('page-title', 'Detail Orders')
 
 @section('content')
     <!-- MAIN -->

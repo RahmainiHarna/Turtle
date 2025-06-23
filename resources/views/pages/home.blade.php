@@ -452,7 +452,7 @@
       </div><!-- End Info Item -->
 
       <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-        <i class="bi bi-telephone flex-shrink-0"></i>
+        <i class="bi bi-clock flex-shrink-0"></i>
         <div>
         <h3>Open Hours</h3>
         <p>Monday-Sunday<br>11:00 AM - 23:00 PM</p>

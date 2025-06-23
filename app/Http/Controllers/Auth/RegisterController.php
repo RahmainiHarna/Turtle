@@ -20,7 +20,7 @@ class RegisterController extends Controller
         $validated = $request->validate([
             'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
-            'no_hp' => 'required|string|max:13',
+            'no_hp' => 'required|string|max:13|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
@@ -32,7 +32,7 @@ class RegisterController extends Controller
             'level' => 0,
         ]);
 
-        return redirect('/login')->with('success', 'Akun berhasil dibuat!');
+        return redirect('/login')->with('success', 'Account created successfully.');
     }
 }
 

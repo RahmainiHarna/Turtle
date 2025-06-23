@@ -8,15 +8,15 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::table('menu_promo', function (Blueprint $table) {
-            $table->dropColumn('promo_price');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('photo')->nullable()->after('no_hp');
         });
     }
 
     public function down()
     {
-        Schema::table('menu_promo', function (Blueprint $table) {
-            $table->integer('promo_price')->nullable(); // sesuaikan tipe datanya
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('photo');
         });
     }
 };
