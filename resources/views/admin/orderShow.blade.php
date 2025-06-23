@@ -1,9 +1,10 @@
 @extends('layouts.admin')
 
 @section('title', 'Detail Orders')
+@section('page-title', 'Detail Orders')
 
 @section('content')
-<!-- MAIN -->
+    <!-- MAIN -->
     <main>
         <div class="showmenu-order">
             <div class="head">
@@ -23,12 +24,12 @@
                     <div class="detail-item"><strong>Time :</strong> {{ $booking->time }}</div>
                     <div class="detail-item"><strong>People :</strong> {{ $booking->people }}</div>
 
-                    <div class="detail-item"><strong>Total price :</strong> 
-                        Rp{{ number_format($booking->orders->sum(function ($order) {return $order->menu->price * $order->quantity;}), 0, ',', '.') }}
+                    <div class="detail-item"><strong>Total price :</strong>
+                        Rp{{ number_format($booking->orders->sum('subtotal'), 0, ',', '.') }}
                     </div>
                 </div>
             </div>
-
+            <h5 class="mt-4">Menu Orders</h5>
             <table id="invoice">
                 <thead>
                     <tr>
@@ -39,7 +40,7 @@
                 </thead>
                 <tbody>
                     @php $total = 0; @endphp
-                    @foreach ($booking->orders as $order)
+                    @foreach ($booking->orders->whereNotNull('menu_id') as $order)
                         @php $total += $order->subtotal; @endphp
                         <tr>
                             <td class="text-left">{{ $order->menu->name }}</td>
@@ -47,9 +48,41 @@
                             <td class="text-center">Rp {{ number_format($order->subtotal, 0, ',', '.') }}</td>
                         </tr>
                     @endforeach
+
                 </tbody>
             </table>
+            @if ($booking->orders->whereNotNull('promo_id')->count())
+                <h5 class="mt-4">Promo Orders</h5>
+                <table id="invoice">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Promo</th>
+                            <th class="text-center">Total items</th>
+                            <th class="text-center">Subtotal</th>
+                            <th class="text-center">Isi Menu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($booking->orders->whereNotNull('promo_id') as $order)
+                            @php $total += $order->subtotal; @endphp
+                            <tr>
+                                <td class="text-left">{{ $order->promo->title }}</td>
+                                <td class="text-center">{{ $order->quantity }}</td>
+                                <td class="text-center">Rp {{ number_format($order->subtotal, 0, ',', '.') }}</td>
+                                <td class="text-left">
+
+                                    @foreach ($order->promo->menus as $menu)
+                                        <li>{{ $menu->name }}</li>
+                                    @endforeach
+
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
+
         </div>
     </main>
-<!-- END MAIN -->
+    <!-- END MAIN -->
 @endsection

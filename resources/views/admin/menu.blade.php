@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Menu')
+@section('page-title', 'Menu')
 
 @section('content')
 <!-- MAIN -->
@@ -56,7 +57,7 @@
             @endforeach
         </tbody>
     </table>
-    <!-- <div class="pagination-container" >{{ $menus->links('') }}</div>  -->
+    {{-- <div class="pagination-container" >{{ $menus->links('') }}</div> --}}
 </main>
 <!-- MAIN -->
 

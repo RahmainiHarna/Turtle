@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['booking_id', 'menu_id', 'quantity', 'subtotal'];
+    protected $fillable = ['booking_id', 'menu_id', 'promo_id', 'quantity', 'subtotal'];
 
     public function booking()
     {
@@ -17,8 +17,15 @@ class Order extends Model
     }
     public function menu()
     {
-        return $this->belongsTo(Cart::class, 'menu_id');
+        return $this->belongsTo(Menu::class);
     }
+
+    public function promo()
+    {
+        return $this->belongsTo(Promo::class);
+    }
+
+
 
 
 }

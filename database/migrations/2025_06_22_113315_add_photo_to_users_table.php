@@ -6,21 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->integer('subtotal')->default(0);
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('photo')->nullable()->after('no_hp');
         });
     }
 
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('subtotal');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('photo');
         });
     }
-
 };

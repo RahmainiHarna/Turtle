@@ -24,10 +24,22 @@
 			<span class="text">Menu List</span>
 			</a>
 		</li>
+		<li class="{{ request()->routeIs('promoAdmin') ? 'active' : '' }}">
+			<a href="{{ route('promoAdmin') }}">
+			<i class='bx bxs-tag'></i>
+			<span class="text">Promo</span>
+			</a>
+		</li>
 		<li class="{{ request()->routeIs('orders') ? 'active' : '' }}">
 			<a href="{{ route('orders') }}">
 			<i class='bx bxs-cart'></i>
 			<span class="text">Orders</span>
+			</a>
+		</li>
+		<li class="{{ request()->routeIs('galeryAdmin') ? 'active' : '' }}">
+			<a href="{{ route('galeryAdmin') }}">
+			<i class='bx bxs-image-alt'></i>
+			<span class="text">Gallery</span>
 			</a>
 		</li>
 		<li class="{{ request()->routeIs('testimonialsAdmin') ? 'active' : '' }}">

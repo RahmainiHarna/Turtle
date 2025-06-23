@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'User Accounts')
+@section('page-title', 'User Accounts')
 
 @section('content')
 <!-- MAIN -->

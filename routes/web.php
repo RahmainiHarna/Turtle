@@ -11,14 +11,18 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PromoController;
 use App\Models\Booking;
 use GuzzleHttp\Psr7\Message;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminProfileController;
 
 // Halaman utama -> halaman yang dapat diaskes oleh semua user, admin bahkan user yang tidak memiliki akun
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::post('/message', [MessageController::class, 'message'])->name('message.store');
 Route::get('/menu', [PageController::class, 'menu'])->name('menu');
+
 
 // Auth
 Route::get('/register', [RegisterController::class, 'show'])->name('register');
@@ -32,6 +36,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     // halaman dashboard
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('/admin/chart-data', [AdminController::class, 'dashboardChartData']);
+    Route::get('/admin/filter-bookings', [AdminController::class, 'filterBookings']);
+
     // halaman daftar akun
     Route::get('/akun', [AdminController::class, 'akun'])->name('akun');
     // halaman daftar menu
@@ -41,12 +48,24 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/menu/{id}/edit', [CartController::class, 'edit'])->name('menu.edit');
     Route::put('/menu/{id}', [CartController::class, 'update'])->name('menu.update');
     Route::delete('/menu/{id}', [CartController::class, 'destroy'])->name('menu.destroy');
+    
+    Route::get('/promo', action: [PromoController::class, 'index'])->name('promoAdmin');
+    Route::get('/promo/create', action: [PromoController::class, 'create'])->name('promo.create');
+    Route::post('/promo/store', [PromoController::class, 'store'])->name('promo.store');
+    Route::get('/promo/{id}/edit', [PromoController::class, 'edit'])->name('promo.edit');
+    Route::put('/promo/{id}', [PromoController::class, 'update'])->name('promo.update');
+    Route::delete('/promo/{id}', [PromoController::class, 'destroy'])->name('promo.destroy');
+
+     Route::get('/galeryAdmin', [AdminController::class, 'galeryAdmin'])->name('galeryAdmin');
+     Route::get('/galery/{id}/edit', [AdminController::class, 'editGalery'])->name('galery.edit');
+    Route::put('/galery/{id}', [AdminController::class, 'updateGalery'])->name('galery.update');
     // halaman daftar pesanan
     Route::get('/messages', [AdminController::class, 'messages'])->name('messages');
     Route::put('/message/{id}/update', [MessageController::class, 'update'])->name('message.update');
     // halaman daftar testimoni
     Route::get('/testimonialsAdmin', [AdminController::class, 'testimonialsAdmin'])->name('testimonialsAdmin');
     Route::put('/admin/testimoni/{id}/approve', [AdminController::class, 'approve'])->name('admin.testimoni.approve');
+     Route::delete('/testimoni/{id}', [AdminController::class, 'destroyTestimoni'])->name('destroyTestimoni');
     // halaman daftar booking
     Route::get('/orders', [AdminController::class, 'orders'])->name('orders');
     Route::get('/orders/{id}', [AdminController::class, 'showOrder'])->name('admin.ordershow');
@@ -62,6 +81,9 @@ Route::middleware(['auth', UserMiddleware::class])->group(function () {
 
     Route::get('/fully-booked-dates', [BookingController::class, 'getFullyBookedDates'])->name('book.fullybooked');
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/cart/promo/{id}', [CartController::class, 'addPromo'])->name('cart.addPromo');
+    Route::delete('/cart/promo/{id}', [CartController::class, 'removePromo'])->name('cart.removePromo');
+
     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
     Route::get('/invoice', [InvoiceController::class, 'showFromSession'])->name('invoice.show');
@@ -71,4 +93,13 @@ Route::middleware(['auth', UserMiddleware::class])->group(function () {
 
 });
 
+// Route profile
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+});
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::put('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+});

@@ -27,6 +27,17 @@
         <div class="form-content">
           <div class="signup-form">
           <div class="title">Signup</div>
+            
+          @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
+
             <form action="{{ route('register.submit') }}" method="POST">
             @csrf
               <div class="input-boxes">
@@ -40,7 +51,7 @@
                 </div>
                 <div class="input-box">
                     <i class="fas fa-phone"></i>
-                    <input type="number" name="no_hp" placeholder="phone number" required>
+                    <input type="text" name="no_hp" placeholder="phone number" required>
                 </div>
                 <div class="input-box">
                     <i class="fas fa-key"></i>
