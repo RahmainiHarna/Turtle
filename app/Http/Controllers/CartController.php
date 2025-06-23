@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Models\Booking;
 use App\Models\Order;
+use App\Models\Promo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -18,33 +19,57 @@ class CartController extends Controller
         if (!session()->has('booking')) {
             return redirect('/booking')->with('error', 'Isi form booking terlebih dahulu.');
         }
-
+        $promos = Promo::with('menus')->get();
         $menus = Menu::all();
         $cart = session('cart', []);
-        return view('cart', compact('menus', 'cart'));
+        return view('cart', compact('menus', 'cart', 'promos'));
     }
 
     // menambah menu ke keranjang
     public function addToCart($id)
     {
-        $cart = session()->get('cart', []);
-        $cart[$id] = isset($cart[$id]) ? $cart[$id] + 1 : 1;
-        session(['cart' => $cart]);
-        return back()->with('cart_success', 'Menu locked in.');
+         $menu = Menu::findOrFail($id);
+    $cart = session()->get('cart', []);
+
+    // Inisialisasi 'menus' jika belum ada
+    if (!isset($cart['menus'])) {
+        $cart['menus'] = [];
+    }
+
+    // Tambah quantity jika sudah ada
+    if (isset($cart['menus'][$id])) {
+        $cart['menus'][$id]['qty'] += 1;
+    } else {
+        // Tambah item baru
+        $cart['menus'][$id] = [
+            'id' => $menu->id,
+            'name' => $menu->name,
+            'qty' => 1,
+            'price' => $menu->price,
+            'type' => 'menu'
+        ];
+    }
+
+    session()->put('cart', $cart);
+    return back()->with('success', 'Menu ditambahkan ke keranjang!');
     }
 
     // Kurangi menu dari keranjang
     public function removeFromCart($id)
     {
-        $cart = session()->get('cart', []);
-        if (isset($cart[$id])) {
-            $cart[$id]--;
-            if ($cart[$id] <= 0) {
-                unset($cart[$id]);
-            }
+      
+    $cart = session()->get('cart', []);
+
+    if (isset($cart['menus'][$id])) {
+        $cart['menus'][$id]['qty'] -= 1;
+
+        if ($cart['menus'][$id]['qty'] <= 0) {
+            unset($cart['menus'][$id]);
         }
-        session(['cart' => $cart]);
-        return back()->with('cart_success', 'Maybe next time.');
+    }
+
+    session()->put('cart', $cart);
+    return back()->with('cart_success', 'Menu dikurangi dari keranjang.');
     }
 
     // memanpilakn halaman untuk menambahakan daftar menu oleh admin
@@ -158,6 +183,39 @@ class CartController extends Controller
         $menu->delete();
 
         return redirect()->back()->with('success', 'Menu berhasil dihapus.');
+    }
+    public function addPromo(Request $request, $id)
+{
+    $promo = Promo::findOrFail($id);
+    $cart = session()->get('cart', ['menus' => [], 'promos' => []]);
+
+    if(isset($cart['promos'][$id])) {
+        $cart['promos'][$id]['qty'] += 1;
+    } else {
+        $cart['promos'][$id] = [
+            'id' => $promo->id,
+            'name' => $promo->title,
+            'qty' => 1,
+            'price' => $promo->promo_price,
+            'type' => 'promo'
+        ];
+    }
+
+    session()->put('cart', $cart);
+    return back();
+}
+
+
+    public function removePromo($id)
+    {
+        $cart = session()->get('cart');
+
+        if (isset($cart['promos'][$id])) {
+            unset($cart['promos'][$id]);
+            session()->put('cart', $cart);
+        }
+
+        return redirect()->back()->with('success', 'Promo dihapus dari keranjang!');
     }
 
 }
