@@ -260,6 +260,7 @@ class AdminController extends Controller
             'booked' => $booked,
             'empty' => $empty,
         ]);
+
     }
 
 
