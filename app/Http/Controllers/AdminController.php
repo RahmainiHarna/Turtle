@@ -96,6 +96,13 @@ class AdminController extends Controller
         return view('admin.orderShow', compact('booking'));
     }
 
+    public function GaleryAdmin()
+    {
+
+        $galery = Galery::all();
+
+        return view('admin.galery', compact('galery'));
+    }
 
 
 }
