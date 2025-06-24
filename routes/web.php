@@ -48,7 +48,7 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/menu/{id}/edit', [CartController::class, 'edit'])->name('menu.edit');
     Route::put('/menu/{id}', [CartController::class, 'update'])->name('menu.update');
     Route::delete('/menu/{id}', [CartController::class, 'destroy'])->name('menu.destroy');
-    
+
     Route::get('/promo', action: [PromoController::class, 'index'])->name('promoAdmin');
     Route::get('/promo/create', action: [PromoController::class, 'create'])->name('promo.create');
     Route::post('/promo/store', [PromoController::class, 'store'])->name('promo.store');
@@ -56,18 +56,21 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::put('/promo/{id}', [PromoController::class, 'update'])->name('promo.update');
     Route::delete('/promo/{id}', [PromoController::class, 'destroy'])->name('promo.destroy');
 
-     Route::get('/galeryAdmin', [AdminController::class, 'galeryAdmin'])->name('galeryAdmin');
-     Route::get('/galery/{id}/edit', [AdminController::class, 'editGalery'])->name('galery.edit');
+    Route::get('/galeryAdmin', [AdminController::class, 'galeryAdmin'])->name('galeryAdmin');
+    Route::get('/galery/{id}/edit', [AdminController::class, 'editGalery'])->name('galery.edit');
     Route::put('/galery/{id}', [AdminController::class, 'updateGalery'])->name('galery.update');
     // halaman daftar pesanan
     Route::get('/messages', [AdminController::class, 'messages'])->name('messages');
     Route::put('/message/{id}/update', [MessageController::class, 'update'])->name('message.update');
     // halaman daftar testimoni
     Route::get('/testimonialsAdmin', [AdminController::class, 'testimonialsAdmin'])->name('testimonialsAdmin');
-    Route::put('/admin/testimoni/{id}/approve', [AdminController::class, 'approve'])->name('admin.testimoni.approve');
-     Route::delete('/testimoni/{id}', [AdminController::class, 'destroyTestimoni'])->name('destroyTestimoni');
+    // web.php
+    Route::put('/admin/testimoni/toggle/{id}', [AdminController::class, 'toggleStatus'])->name('admin.testimoni.toggle');
+    Route::delete('/testimoni/{id}', [AdminController::class, 'destroyTestimoni'])->name('destroyTestimoni');
     // halaman daftar booking
     Route::get('/orders', [AdminController::class, 'orders'])->name('orders');
+    Route::put('/admin/orderdone/{id}', [BookingController::class, 'done'])->name('admin.orderdone');
+
     Route::get('/orders/{id}', [AdminController::class, 'showOrder'])->name('admin.ordershow');
     Route::delete('/admin/order/{id}', [BookingController::class, 'destroy'])->name('admin.orderdelete');
 });

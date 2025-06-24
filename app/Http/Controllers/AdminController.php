@@ -161,6 +161,14 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Testimoni disetujui.');
     }
+    public function toggleStatus($id)
+    {
+        $testimoni = Testimoni::findOrFail($id);
+        $testimoni->status = $testimoni->status == 0 ? 1 : 0;
+        $testimoni->save();
+
+        return redirect()->back()->with('success', 'Status berhasil diubah.');
+    }
 
     public function destroyTestimoni($id)
     {
@@ -179,9 +187,10 @@ class AdminController extends Controller
     // menampilkan daftar booking ( data diri )
     public function orders()
     {
-        $bookings = Booking::with('orders.menu')->where('status', 0)->latest()->get();
+        $bookings = Booking::with('orders.menu')->latest()->get();
         return view('admin.orders', compact('bookings'));
     }
+
 
     // menamiplakn detail dari setiap booking seperti data diri, menu yang dipesan, dan detail order
     public function showOrder($id)

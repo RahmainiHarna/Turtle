@@ -1086,6 +1086,22 @@ body.dark .octa {
 .crud-btn.edit:hover{background:#0056b3;}
 .crud-btn.edit i{margin-right: 3px;}
 
+
+.crud-btn.selesai{
+ 	background-color: #27ae60;
+    color: #fff;
+    border: none;
+    padding: 4px 18px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+	margin-bottom: 5px;
+}
+.crud-btn.selesai:hover{background:#27793f;}
+.crud-btn.selesai i{margin-right: 3px;}
+
 .crud-btn.more{
     background: #007bff;
     color: #fff;
@@ -1097,6 +1113,7 @@ body.dark .octa {
     font-size: 14px;
     cursor: pointer;
 	margin-bottom: 5px;
+	margin-top:5px;
 }
 .crud-btn.more:hover{background:#0056b3;}
 .crud-btn.more i{margin-right: 3px;}
@@ -1125,7 +1142,7 @@ body {
 }
 
 .badge-success {
-	background-color: #27ae60;
+	background-color: #0e4d28;
 	color: #FFF;
 	padding: 6px 12px;
 	border-radius: 6px;
@@ -1549,6 +1566,30 @@ a.back-btn:hover {
 	border-radius: 6px;
 	font-size: 13px;
 	font-weight: 600;
+}
+.badge.bg-selesai {
+	background-color: #0c391f;
+	color: #fff;
+	padding: 6px 12px;
+	border-radius: 6px;
+	font-size: 13px;
+	font-weight: 600;
+}
+.badge.bg-success {
+	background-color: #27ae60;
+	color: #fff;
+	padding: 6px 12px;
+	border-radius: 6px;
+	font-size: 13px;
+	font-weight: 600;
+}
+.badge.bg-primary {
+	background-color: #1639d7;
+	color: #fff;
+	padding: 6px 12px;
+	border-radius: 6px;
+	font-size: 13px;
+	font-weight: 550;
 }
 
 .head-title h1 {

@@ -4,15 +4,15 @@
 @section('page-title', 'Orders')
 
 @section('content')
-<!-- MAIN -->
+	<!-- MAIN -->
 	<main>
 		<div class="menu-header">
 			<h1>Recent<span>Orders</span></h1>
-					<div class="search-container">
-						<input type="text" id="searchInput" placeholder="Search by name, email, or phone number..."
-							onkeyup="searchTable()">
-						<i class='bx bx-search'></i>
-					</div>
+			<div class="search-container">
+				<input type="text" id="searchInput" placeholder="Search by name, email, or phone number..."
+					onkeyup="searchTable()">
+				<i class='bx bx-search'></i>
+			</div>
 		</div>
 		<table id="userTable">
 			<thead>
@@ -35,21 +35,34 @@
 						<td class="text-left">{{ $data_diri->phone }} / {{ $data_diri->email }}</td>
 						<td class="text-center">
 							<div class="action-buttons">
+								 @if($data_diri->status != 1)
+									<form action="{{ route('admin.orderdone', $data_diri->id) }}" method="POST">
+										@csrf
+										@method('PUT')
+										<button type="submit" class="crud-btn selesai">
+											✔ Selesai
+										</button>
+									</form>
+								@else
+									<span class="crud btn-finish" style="color : #27793f ; font-size : medium"><b>Selesai</b></span>
+								@endif
 								<form action="{{ route('admin.ordershow', $data_diri->id) }}" method="GET">
 									<button type="submit" class="crud-btn more">
 										<i class='bx bx-show'></i>More
 									</button>
 								</form>
 
+
+
 								<form action="{{ route('admin.orderdelete', $data_diri->id) }}" method="POST">
 									@csrf
 									@method('DELETE')
 									<button type="submit" class="crud-btn delete"
-											onclick="return confirm('Yakin ingin menghapus?')">
+										onclick="return confirm('Yakin ingin menghapus?')">
 										<i class='bx bxs-trash'></i>Delete
 									</button>
 								</form>
-								</div>
+							</div>
 						</td>
 
 						</form>
@@ -59,26 +72,26 @@
 			</tbody>
 		</table>
 	</main>
-<!-- END MAIN -->
+	<!-- END MAIN -->
 
-@push('scripts')
-	<script>
-		function searchTable() {
-			const input = document.getElementById("searchInput").value.toLowerCase();
-			const rows = document.querySelectorAll("#userTable tbody tr");
+	@push('scripts')
+		<script>
+			function searchTable() {
+				const input = document.getElementById("searchInput").value.toLowerCase();
+				const rows = document.querySelectorAll("#userTable tbody tr");
 
-			rows.forEach(row => {
-				const name = row.cells[0].textContent.toLowerCase();
-				const contact = row.cells[4].textContent.toLowerCase();
-				const date = row.cells[1].textContent.toLowerCase();
+				rows.forEach(row => {
+					const name = row.cells[0].textContent.toLowerCase();
+					const contact = row.cells[4].textContent.toLowerCase();
+					const date = row.cells[1].textContent.toLowerCase();
 
-				if (name.includes(input) || contact.includes(input) || date.includes(input)) {
-					row.style.display = "";
-				} else {
-					row.style.display = "none";
-				}
-			});
-		}
-	</script>
-@endpush
+					if (name.includes(input) || contact.includes(input) || date.includes(input)) {
+						row.style.display = "";
+					} else {
+						row.style.display = "none";
+					}
+				});
+			}
+		</script>
+	@endpush
 @endsection
