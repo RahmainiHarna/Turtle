@@ -34,17 +34,20 @@
                         <td class="text-left">{{ $Testimoni->message }}</td>
                         <td class="text-center">
                             <div class="crud-buttons">
-                                @if($Testimoni->status == 0)
-                                    <form action="{{ route('admin.testimoni.approve', $Testimoni->id) }}" method="POST"
-                                        style="display:inline">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="crud-btn edit">✔Approve</button>
-                                    </form>
-                                @else
-                                    <span class="badge bg-success">Approved</span>
-                                @endif
-                                <form action="{{ route('destroyTestimoni',$Testimoni->id) }}" method="POST" class="inline-form">
+                                <form action="{{ route('admin.testimoni.toggle', $Testimoni->id) }}" method="POST"
+                                    style="display:inline">
+                                    @csrf
+                                    @method('PUT')
+                                    @if($Testimoni->status == 0)
+                                        <button type="submit" class="badge bg-primary" >✔Approve</button>
+                                    @else
+                                        <button type="submit" class="badge bg-success">
+                                            Approved</button>
+                                    @endif
+                                </form>
+
+                                <form action="{{ route('destroyTestimoni', $Testimoni->id) }}" method="POST"
+                                    class="inline-form">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="crud-btn delete"
@@ -54,6 +57,7 @@
                                 </form>
                             </div>
                         </td>
+
 
 
                     </tr>

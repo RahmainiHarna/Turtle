@@ -7,12 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    use HasFactory;
+    protected $guarded = []; // artinya semua kolom boleh diisi (bebas)
 
-    protected $fillable = ['name', 'email', 'phone', 'date', 'time', 'people', 'message' , 'total_bill', 'paid'];
+    use HasFactory;
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'date',
+        'time',
+        'people',
+        'message',
+        'total_bill',
+        'paid',
+        'status'
+    ];
 
     public function orders()
     {
         return $this->hasMany(Order::class, 'booking_id');
     }
 }
+

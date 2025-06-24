@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+
 use App\Models\Booking;
 use App\Models\Cart;
 use App\Models\Order;
@@ -56,6 +57,18 @@ class BookingController extends Controller
         ]);
 
         return redirect('/cart')->with('booking_success', 'Your booking details have been saved. Please choose your menu.');
+    }
+
+    public function done($id)
+    {
+
+
+        $order = Booking::findOrFail($id);// untuk lihat isi sebelum dan sesudah update
+
+        $order->status = 1;
+        $order->save(); 
+
+        return redirect()->back()->with('success', 'Pesanan ditandai sebagai selesai.');
     }
 
     // untuk menghapud data booking di halaman admin, tetapi tidak didatabase 

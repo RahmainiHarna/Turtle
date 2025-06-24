@@ -28,48 +28,48 @@ class CartController extends Controller
     // menambah menu ke keranjang
     public function addToCart($id)
     {
-         $menu = Menu::findOrFail($id);
-    $cart = session()->get('cart', []);
+        $menu = Menu::findOrFail($id);
+        $cart = session()->get('cart', []);
 
-    // Inisialisasi 'menus' jika belum ada
-    if (!isset($cart['menus'])) {
-        $cart['menus'] = [];
-    }
+        // Inisialisasi 'menus' jika belum ada
+        if (!isset($cart['menus'])) {
+            $cart['menus'] = [];
+        }
 
-    // Tambah quantity jika sudah ada
-    if (isset($cart['menus'][$id])) {
-        $cart['menus'][$id]['qty'] += 1;
-    } else {
-        // Tambah item baru
-        $cart['menus'][$id] = [
-            'id' => $menu->id,
-            'name' => $menu->name,
-            'qty' => 1,
-            'price' => $menu->price,
-            'type' => 'menu'
-        ];
-    }
+        // Tambah quantity jika sudah ada
+        if (isset($cart['menus'][$id])) {
+            $cart['menus'][$id]['qty'] += 1;
+        } else {
+            // Tambah item baru
+            $cart['menus'][$id] = [
+                'id' => $menu->id,
+                'name' => $menu->name,
+                'qty' => 1,
+                'price' => $menu->price,
+                'type' => 'menu'
+            ];
+        }
 
-    session()->put('cart', $cart);
-    return back()->with('cart_success', 'Menu locked in.')->with('skip_preloader', true);
+        session()->put('cart', $cart);
+        return back()->with('cart_success', 'Menu locked in.')->with('skip_preloader', true);
     }
 
     // Kurangi menu dari keranjang
     public function removeFromCart($id)
     {
-      
-    $cart = session()->get('cart', []);
 
-    if (isset($cart['menus'][$id])) {
-        $cart['menus'][$id]['qty'] -= 1;
+        $cart = session()->get('cart', []);
 
-        if ($cart['menus'][$id]['qty'] <= 0) {
-            unset($cart['menus'][$id]);
+        if (isset($cart['menus'][$id])) {
+            $cart['menus'][$id]['qty'] -= 1;
+
+            if ($cart['menus'][$id]['qty'] <= 0) {
+                unset($cart['menus'][$id]);
+            }
         }
-    }
 
-    session()->put('cart', $cart);
-    return back()->with('cart_success', 'Maybe next time.')->with('skip_preloader', true);
+        session()->put('cart', $cart);
+        return back()->with('cart_success', 'Maybe next time.')->with('skip_preloader', true);
     }
 
     // memanpilakn halaman untuk menambahakan daftar menu oleh admin
@@ -85,9 +85,10 @@ class CartController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|integer|min:0',
             'type' => 'required|in:makanan,minuman,snack',
-            'description' => 'required|text',
+            'description' => 'required|string',
             'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
+       
 
         $file = $request->file('image');
 
@@ -104,6 +105,7 @@ class CartController extends Controller
 
         Menu::create([
             'name' => $request->name,
+             'description' => $request->description,
             'price' => $request->price,
             'type' => $request->type,
             'image' => $imagePath,
@@ -185,25 +187,25 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Menu berhasil dihapus.');
     }
     public function addPromo(Request $request, $id)
-{
-    $promo = Promo::findOrFail($id);
-    $cart = session()->get('cart', ['menus' => [], 'promos' => []]);
+    {
+        $promo = Promo::findOrFail($id);
+        $cart = session()->get('cart', ['menus' => [], 'promos' => []]);
 
-    if(isset($cart['promos'][$id])) {
-        $cart['promos'][$id]['qty'] += 1;
-    } else {
-        $cart['promos'][$id] = [
-            'id' => $promo->id,
-            'name' => $promo->title,
-            'qty' => 1,
-            'price' => $promo->promo_price,
-            'type' => 'promo'
-        ];
+        if (isset($cart['promos'][$id])) {
+            $cart['promos'][$id]['qty'] += 1;
+        } else {
+            $cart['promos'][$id] = [
+                'id' => $promo->id,
+                'name' => $promo->title,
+                'qty' => 1,
+                'price' => $promo->promo_price,
+                'type' => 'promo'
+            ];
+        }
+
+        session()->put('cart', $cart);
+        return back();
     }
-
-    session()->put('cart', $cart);
-    return back();
-}
 
 
     public function removePromo($id)
